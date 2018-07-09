@@ -9,5 +9,5 @@ artifacts/war/*
 !artifacts/war/pom.xml
 artifacts/web/*
 !artifacts/web/pom.xml
-!web.xml
-!RDF_Map.prop
+!w/
+!x/
