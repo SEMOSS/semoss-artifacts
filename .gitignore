@@ -1,0 +1,11 @@
+/*
+!.gitignore
+!artifacts/
+artifacts/home/*
+!artifacts/home/pom.xml
+artifacts/lib/*
+!artifacts/lib/pom.xml
+artifacts/war/*
+!artifacts/war/pom.xml
+artifacts/web/*
+!artifacts/web/pom.xml
