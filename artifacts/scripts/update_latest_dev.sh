@@ -23,6 +23,12 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
                 version=$latest_version
         fi
 
+		# Cleanup
+		rm -rf /opt/semosshome/semoss-artifacts/artifacts/home/semoss*
+		rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
+		rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
+		rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
+				
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts
         git pull
