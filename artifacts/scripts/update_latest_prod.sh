@@ -12,8 +12,15 @@ fi
 echo latest version is $latest_version
 echo current version is $version
  
-if [ "$#" -gt 0 ] && [[ (( $latest_version > $version )) ]]; then
-        version=$latest_version
+# If the version is being overridden, or the latest version is greater than the current, then update
+if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
+        # Always use the overridden version if provided 
+        if [ "$#" -gt 0 ]; then
+                version=$1
+        else 
+                version=$latest_version
+        fi
+		
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts
         git pull
@@ -27,6 +34,7 @@ if [ "$#" -gt 0 ] && [[ (( $latest_version > $version )) ]]; then
         cp -r /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
                              cp -r /opt/semosshome/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
                              cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
+
         echo "version=$latest_version" > /opt/semosshome/semoss-artifacts/ver.txt
 else
         echo "Semoss is already up to date"

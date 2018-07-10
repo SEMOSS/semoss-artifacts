@@ -14,7 +14,7 @@ echo latest version is $latest_version
 echo current version is $version
 echo last updated is $last_updated
 
-# If the version is being overridden, or the latest version is greater than the current, then update
+# If the version is being overridden, or the last updated is greater than the current, then update
 if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
         # Always use the overridden version if provided 
         if [ "$#" -gt 0 ]; then
