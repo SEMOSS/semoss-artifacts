@@ -29,9 +29,9 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
         cd /opt/semosshome/semoss-artifacts/artifacts/web && mvn clean install -Dci.version=$version
         cp -r /opt/semosshome/semoss-artifacts/artifacts/web/semoss*/* /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         cd /opt/semosshome/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
-        cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
-        cd /opt/semosshome/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
-        cp -r /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
+        cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/META-INF/* /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+		cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+		cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semosshome/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
         cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 

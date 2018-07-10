@@ -34,8 +34,8 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
         cd /opt/semosshome/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
         cp -r /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
-                             cp -r /opt/semosshome/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
-                             cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
+        cp -r /opt/semosshome/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
+        cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 
         echo "version=$latest_version" > /opt/semosshome/semoss-artifacts/ver.txt
         echo "updated=$last_updated" >> /opt/semosshome/semoss-artifacts/ver.txt
