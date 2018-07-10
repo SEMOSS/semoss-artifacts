@@ -9,6 +9,7 @@ else
         version=0.0.1-SNAPSHOT
 fi
 
+echo latest version is $latest_version
 echo current version is $version
  
 if [ "$#" -gt 0 ] && [[ (( $latest_version > $version )) ]]; then
@@ -28,5 +29,5 @@ if [ "$#" -gt 0 ] && [[ (( $latest_version > $version )) ]]; then
                              cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
         echo "version=$latest_version" > /opt/semosshome/semoss-artifacts/ver.txt
 else
-        echo "Semoss is already upto date"
+        echo "Semoss is already up to date"
 fi
