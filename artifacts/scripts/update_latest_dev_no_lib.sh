@@ -29,6 +29,10 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
 		rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
 		rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
 
+		# Setup
+		mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+		mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
+		
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts
         git pull
