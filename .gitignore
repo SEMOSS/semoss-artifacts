@@ -9,5 +9,6 @@ artifacts/war/*
 !artifacts/war/pom.xml
 artifacts/web/*
 !artifacts/web/pom.xml
+!artifacts/scripts/*
 !w/
 !x/
