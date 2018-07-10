@@ -22,17 +22,17 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
         else 
                 version=$latest_version
         fi
-		
-		# Cleanup
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/home/semoss*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
+        
+        # Cleanup
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/home/semoss*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
 
-		# Setup
-		mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-		mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
-		
+        # Setup
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
+        
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts
         git pull
@@ -42,8 +42,8 @@ if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semosshome/semoss-artifacts/artifacts/web/semoss*/* /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         cd /opt/semosshome/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
         cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/META-INF/* /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
-		cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-		cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
+        cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+        cp -r /opt/semosshome/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semosshome/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
         cp -r /opt/semosshome/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 

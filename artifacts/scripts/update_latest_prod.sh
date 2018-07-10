@@ -20,17 +20,17 @@ if [ "$#" -gt 0 ] || [[ (( $latest_version > $version )) ]]; then
         else 
                 version=$latest_version
         fi
-		
-		# Cleanup
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/home/semoss*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
-		rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
-		
-		# Setup
-		mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-		mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
-		
+        
+        # Cleanup
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/home/semoss*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
+        rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
+        
+        # Setup
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
+        
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts
         git pull
