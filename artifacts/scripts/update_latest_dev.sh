@@ -15,12 +15,12 @@ echo current version is $version
 echo last updated is $last_updated
 
 # If the version is being overridden, or the last updated is greater than the current, then update
-if [ "$#" -gt 0 ] || [[ (( $last_updated > $updated )) ]]; then
+if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         # Always use the overridden version if provided 
-        if [ "$#" -gt 0 ]; then
-                version=$1
-        else 
+        if [[ -z "${SEMOSS_VERSION}" ]]; then
                 version=$latest_version
+        else
+                version="${SEMOSS_VERSION}"
         fi
 
         # Cleanup
