@@ -9,6 +9,7 @@ else
         version=0.0.1
 fi
 
+echo SEMOSS_VERSION environment variable is $SEMOSS_VERSION
 echo latest version is $latest_version
 echo current version is $version
  
