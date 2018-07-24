@@ -29,6 +29,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         rm -rf /opt/semosshome/semoss-artifacts/artifacts/web/semoss*
         rm -rf /opt/semosshome/semoss-artifacts/artifacts/war/monolith*
         rm -rf /opt/semosshome/semoss-artifacts/artifacts/lib/monolith*
+		cd /opt/semosshome
 		find . \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
    		rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
 		rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
