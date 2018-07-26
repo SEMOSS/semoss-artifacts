@@ -37,7 +37,9 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
-        
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+		
         echo "Updating to version.. $version"
         cd /opt/semosshome/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
         cp -r /opt/semosshome/semoss-artifacts/artifacts/home/semoss*/* /opt/semosshome
