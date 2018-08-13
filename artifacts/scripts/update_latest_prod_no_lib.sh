@@ -1,5 +1,4 @@
 #!/bin/bash
-export PATH=$PATH:/opt/apache-maven
 
 latest_version=`curl -s "https://oss.sonatype.org/content/groups/public/org/semoss/monolith/maven-metadata.xml" | grep "<release>.*</release>" | sed -e "s#\(.*\)\(<release>\)\(.*\)\(</release>\)\(.*\)#\3#g"`
  
