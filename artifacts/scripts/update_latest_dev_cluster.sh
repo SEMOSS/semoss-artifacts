@@ -30,7 +30,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
 		
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/cluster && mvn clean install -Dci.version=$version
-		cd /opt/semoss-artifacts/artifacts/cluster/semosscluster-$version && jar cf ../semosscluster.jar *
+		cd /opt/semoss-artifacts/artifacts/cluster/semosscluster-$version && jar cf ../semosscluster-$version.jar *
 		cp /opt/semoss-artifacts/artifacts/cluster/semosscluster-$version.jar /opt/semosscluster.jar
 
         echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
