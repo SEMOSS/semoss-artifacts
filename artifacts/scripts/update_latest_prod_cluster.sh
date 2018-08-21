@@ -24,7 +24,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         # Cleanup
         rm -rf /opt/semoss-artifacts/artifacts/cluster/semoss*
         rm -rf /root/.m2/repository/org/semoss
-        rm /opt/semosscluster.jar
+        rm -f /opt/semosscluster.jar
 		
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/cluster && mvn clean install -Dci.version=$version
