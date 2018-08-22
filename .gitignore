@@ -1,6 +1,8 @@
 /*
 !.gitignore
 !artifacts/
+artifacts/cluster/*
+!artifacts/cluster/pom.xml
 artifacts/home/*
 !artifacts/home/pom.xml
 artifacts/lib/*
