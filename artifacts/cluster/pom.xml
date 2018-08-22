@@ -49,6 +49,7 @@
       <artifactId>semosscluster</artifactId>
       <version>${ci.version}</version>
       <type>jar</type>
+      <classifier>jar-with-dependencies</classifier>
     </dependency>
   </dependencies>
 </project>
