@@ -1,5 +1,6 @@
 #!/bin/bash
 minio gateway azure &
+sleep 10
 mc config host add az http://127.0.0.1:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
 rm -rf /opt/semosshome/*
 mc cp --recursive az/${MINIO_DEFAULT_REMOTE}/ /opt/semosshome
