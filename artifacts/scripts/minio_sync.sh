@@ -17,22 +17,21 @@ sleep 3
 # Else, make the bucket and push to it
 if [[ "$(mc ls az)" = *"${MINIO_REMOTE}"* ]]; then
 	echo initial pull
-	mc mirror --overwrite az/${MINIO_REMOTE} ${directory} &
+	mc mirror --overwrite az/${MINIO_REMOTE} ${directory}
 else
 	echo creating remote
 	mc mb az/${MINIO_REMOTE}
 	echo initial push
-	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE} &
+	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE}
 fi
-sleep 30
+sleep 3
 
 # Sync
-# TODO JUST WAIT FOR PUSH AND PULL TO FINISH
 while [[ true ]] ; do
 	echo pull
-	mc mirror --overwrite az/${MINIO_REMOTE} ${directory} &
-	sleep 30
+	mc mirror --overwrite az/${MINIO_REMOTE} ${directory}
+	sleep 3
 	echo push
-	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE} &
-	sleep 30
+	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE}
+	sleep 3
 done
