@@ -22,7 +22,7 @@ else
 	echo creating remote
 	mc mb az/${MINIO_REMOTE}
 	echo initial push
-	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE}
+	mc mirror --overwrite ${directory} az/${MINIO_REMOTE}
 fi
 sleep 3
 
@@ -32,6 +32,6 @@ while [[ true ]] ; do
 	mc mirror --overwrite az/${MINIO_REMOTE} ${directory}
 	sleep 3
 	echo push
-	mc mirror --overwrite --remove ${directory} az/${MINIO_REMOTE}
+	mc mirror --overwrite ${directory} az/${MINIO_REMOTE}
 	sleep 3
 done
