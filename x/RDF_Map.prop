@@ -1,44 +1,50 @@
 This section is for properties
 
-BROWSER_TYPE	Mozilla15
 ENGINE_WATCHER	SMSSWatcher
 ENGINE_WEB_WATCHER	SMSSWebWatcher;JobSchedulerWatcher
 
-URI_BASE	https://localhost:443/Monolith_Dev/api/engine/s-
-SOLR_BASE_URL	https://localhost:443/solr
-
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
 CSV_INSIGHT_CACHE_FOLDER CSV_Insights
-
-SMSSWatcher	prerna.util.SMSSFileWatcher
-SMSSWatcher_DIR	/opt/semosshome/db
-SMSSWatcher_EXT	.smss
 
 SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
-CSVInsightsWebWatcher prerna.util.CSVInsightsWebWatcher
-CSVInsightsWebWatcher_DIR /opt/semosshome/InsightCache/CSV_Insights
-CSVInsightsWebWatcher_EXT .tg
+#MosfetFileWatcher prerna.util.insight.MosfetFileWatcher
+#MosfetFileWatcher_DIR C:\\Users\\tbanach\\Documents\\Workspace\\Semoss\\db
+#MosfetFileWatcher_EXT	.mosfet
 
 JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
 JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
 JobSchedulerWatcher_EXT	.json
 rpa.config.directory /opt/semosshome/rpa
 
-LOG4J	/opt/semosshome/log4j.prop
 BaseFolder	/opt/semosshome
-
+LOG4J	/opt/semosshome/log4j.prop
+GOOGLE_CHROME_HOME C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe 
 ADDITIONAL_REACTORS /opt/semosshome/reactors.json
 SOCIAL	/opt/semosshome/social.properties
 
 R_CONNECTION_JRI	true
 R_MEM_LIMIT 4096
-
 FRAME_SIZE_LIMIT -1
 
-GOOGLE_CHROME_HOME C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe 
+##################################################
+##################################################
+##################################################
+# BELOW ARE LEGACY PARAMS
+# DO NOT UPDATE OR MODIFY
+
+T_ON true
+T_ENDPOINT http://cohort-user-info.eastus2.cloudapp.azure.com:8080/
+
+BROWSER_TYPE	Mozilla15
+URI_BASE	https://localhost:443/Monolith_Dev/api/engine/s-
+SOLR_BASE_URL	https://localhost:443/solr
+
+SMSSWatcher	prerna.util.SMSSFileWatcher
+SMSSWatcher_DIR	/opt/semosshome/db
+SMSSWatcher_EXT	.smss
 
 SHOW_GOV_WARNING	false
 GPS_SUDOWL_DEFAULT	false
