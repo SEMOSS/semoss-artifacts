@@ -48,6 +48,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         cd /opt/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/lib/monolith*/* /opt/apache-tomcat-8.0.41/webapps/Monolith
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
+        cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 
         echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
