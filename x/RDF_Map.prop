@@ -1,6 +1,11 @@
 This section is for properties
 
-ENGINE_WATCHER	SMSSWatcher
+AZ_KEY  <AZUREKEY>
+AZ_NAME <AZURENAME>
+STORAGE LOCAL
+AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
+
+ENGINE_WATCHER  SMSSWatcher
 ENGINE_WEB_WATCHER	SMSSWebWatcher;JobSchedulerWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
