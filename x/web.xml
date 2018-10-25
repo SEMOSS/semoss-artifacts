@@ -4,7 +4,7 @@
    <welcome-file-list>
       <welcome-file>index.html</welcome-file>
    </welcome-file-list>
-   
+   <!--
    <!-- security filters for admin page -->
    <filter>
       <filter-name>NoUserExistsFilter</filter-name>
@@ -26,7 +26,7 @@
       <filter-name>CACFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-
+-->
    <!-- WAFFLE IT -->
    <!--
    <filter>
