@@ -43,7 +43,7 @@ then sed -i "s/<GITSECRETKEY>/$GIT_SECRET_KEY/g" /opt/semosshome/social.properti
 fi
 
 if [ -n "$GIT_REDIRECT" ]
-then sed -i 's@<GITREDIRECT>@'"$Git_REDIRECT"'@g' /opt/semosshome/social.properties
+then sed -i 's@<GITREDIRECT>@'"$GIT_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_AUTHORITY" ]
