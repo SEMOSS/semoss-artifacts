@@ -1,3 +1,7 @@
+if [ -n "$REDIRECT" ]
+then sed -i "s/<REDIRECT>/$REDIRECT/g" /opt/semosshome/social.properties 
+fi
+
 if "$ENABLE_NATIVE" = "true"
 then sed -i "s/<NATIVE_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
