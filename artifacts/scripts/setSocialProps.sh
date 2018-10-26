@@ -34,16 +34,16 @@ if [ -n "$GOOGLE_REDIRECT" ]
 then sed -i 's@<GOOGLEREDIRECT>@'"$GOOGLE_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
-if [ -n "$GIT_CLIENT_ID" ]
-then sed -i "s/<GITCLIENTID>/$GIT_CLIENT_ID/g" /opt/semosshome/social.properties
+if [ -n "$GITHUB_CLIENT_ID" ]
+then sed -i "s/<GITHUBCLIENTID>/$GITHUB_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$GIT_SECRET_KEY" ]
-then sed -i "s/<GITSECRETKEY>/$GIT_SECRET_KEY/g" /opt/semosshome/social.properties
+if [ -n "$GITHUB_SECRET_KEY" ]
+then sed -i "s/<GITHUBSECRETKEY>/$GITHUB_SECRET_KEY/g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$GIT_REDIRECT" ]
-then sed -i 's@<GITREDIRECT>@'"$GIT_REDIRECT"'@g' /opt/semosshome/social.properties
+if [ -n "$GITHUB_REDIRECT" ]
+then sed -i 's@<GITHUBREDIRECT>@'"$GITHUB_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_AUTHORITY" ]
