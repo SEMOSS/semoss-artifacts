@@ -15,10 +15,6 @@ SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
-#MosfetFileWatcher prerna.util.insight.MosfetFileWatcher
-#MosfetFileWatcher_DIR C:\\Users\\tbanach\\Documents\\Workspace\\Semoss\\db
-#MosfetFileWatcher_EXT	.mosfet
-
 JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
 JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
 JobSchedulerWatcher_EXT	.json
