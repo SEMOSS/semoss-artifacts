@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0     http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.semoss</groupId>
-  <artifactId>semossweb-unpack-war</artifactId>
+  <artifactId>semossweb-unpack-web</artifactId>
   <version>${ci.version}</version>
   <properties>
     <ci.version>0.0.1-SNAPSHOT</ci.version>
@@ -13,24 +13,37 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.1.1</version>
         <executions>
-            <execution>
-				<id>unpack-war</id>
-                <phase>generate-resources</phase>
-                <goals>
-                    <goal>unpack-dependencies</goal>
-                </goals>
-                <configuration>
-                    <includeTypes>war</includeTypes>
-                    <includeArtifactIds>semossweb</includeArtifactIds>
-                    <outputDirectory>${project.basedir}/semossweb-${ci.version}</outputDirectory>
-					<overWriteSnapshots>true</overWriteSnapshots> 
-				</configuration>
-            </execution>
+          <execution>
+            <id>unpack-web</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.semoss</groupId>
+                  <artifactId>semossweb</artifactId>
+                  <version>${ci.version}</version>
+                  <type>war</type>
+                  <outputDirectory>${project.basedir}/semossweb-${ci.version}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
   </build>
   <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
     <repository>
       <id>snapshot</id>
       <name>Sonatype's Maven repository - SNAPSHOT</name>
@@ -42,6 +55,17 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>release</id>
+      <name>Sonatype's Maven repository - Release</name>
+      <url>http://oss.sonatype.org/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -49,6 +73,12 @@
       <artifactId>semossweb</artifactId>
       <version>${ci.version}</version>
       <type>war</type>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 </project>
