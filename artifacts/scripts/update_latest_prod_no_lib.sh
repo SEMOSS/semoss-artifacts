@@ -54,6 +54,10 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/META-INF/* /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/setAdmin/* /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/startUpFail/* /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/noUserFail/* /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/share/* /opt/apache-tomcat-8.0.41/webapps/Monolith/share
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
