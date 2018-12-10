@@ -27,13 +27,13 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         rm -rf /opt/semoss-artifacts/artifacts/war/monolith*
         rm -rf /opt/semoss-artifacts/artifacts/lib/monolith*
         rm -rf /root/.m2/repository/org/semoss
-		cd /opt/semosshome
-		find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
-   		rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-		rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        cd /opt/semosshome
+        find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
-		
+
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
