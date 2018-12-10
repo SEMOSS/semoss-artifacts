@@ -28,19 +28,19 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         rm -rf /opt/semoss-artifacts/artifacts/web/semoss*
         rm -rf /opt/semoss-artifacts/artifacts/war/monolith*
         rm -rf /opt/semoss-artifacts/artifacts/lib/monolith*
-		rm -rf /root/.m2/repository/org/semoss
-		cd /opt/semosshome
-		find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
-   		rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-		rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        rm -rf /root/.m2/repository/org/semoss
+        cd /opt/semosshome
+        find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-		
+
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
-		mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-		
+
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/home/semoss*/* /opt/semosshome
@@ -51,7 +51,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome 
-	cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
+        cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
         cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 
