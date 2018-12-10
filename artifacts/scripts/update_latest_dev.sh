@@ -32,9 +32,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         cd /opt/semosshome
         find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
         rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith
 
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
