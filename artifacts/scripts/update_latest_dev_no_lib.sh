@@ -33,12 +33,20 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
         rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
+        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/share
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
 
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
+        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/share
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
 
         echo "Updating to version.. $version"
