@@ -38,6 +38,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/share
         rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+        find /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib -type f -name '*semoss*.jar' -delete
 
         # Setup
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
