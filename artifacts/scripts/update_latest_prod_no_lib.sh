@@ -46,6 +46,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/share
         mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+        find /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib -type f -name '*semoss*.jar' -delete
 
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
