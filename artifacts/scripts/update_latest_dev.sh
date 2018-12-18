@@ -52,6 +52,9 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
 
+        # RDF bugfix
+        mv /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/dsiutils-2.4.2.jar /opt/apache-tomcat-8.0.41/lib
+
         echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
         echo "updated=$last_updated" >> /opt/semoss-artifacts/ver.txt
 else
