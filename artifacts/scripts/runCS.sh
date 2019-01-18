@@ -13,5 +13,8 @@ fi
 if [ "$SETSOCIAL" = "true" ]
 then sh setSocialProps.sh
 fi
+if [ "$SET_APPCONSTANTS" = "true" ]
+then sh setAppConstants.sh
+fi
 cd /opt/apache-tomcat-8.0.41/bin
 ./catalina.sh run
