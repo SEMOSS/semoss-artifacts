@@ -47,21 +47,21 @@ then sed -i 's@<GITHUBREDIRECT>@'"$GITHUB_REDIRECT"'@g' /opt/semosshome/social.p
 fi
 
 if [ -n "$MS_AUTHORITY" ]
-then sed -i "s/<MSAUTHORITY>/$MS_AUTHORITY/g" /opt/semosshome/social.properties
+then sed -i "s@<MSAUTHORITY>@$MS_AUTHORITY@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_TENANT" ]
-then sed -i "s/<MSTENANT>/$MS_TENANT/g" /opt/semosshome/social.properties
+then sed -i "s@<MSTENANT>@$MS_TENANT@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_CLIENT_ID" ]
-then sed -i "s/<MSCLIENTID>/$MS_CLIENT_ID/g" /opt/semosshome/social.properties
+then sed -i "s@<MSCLIENTID>@$MS_CLIENT_ID@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_SECRET_KEY" ]
-then sed -i "s/<MSSECRETKEY>/$MS_SECRET_KEY/g" /opt/semosshome/social.properties
+then sed -i "s@<MSSECRETKEY>@$MS_SECRET_KEY@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_REDIRECT" ]
-then sed -i "s/<MSREDIRECT>/$MS_REDIRECT/g" /opt/semosshome/social.properties
+then sed -i "s@<MSREDIRECT>@$MS_REDIRECT@g" /opt/semosshome/social.properties
 fi
