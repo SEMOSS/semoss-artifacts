@@ -23,5 +23,8 @@ fi
 if [ "$SET_APPCONSTANTS" = "true" ]
 then sh setAppConstants.sh
 fi
+if [ "$RSERVE_ON" = "true" ]
+then sh setRserveOn.sh
+fi
 cd /opt/apache-tomcat-8.0.41/bin
 ./start.sh
