@@ -30,6 +30,8 @@ R_CONNECTION_JRI	true
 R_MEM_LIMIT 4096
 FRAME_SIZE_LIMIT -1
 
+FILE_TRANSFER_LIMIT 50
+
 USE_PYTHON true
 
 ##################################################
