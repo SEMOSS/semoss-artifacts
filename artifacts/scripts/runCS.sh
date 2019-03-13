@@ -26,5 +26,8 @@ fi
 if [ "$RSERVE_ON" = "true" ]
 then sh setRserveOn.sh
 fi
+if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
+then sh setMonolithCookie.sh
+fi
 cd /opt/apache-tomcat-8.0.41/bin
 ./start.sh
