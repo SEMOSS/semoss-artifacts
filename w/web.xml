@@ -219,10 +219,12 @@
    <listener>
       <listener-class>prerna.web.conf.UserDBLoader</listener-class>
    </listener>
+<!--Keeping commented out until 3.3.11 official
    <session-config>
       <session-timeout>120</session-timeout>
       <cookie-config>
          <name>monolith</name>
 	  </cookie-config>
    </session-config>
+-->
 </web-app>
