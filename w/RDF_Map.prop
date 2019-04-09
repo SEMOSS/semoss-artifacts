@@ -34,7 +34,7 @@ FILE_TRANSFER_LIMIT 50
 
 USE_PYTHON true
 
-USER_WORKSPACE false
+USER_WORKSPACE  false
 
 ##################################################
 ##################################################
