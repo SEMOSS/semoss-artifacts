@@ -26,8 +26,17 @@ GOOGLE_CHROME_HOME C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.
 ADDITIONAL_REACTORS C:\\workspace\\Semoss_Dev\\reactors.json
 SOCIAL	C:\\workspace\\Semoss_Dev\\social.properties
 
-R_CONNECTION_JRI	true
-R_MEM_LIMIT 4096
+USE_R	true
+R_MEM_LIMIT	4096
+
+R_CONNECTION_JRI	false
+
+#JRI must be false in order to use user rserve
+IS_USER_RSERVE	true
+#Options are pooled or dedicated
+R_USER_CONNECTION_TYPE	pooled
+RSERVE_CONNECTION_POOL_SIZE	6
+
 FRAME_SIZE_LIMIT -1
 
 FILE_TRANSFER_LIMIT 50
