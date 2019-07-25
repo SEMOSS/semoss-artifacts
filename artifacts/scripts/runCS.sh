@@ -17,6 +17,9 @@ fi
 if [ "$AZCONN" = "true" ]
 then sh setAzureProps.sh
 fi
+if [ "$SEMOSS_STORAGE_PROVIDER" = "AZURE" ]
+then sh setAzureProps.sh
+fi
 if [ "$SETSOCIAL" = "true" ]
 then sh setSocialProps.sh
 fi
