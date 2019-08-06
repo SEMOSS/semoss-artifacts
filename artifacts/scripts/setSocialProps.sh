@@ -2,27 +2,27 @@ if [ -n "$REDIRECT" ]
 then sed -i 's@<REDIRECT>@'"$REDIRECT"'@g' /opt/semosshome/social.properties 
 fi
 
-if "$ENABLE_NATIVE" = "true"
+if ["$ENABLE_NATIVE" = "true"]
 then sed -i "s/<NATIVE_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_NATIVE_REGISTRATION" = "true"
+if ["$ENABLE_NATIVE_REGISTRATION" = "true"]
 then sed -i "s/<NATIVE_REGISTRATION_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_GOOGLE" = "true"
+if ["$ENABLE_GOOGLE" = "true"]
 then sed -i "s/<GOOGLE_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_GITHUB" = "true"
+if ["$ENABLE_GITHUB" = "true"]
 then sed -i "s/<GITHUB_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_DROPBOX" = "true"
+if ["$ENABLE_DROPBOX" = "true"]
 then sed -i "s/<DROPBOX_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_MS" = "true"
+if ["$ENABLE_MS" = "true"]
 then sed -i "s/<MS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
