@@ -21,3 +21,15 @@ sed -i "s:IS_USER_RSERVE.*:IS_USER_RSERVE\ttrue:g" /opt/semosshome/RDF_Map.prop
 sed -i "s:R_USER_CONNECTION_TYPE.*:R_USER_CONNECTION_TYPE\tpooled:g" /opt/semosshome/RDF_Map.prop
 sed -i "s:RSERVE_CONNECTION_POOL_SIZE.*:RSERVE_CONNECTION_POOL_SIZE\t$R_POOL_SIZE:g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [ "$R_CONNECTION_TYPE" = "User_Rserve_Dedicated" ]
+sed -i "s:R_CONNECTION_JRI.*:R_CONNECTION_JRI\tfalse:g" /opt/semosshome/RDF_Map.prop
+sed -i "s:IS_USER_RSERVE.*:IS_USER_RSERVE\ttrue:g" /opt/semosshome/RDF_Map.prop
+sed -i "s:R_USER_CONNECTION_TYPE.*:R_USER_CONNECTION_TYPE\tdedicated:g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [ "$R_CONNECTION_TYPE" = "User_Rserve_Single" ]
+sed -i "s:R_CONNECTION_JRI.*:R_CONNECTION_JRI\tfalse:g" /opt/semosshome/RDF_Map.prop
+sed -i "s:IS_USER_RSERVE.*:IS_USER_RSERVE\ttrue:g" /opt/semosshome/RDF_Map.prop
+sed -i "s:R_USER_CONNECTION_TYPE.*:R_USER_CONNECTION_TYPE\tsingle:g" /opt/semosshome/RDF_Map.prop
+fi
