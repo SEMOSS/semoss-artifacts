@@ -33,3 +33,13 @@ sed -i "s:R_CONNECTION_JRI.*:R_CONNECTION_JRI\tfalse:g" /opt/semosshome/RDF_Map.
 sed -i "s:IS_USER_RSERVE.*:IS_USER_RSERVE\ttrue:g" /opt/semosshome/RDF_Map.prop
 sed -i "s:R_USER_CONNECTION_TYPE.*:R_USER_CONNECTION_TYPE\tsingle:g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [ "$R_USER_RECOVERY" = "true" ]
+sed -i "s:R_USER_RECOVERY_DEFAULT.*:R_USER_RECOVERY_DEFAULT\ttrue:g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [ "$R_USER_RECOVERY" = "false" ]
+sed -i "s:R_USER_RECOVERY_DEFAULT.*:R_USER_RECOVERY_DEFAULT\tfalse:g" /opt/semosshome/RDF_Map.prop
+fi
+
+
