@@ -35,6 +35,10 @@ fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
+if [[ -z "${FILE_UPLOAD_LIMIT}" ]]; then
+then sh setFileUploadLimit.sh
+fi
+
 sh setR.sh
 cd /opt/apache-tomcat-8.0.41/bin
 ./start.sh
