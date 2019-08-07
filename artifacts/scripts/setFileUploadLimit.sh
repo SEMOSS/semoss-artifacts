@@ -1,0 +1,1 @@
+sed -i "s:FILE_TRANSFER_LIMIT.*:FILE_TRANSFER_LIMIT\tt$FILE_UPLOAD_LIMIT:g" /opt/semosshome/RDF_Map.prop
