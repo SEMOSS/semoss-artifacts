@@ -35,7 +35,7 @@ fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
-if [[ -z "${FILE_UPLOAD_LIMIT}" ]]; then
+if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
 then sh setFileUploadLimit.sh
 fi
 
