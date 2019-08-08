@@ -30,13 +30,15 @@ if [ "$RSERVE_ON" = "true" ]
 then sh setRserveOn.sh
 fi
 if [[ -z "${MONOLITH_COOKIE}" ]]; then
-sh setMonolithCookie.sh
+echo "No Custom Monolith Cookie"
+else sh setMonolithCookie.sh
 fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
 if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
-then sh setFileUploadLimit.sh
+then echo "No updated file size limit" 
+else sh setFileUploadLimit.sh
 fi
 
 sh setR.sh
