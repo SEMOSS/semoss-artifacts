@@ -52,3 +52,4 @@
       <classifier>jar-with-dependencies</classifier>
     </dependency>
   </dependencies>
+</project>
