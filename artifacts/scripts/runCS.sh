@@ -40,7 +40,10 @@ if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
 then echo "No updated file size limit" 
 else sh setFileUploadLimit.sh
 fi
-
+if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
+then echo "No custom google analytics id" 
+else sh setGoogleAnalytics.sh
+fi
 sh setR.sh
 cd /opt/apache-tomcat-8.0.41/bin
 ./start.sh
