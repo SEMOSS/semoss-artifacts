@@ -23,7 +23,7 @@
                     <includeTypes>jar</includeTypes>
                     <includeArtifactIds>semosscluster</includeArtifactIds>
                     <outputDirectory>${project.basedir}/semosscluster-${ci.version}</outputDirectory>
-					<overWriteSnapshots>true</overWriteSnapshots> 
+					<overWriteSnapshots>true</overWriteSnapshots>
 				</configuration>
             </execution>
         </executions>
@@ -49,6 +49,6 @@
       <artifactId>semosscluster</artifactId>
       <version>${ci.version}</version>
       <type>jar</type>
+      <classifier>jar-with-dependencies</classifier>
     </dependency>
   </dependencies>
-</project>
