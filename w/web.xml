@@ -38,31 +38,40 @@
       <filter-name>NoUserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
+<!--  allow anonymous users -->
+   <filter>
+      <filter-name>AnonymousUserFilter</filter-name>
+      <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>AnonymousUserFilter</filter-name>
+      <url-pattern>/api/*</url-pattern>
+   </filter-mapping>
+
    
    <!-- CAC FILTER -->
-   <!-- 
+   <!--  
    <filter>
       <filter-name>CACFilter</filter-name>
       <filter-class>prerna.web.conf.CACFilter</filter-class>
       <init-param>
-			<param-name>autoAdd</param-name>
-			<param-value>true</param-value>
-	  </init-param>
-	  <init-param>
-			<param-name>countUserEntry</param-name>
-			<param-value>false</param-value>
-	  </init-param>
-	  <init-param>
-			<param-name>countUserEntryDb</param-name>
-			<param-value>9809c0f7-04c6-43d8-87aa-2553b4a7832a</param-value>
-	  </init-param>
+         <param-name>autoAdd</param-name>
+         <param-value>true</param-value>
+     </init-param>
+     <init-param>
+         <param-name>countUserEntry</param-name>
+         <param-value>false</param-value>
+     </init-param>
+     <init-param>
+         <param-name>countUserEntryDb</param-name>
+         <param-value>9809c0f7-04c6-43d8-87aa-2553b4a7832a</param-value>
+     </init-param>
    </filter>
    <filter-mapping>
       <filter-name>CACFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-   -->
-   
+    -->
    <!-- WAFFLE IT -->
    <!--
    <filter>
@@ -115,9 +124,9 @@
       <filter-name>WaffleFilter</filter-name>
       <filter-class>prerna.web.conf.WaffleFilter</filter-class>
       <init-param>
-			<param-name>autoAdd</param-name>
-			<param-value>true</param-value>
-	  </init-param>
+         <param-name>autoAdd</param-name>
+         <param-value>true</param-value>
+     </init-param>
    </filter>
    <filter-mapping>
       <filter-name>WaffleFilter</filter-name>
@@ -153,7 +162,6 @@
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
     -->
-   
    <!-- servlets -->
    <servlet>
       <servlet-name>MainApplication</servlet-name>
@@ -163,9 +171,9 @@
          <param-value>prerna.semoss.web.app.MonolithApplication</param-value>
       </init-param>
       <init-param>
-	     <param-name>resteasy.servlet.mapping.prefix</param-name>
-	     <param-value>/api</param-value>
-	  </init-param>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/api</param-value>
+     </init-param>
    </servlet>
    <servlet-mapping>
       <servlet-name>MainApplication</servlet-name>
@@ -183,7 +191,6 @@
       <servlet-name>AdminApplication</servlet-name>
       <url-pattern>/adminconfig/*</url-pattern>
    </servlet-mapping>
-
    <!-- context params -->
    <context-param>
       <param-name>isLog4jAutoInitializationDisabled</param-name>
@@ -198,19 +205,31 @@
       <param-value>false</param-value>
    </context-param>
    <context-param>
+      <param-name>admin-set-publisher</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   <context-param>
+      <param-name>anonymous-users-allowed</param-name>
+      <param-value>false</param-value>
+   </context-param>
+      <context-param>
+      <param-name>anonymous-users-upload-data</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   <context-param>
       <description>Location to store uploaded file</description>
       <param-name>file-upload</param-name>
-      <param-value>/opt/semosshome/</param-value>
+      <param-value>C:\\workspace\\Semoss_Dev\\</param-value>
    </context-param>
    <context-param>
       <description>Temporary - Location to store uploaded file</description>
       <param-name>temp-file-upload</param-name>
-      <param-value>/opt/semosshome/tmp</param-value>
+      <param-value>C:\\Temp</param-value>
    </context-param>
    <context-param>
       <description>The place where the core RDF Map gets picked from</description>
       <param-name>RDF-MAP</param-name>
-      <param-value>/opt/semosshome/RDF_Map.prop</param-value>
+      <param-value>C:\\workspace\\Semoss_Dev\\RDF_Map.prop</param-value>
    </context-param>  
    <!-- listeners -->
    <listener>
@@ -219,12 +238,10 @@
    <listener>
       <listener-class>prerna.web.conf.UserDBLoader</listener-class>
    </listener>
-<!--Keeping commented out until 3.3.11 official
    <session-config>
       <session-timeout>120</session-timeout>
       <cookie-config>
          <name>monolith</name>
-	  </cookie-config>
+     </cookie-config>
    </session-config>
--->
 </web-app>
