@@ -5,6 +5,12 @@ cd /opt/semoss-artifacts/artifacts/scripts
 if [ "$SECURITY_ON" = "true" ]
 then sh setSecurityOn.sh
 fi
+if [ "$ANONYMOUS_USERS" = "true" ]
+then sh enableAnonymousUsers.sh
+fi
+if [ "$ANONYMOUS_USER_UPLOAD" = "true" ]
+then sh enableAnonymousUserUpload.sh
+fi
 if [ "$REMOTE_SECURITY" = "true" ]
 then sh setRemoteSecurity.sh
 fi
