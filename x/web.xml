@@ -38,7 +38,9 @@
       <filter-name>NoUserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
+   
 <!--  allow anonymous users -->
+ <!--
    <filter>
       <filter-name>AnonymousUserFilter</filter-name>
       <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
@@ -47,7 +49,7 @@
       <filter-name>AnonymousUserFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-
+-->
    
    <!-- CAC FILTER -->
    <!--  
