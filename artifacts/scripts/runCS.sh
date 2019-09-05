@@ -18,7 +18,7 @@ if [ "$REMOTE_LOCALMASTER" = "true" ]
 then sh setRemoteLocalMaster.sh
 fi
 if [ "$REMOTE_THEMES" = "true" ]
-then sh setRemoteLocalMaster.sh
+then sh setRemoteThemes.sh
 fi
 if [ "$AZCONN" = "true" ]
 then sh setAzureProps.sh
