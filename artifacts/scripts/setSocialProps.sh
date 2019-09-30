@@ -63,7 +63,7 @@ then sed -i "s@<MSCLIENTID>@$MS_CLIENT_ID@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_SECRET_KEY" ]
-then sed -i "s@<MSSECRETKEY>@$MS_SECRET_KEY@g" /opt/semosshome/social.properties
+then sed -i "s#<MSSECRETKEY>#$MS_SECRET_KEY#g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_REDIRECT" ]
