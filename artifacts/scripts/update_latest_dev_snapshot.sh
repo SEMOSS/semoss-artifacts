@@ -13,6 +13,7 @@ if [[ -z "${TOMCAT_HOME}" ]]; then
 		echo "No Tomcat installation has been found"
 	fi
 else
+	echo "TOMCAT_HOME is predefined at $TOMCAT_HOME"
 	SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
