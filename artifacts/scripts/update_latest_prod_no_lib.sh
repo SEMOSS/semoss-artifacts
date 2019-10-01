@@ -1,5 +1,25 @@
 #!/bin/bash
 
+if [[ -z "${TOMCAT_HOME}" ]]; then
+        if [ -d "$SCRIPT_TOMCAT_HOME" ] 
+        then 
+                echo "Directory $SCRIPT_TOMCAT_HOME exists."
+                SCRIPT_TOMCAT_HOME=$SCRIPT_TOMCAT_HOME
+                echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
+        elif [ -d "/opt/apache-tomcat-8.5.46" ] 
+        then
+                echo "Directory /opt/apache-tomcat-8.5.46 exists."
+                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.5.46
+                echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
+        else 
+                echo "No Tomcat installation has been found"
+        fi
+else
+        echo "TOMCAT_HOME is predefined at $TOMCAT_HOME"
+        SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
+fi
+
+
 latest_version=`curl -s "https://oss.sonatype.org/content/groups/public/org/semoss/monolith/maven-metadata.xml" | grep "<release>.*</release>" | sed -e "s#\(.*\)\(<release>\)\(.*\)\(</release>\)\(.*\)#\3#g"`
  
 if [ -f /opt/semoss-artifacts/ver.txt ]; then
@@ -29,45 +49,45 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         rm -rf /root/.m2/repository/org/semoss
         cd /opt/semosshome
         find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/share
-        rm -rf /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/META-INF
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/setAdmin
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/startUpFail
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/noUserFail
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/share
+        rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/classes
 
         # Setup
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/SemossWeb
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/share
-        mkdir -p /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-        find /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib -type f -name '*semoss*.jar' -delete
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/META-INF
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/setAdmin
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/startUpFail
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/noUserFail
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/share
+        mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/classes
+        find $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib -type f -name '*semoss*.jar' -delete
 
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/home/semoss*/* /opt/semosshome
         cd /opt/semoss-artifacts/artifacts/web && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* /opt/apache-tomcat-8.0.41/webapps/SemossWeb
+        cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
         cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/META-INF/* /opt/apache-tomcat-8.0.41/webapps/Monolith/META-INF
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/setAdmin/* /opt/apache-tomcat-8.0.41/webapps/Monolith/setAdmin
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/startUpFail/* /opt/apache-tomcat-8.0.41/webapps/Monolith/startUpFail
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/noUserFail/* /opt/apache-tomcat-8.0.41/webapps/Monolith/noUserFail
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/share/* /opt/apache-tomcat-8.0.41/webapps/Monolith/share
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/classes
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/META-INF/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/META-INF
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/setAdmin/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/setAdmin
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/startUpFail/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/startUpFail
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/noUserFail/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/noUserFail
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/share/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/share
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/classes/* $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/classes
+        cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
         cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
         cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
-        cp -r /opt/semoss-artifacts/x/web.xml /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF 
+        cp -r /opt/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
 
         # RDF bugfix
-        mv /opt/apache-tomcat-8.0.41/webapps/Monolith/WEB-INF/lib/dsiutils-2.4.2.jar /opt/apache-tomcat-8.0.41/lib
+        mv $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib/dsiutils-2.4.2.jar $SCRIPT_TOMCAT_HOME/lib
 
         echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
 else
