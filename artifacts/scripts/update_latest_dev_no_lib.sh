@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [[ -z "${TOMCAT_HOME}" ]]; then
-        if [ -d "$SCRIPT_TOMCAT_HOME" ] 
+        if [ -d "/opt/apache-tomcat-8.0.41" ] 
         then 
-                echo "Directory $SCRIPT_TOMCAT_HOME exists."
-                SCRIPT_TOMCAT_HOME=$SCRIPT_TOMCAT_HOME
+                echo "Directory /opt/apache-tomcat-8.0.41 exists."
+                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.0.41
                 echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
         elif [ -d "/opt/apache-tomcat-8.5.46" ] 
         then
@@ -18,7 +18,6 @@ else
         echo "TOMCAT_HOME is predefined at $TOMCAT_HOME"
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
-
 latest_version=`curl -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<latest>.*</latest>" | sed -e "s#\(.*\)\(<latest>\)\(.*\)\(</latest>\)\(.*\)#\3#g"`
 last_updated=`curl -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<lastUpdated>.*</lastUpdated>" | sed -e "s#\(.*\)\(<lastUpdated>\)\(.*\)\(</lastUpdated>\)\(.*\)#\3#g"`
 
