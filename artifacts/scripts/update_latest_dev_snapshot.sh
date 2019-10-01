@@ -5,7 +5,7 @@ if [[ -z "${TOMCAT_HOME}" ]]; then
 	then 
 		echo "Directory /opt/apache-tomcat-8.0.41 exists."
 		SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.0.41
-	else if [ -d "/opt/apache-tomcat-8.5.46" ] 
+	else if [ -d "/opt/apache-tomcat-8.5.46" ] then
 		echo "Directory /opt/apache-tomcat-8.5.46 exists."
 		SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.5.46
 	else 
