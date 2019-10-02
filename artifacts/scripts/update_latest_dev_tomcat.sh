@@ -1,15 +1,15 @@
 #!/bin/bash
 
-if [[ -z "${TOMCAT_HOME}" ]]; then
+if [ -z "${TOMCAT_HOME}" ]; then
 	if [ -d "/opt/apache-tomcat-8.0.41" ] 
 	then 
 		echo "Directory /opt/apache-tomcat-8.0.41 exists."
 		SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.0.41
 		echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
-	elif [ -d "/opt/apache-tomcat-8.5.46" ] 
+	elif [ -d "/opt/apache-tomcat-9.0.26" ] 
 	then
-		echo "Directory /opt/apache-tomcat-8.5.46 exists."
-		SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.5.46
+		echo "Directory /opt/apache-tomcat-9.0.26 exists."
+		SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-9.0.26
 		echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
 	else 
 		echo "No Tomcat installation has been found"

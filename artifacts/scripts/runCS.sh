@@ -4,10 +4,10 @@ if [ -z "${TOMCAT_HOME}" ]; then
                 echo "Directory /opt/apache-tomcat-8.0.41 exists."
                 SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.0.41
                 echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
-        elif [ -d "/opt/apache-tomcat-8.5.46" ] 
+        elif [ -d "/opt/apache-tomcat-9.0.26" ] 
         then
-                echo "Directory /opt/apache-tomcat-8.5.46 exists."
-                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.5.46
+                echo "Directory /opt/apache-tomcat-9.0.26 exists."
+                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-9.0.26
                 echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
         else 
                 echo "No Tomcat installation has been found"
@@ -71,5 +71,5 @@ then echo "No custom google analytics id"
 else sh setGoogleAnalytics.sh
 fi
 sh setR.sh
-cd /opt/apache-tomcat-8.0.41/bin
+cd $SCRIPT_TOMCAT_HOME/bin
 ./start.sh
