@@ -66,6 +66,10 @@ if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
 then echo "No updated file size limit" 
 else sh setFileUploadLimit.sh
 fi
+if [[ -z "${R_MEM_LIMIT}" ]];
+then echo "No updated r memory limit" 
+else sh setRMemLimit.sh
+fi
 if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
 then echo "No custom google analytics id" 
 else sh setGoogleAnalytics.sh
