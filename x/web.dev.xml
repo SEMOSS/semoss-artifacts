@@ -164,6 +164,10 @@
    </filter-mapping>
     -->
    <!-- servlets -->
+   <cookie-config>	
+      <http-only>false</http-only>	
+      <secure>false</secure>	
+   </cookie-config>
    <servlet>
       <servlet-name>MainApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
@@ -238,6 +242,9 @@
    </listener>
    <listener>
       <listener-class>prerna.web.conf.UserDBLoader</listener-class>
+   </listener>
+   <listener>	
+      <listener-class>prerna.web.conf.SessionCounter</listener-class>	
    </listener>
    <session-config>
       <session-timeout>120</session-timeout>
