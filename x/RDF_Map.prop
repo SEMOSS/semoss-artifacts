@@ -22,7 +22,6 @@ rpa.config.directory /opt/semosshome/rpa
 
 BaseFolder	/opt/semosshome
 LOG4J	/opt/semosshome/log4j.prop
-GOOGLE_CHROME_HOME C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe 
 ADDITIONAL_REACTORS /opt/semosshome/reactors.json
 SOCIAL	/opt/semosshome/social.properties
 
@@ -43,6 +42,26 @@ FILE_TRANSFER_LIMIT 50
 USE_PYTHON true
 
 USER_WORKSPACE	false
+
+#SET DEFAULT FRAME TO LOAD DATA
+#Frame type options: GRID, R, NATIVE, GRAPH
+DEFAULT_FRAME_TYPE GRID
+
+#CURRENTLY ONLY SUPPORT VALUES OF : H2_DB OR SQLITE
+DEFAULT_GRID_TYPE H2_DB
+
+#SET THE DEFAULT SCRIPTING LANGUAGE
+#THIS WILL DETERMINE IF WE SWITCH TO R OR PY IN CLEAN/ANALYTICS
+DEFAULT_SCRIPTING_LANGUAGE R
+
+#SET DEFAULT INSIGHTS RDBMS 
+#CURRENTLY ONLY SUPPORT VALUES OF : H2_DB OR SQLITE
+#DEFAULT IS H2_DB IF THIS IS REMOVED
+DEFAULT_INSIGHTS_RDBMS H2_DB
+
+#SET THIS TO TRUE IF RUNNING LOCALLY ON LAPTOP
+#OTHERWISE, KEEP THIS FALSE FOR SERVER DEPLOYMENT
+LOCAL_DEPLOYMENT false
 
 ##################################################
 ##################################################
