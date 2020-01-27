@@ -23,8 +23,8 @@ fi
 latest_version=`curl -L -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<latest>.*</latest>" | sed -e "s#\(.*\)\(<latest>\)\(.*\)\(</latest>\)\(.*\)#\3#g"`
 last_updated=`curl -L -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<lastUpdated>.*</lastUpdated>" | sed -e "s#\(.*\)\(<lastUpdated>\)\(.*\)\(</lastUpdated>\)\(.*\)#\3#g"`
 
-if [ -f /opt/semoss-artifacts/ver.txt ]; then
-        source /opt/semoss-artifacts/ver.txt
+if [ -f "${SEMOSS_BASE}/semoss-artifacts/ver.txt" /semoss-artifacts/ver.txt ]; then
+        source ${SEMOSS_BASE}/semoss-artifacts/ver.txt
 else
         version=0.0.1-SNAPSHOT
 fi
@@ -44,12 +44,12 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         fi
 
         # Cleanup
-        rm -rf /opt/semoss-artifacts/artifacts/home/semoss*
-        rm -rf /opt/semoss-artifacts/artifacts/web/semoss*
-        rm -rf /opt/semoss-artifacts/artifacts/war/monolith*
-        rm -rf /opt/semoss-artifacts/artifacts/lib/monolith*
+        rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/home/semoss*
+        rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/web/semoss*
+        rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/war/monolith*
+        rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/lib/monolith*
         rm -rf /root/.m2/repository/org/semoss
-        cd /opt/semosshome
+        cd ${SEMOSS_BASE}
         find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
         rm -rf $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
         rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith
@@ -59,24 +59,24 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         mkdir -p $SCRIPT_TOMCAT_HOME/webapps/Monolith
 
         echo "Updating to version.. $version"
-        cd /opt/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/home/semoss*/* /opt/semosshome
-        cd /opt/semoss-artifacts/artifacts/web && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
-        cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/war/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
-        cd /opt/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
-        cp -r /opt/semoss-artifacts/artifacts/lib/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
-        cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
-        cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
-        cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
-        cp -r /opt/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
+        cd ${SEMOSS_BASE}/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/artifacts/home/semoss*/* ${SEMOSS_BASE}/semosshome
+        cd ${SEMOSS_BASE}/semoss-artifacts/artifacts/web && mvn clean install -Dci.version=$version
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/artifacts/web/semoss*/* $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
+        cd ${SEMOSS_BASE}/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/artifacts/war/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
+        cd ${SEMOSS_BASE}/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/artifacts/lib/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/x/RDF_Map.prop ${SEMOSS_BASE}/semosshome
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/x/social.properties ${SEMOSS_BASE}/semosshome
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/x/log4j.prop ${SEMOSS_BASE}/semosshome 
+        cp -r ${SEMOSS_BASE}/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
 
         # RDF bugfix
         mv $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib/dsiutils-2.4.2.jar $SCRIPT_TOMCAT_HOME/lib
 
-        echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
-        echo "updated=$last_updated" >> /opt/semoss-artifacts/ver.txt
+        echo "version=$latest_version" > ${SEMOSS_BASE}/semoss-artifacts/ver.txt
+        echo "updated=$last_updated" >> ${SEMOSS_BASE}/semoss-artifacts/ver.txt
 else
         echo "Semoss is already up to date"
 fi
