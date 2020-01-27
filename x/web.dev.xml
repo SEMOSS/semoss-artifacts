@@ -224,17 +224,17 @@
    <context-param>
       <description>Location to store uploaded file</description>
       <param-name>file-upload</param-name>
-      <param-value>/opt/semosshome/</param-value>
+      <param-value>/home/semoss/semosshome/</param-value>
    </context-param>
    <context-param>
       <description>Temporary - Location to store uploaded file</description>
       <param-name>temp-file-upload</param-name>
-      <param-value>/opt/semosshome/tmp</param-value>
+      <param-value>/home/semoss/semosshome/tmp</param-value>
    </context-param>
    <context-param>
       <description>The place where the core RDF Map gets picked from</description>
       <param-name>RDF-MAP</param-name>
-      <param-value>/opt/semosshome/RDF_Map.prop</param-value>
+      <param-value>/home/semoss/semosshome/RDF_Map.prop</param-value>
    </context-param>  
    <!-- listeners -->
    <listener>
