@@ -49,7 +49,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/war/monolith*
         rm -rf ${SEMOSS_BASE}/semoss-artifacts/artifacts/lib/monolith*
         rm -rf ${SEMOSS_BASE}/.m2/repository/org/semoss
-        cd ${SEMOSS_BASE}
+        cd ${SEMOSS_BASE}/semosshome
         find . -maxdepth 1 \! -name 'db' \! -name 'semoss-artifacts' \! -name '.' \! -name '..' -exec rm -rf {} +
         rm -rf $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
         rm -rf $SCRIPT_TOMCAT_HOME/webapps/Monolith
