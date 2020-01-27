@@ -8,22 +8,22 @@ AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountK
 ENGINE_WATCHER  SMSSWatcher
 ENGINE_WEB_WATCHER	SMSSWebWatcher;JobSchedulerWatcher
 
-INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
+INSIGHT_CACHE_DIR /home/semoss/semosshome/InsightCache
 CSV_INSIGHT_CACHE_FOLDER CSV_Insights
 
 SMSSWebWatcher	prerna.util.SMSSWebWatcher
-SMSSWebWatcher_DIR	/opt/semosshome/db
+SMSSWebWatcher_DIR	/home/semoss/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
 JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
-JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
+JobSchedulerWatcher_DIR /home/semoss/semosshome/rpa/json
 JobSchedulerWatcher_EXT	.json
-rpa.config.directory /opt/semosshome/rpa
+rpa.config.directory /home/semoss/semosshome/rpa
 
-BaseFolder	/opt/semosshome
-LOG4J	/opt/semosshome/log4j.prop
-ADDITIONAL_REACTORS /opt/semosshome/reactors.json
-SOCIAL	/opt/semosshome/social.properties
+BaseFolder	/home/semoss/semosshome
+LOG4J	/home/semoss/semosshome/log4j.prop
+ADDITIONAL_REACTORS /home/semoss/semosshome/reactors.json
+SOCIAL	/home/semoss/semosshome/social.properties
 
 USE_R	true
 R_MEM_LIMIT	4096
@@ -77,7 +77,7 @@ URI_BASE	https://localhost:443/Monolith_Dev/api/engine/s-
 SOLR_BASE_URL	https://localhost:443/solr
 
 SMSSWatcher	prerna.util.SMSSFileWatcher
-SMSSWatcher_DIR	/opt/semosshome/db
+SMSSWatcher_DIR	/home/semoss/semosshome/db
 SMSSWatcher_EXT	.smss
 
 SHOW_GOV_WARNING	false
