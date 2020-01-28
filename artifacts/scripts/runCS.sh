@@ -20,7 +20,7 @@ fi
 
 cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
-cd /opt/semoss-artifacts/artifacts/scripts
+cd /home/semoss/semoss-artifacts/artifacts/scripts
 #./update_latest_dev.sh
 if [ "$SECURITY_ON" = "true" ]
 then sh setSecurityOn.sh
