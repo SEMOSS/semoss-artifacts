@@ -43,6 +43,10 @@ FRAME_SIZE_LIMIT -1
 FILE_TRANSFER_LIMIT 50
 
 USE_PYTHON true
+#LD should be picked from env vars
+#LD_LIBRARY_PATH
+PY_WORKER prerna.pyserve.FileBasedPyWorker
+
 USER_WORKSPACE	false
 
 ##################################################
