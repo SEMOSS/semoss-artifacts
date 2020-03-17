@@ -43,6 +43,11 @@ USE_PYTHON true
 #LD should be picked from env vars
 #LD_LIBRARY_PATH /usr/local/lib/python3.5/dist-packages/jep
 PY_WORKER prerna.pyserve.FileBasedPyWorker
+USE_FILE_PY true
+
+X_CACHE false
+
+SWIFTER	.swifter
 
 USER_WORKSPACE	false
 
