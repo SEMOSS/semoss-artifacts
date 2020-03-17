@@ -74,6 +74,13 @@ if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
 then echo "No custom google analytics id" 
 else sh setGoogleAnalytics.sh
 fi
+if [ "$T_ON" = "false" ]
+then sh setTOn.sh
+fi
+if [ "$X_CACHE" = "true" ]
+then sh setXCacheOn.sh
+fi
 sh setR.sh
+sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
 ./start.sh
