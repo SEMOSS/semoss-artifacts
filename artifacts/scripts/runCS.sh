@@ -70,6 +70,10 @@ if [[ -z "${R_MEM_LIMIT}" ]];
 then echo "No updated r memory limit" 
 else sh setRMemLimit.sh
 fi
+if [[ -z "${FRAME_SIZE_LIMIT}" ]];
+then echo "No updated frame size limit" 
+else sh setFrameLimit.sh
+fi
 if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
 then echo "No custom google analytics id" 
 else sh setGoogleAnalytics.sh
