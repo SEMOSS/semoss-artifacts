@@ -39,6 +39,8 @@ R_USER_RECOVERY_DEFAULT false
 
 FILE_TRANSFER_LIMIT 50
 
+FRAME_SIZE_LIMIT -1
+
 USE_PYTHON true
 #LD should be picked from env vars
 #LD_LIBRARY_PATH /usr/local/lib/python3.5/dist-packages/jep
