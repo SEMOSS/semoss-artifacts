@@ -61,12 +61,20 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         echo "Updating to version.. $version"
         cd /opt/semoss-artifacts/artifacts/home && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/home/semoss*/* /opt/semosshome
+	rm -r .opt/semoss-artifacts/artifacts/home/semoss*
+	rm -r .opt/semoss-artifacts/artifacts/home/target
         cd /opt/semoss-artifacts/artifacts/web && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
+	rm -r .opt/semoss-artifacts/artifacts/web/semoss*
+	rm -r .opt/semoss-artifacts/artifacts/web/target
         cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/war/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
+	rm -r .opt/semoss-artifacts/artifacts/war/monolith*
+	rm -r .opt/semoss-artifacts/artifacts/war/target
         cd /opt/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
         cp -r /opt/semoss-artifacts/artifacts/lib/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
+	rm -r .opt/semoss-artifacts/artifacts/lib/monolith*
+	rm -r .opt/semoss-artifacts/artifacts/lib/target
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
         cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
         cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
