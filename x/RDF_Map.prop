@@ -45,13 +45,15 @@ USE_PYTHON true
 USE_TCP_PY  false
 USE_PY_FILE false
 
+#DEPRECATING#
+USE_FILE_PY true
+
 #LD should be picked from env vars
 #LD_LIBRARY_PATH /usr/local/lib/python3.5/dist-packages/jep
 
 PY_WORKER	prerna.pyserve.TCPPyWorker
 PY_WORKER_CP	fst-2.56.jar;jep-3.9.0.jar;log4j-1.2.17.jar;commons-io-2.4.jar;objenesis-2.5.1.jar;jackson-core-2.9.5.jar;javassist-3.20.0-GA.jar;netty-all-4.1.47.Final.jar;classes;
 
-USE_FILE_PY true
 
 X_CACHE false
 
