@@ -6,7 +6,7 @@ STORAGE LOCAL
 AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
 
 ENGINE_WATCHER  SMSSWatcher
-ENGINE_WEB_WATCHER	SMSSWebWatcher;JobSchedulerWatcher
+ENGINE_WEB_WATCHER	SMSSWebWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
 CSV_INSIGHT_CACHE_FOLDER CSV_Insights
@@ -15,10 +15,10 @@ SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
-JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
-JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
-JobSchedulerWatcher_EXT	.json
-rpa.config.directory /opt/semosshome/rpa
+#JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
+#JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
+#JobSchedulerWatcher_EXT	.json
+#rpa.config.directory /opt/semosshome/rpa
 
 BaseFolder	/opt/semosshome
 LOG4J	/opt/semosshome/log4j.prop
