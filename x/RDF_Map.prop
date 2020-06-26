@@ -18,7 +18,7 @@ SMSSWebWatcher_EXT	.smss
 #JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
 #JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
 #JobSchedulerWatcher_EXT	.json
-#rpa.config.directory /opt/semosshome/rpa
+rpa.config.directory /opt/semosshome/rpa
 
 BaseFolder	/opt/semosshome
 LOG4J	/opt/semosshome/log4j.prop
