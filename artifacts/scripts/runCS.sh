@@ -37,6 +37,9 @@ fi
 if [ "$REMOTE_LOCALMASTER" = "true" ]
 then sh setRemoteLocalMaster.sh
 fi
+if [ "$REMOTE_SCHEDULER" = "true" ]
+then sh setRemoteScheduler.sh
+fi
 if [ "$REMOTE_THEMES" = "true" ]
 then sh setRemoteThemes.sh
 fi
