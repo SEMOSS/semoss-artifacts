@@ -87,6 +87,10 @@ fi
 if [ "$X_CACHE" = "true" ]
 then sh setXCacheOn.sh
 fi
+if [[ -z "${SCHEDULER_ENDPOINT}" ]];
+then echo "No custom scheduler url defined" 
+else sh setSchedulerUrl.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
