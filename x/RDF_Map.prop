@@ -47,6 +47,7 @@ USE_PYTHON true
 PY_WORKER prerna.pyserve.FileBasedPyWorker
 USE_FILE_PY true
 USE_TCP_PY  true
+USE_PY_FILE true
 
 X_CACHE false
 
