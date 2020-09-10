@@ -46,6 +46,7 @@ USE_PYTHON true
 #LD_LIBRARY_PATH /usr/local/lib/python3.5/dist-packages/jep
 PY_WORKER prerna.pyserve.FileBasedPyWorker
 USE_FILE_PY true
+USE_TCP_PY  true
 
 X_CACHE false
 
