@@ -45,9 +45,9 @@ USE_PYTHON true
 #LD should be picked from env vars
 #LD_LIBRARY_PATH /usr/local/lib/python3.5/dist-packages/jep
 PY_WORKER prerna.pyserve.FileBasedPyWorker
-USE_FILE_PY false
-USE_TCP_PY  false
-USE_PY_FILE false
+USE_FILE_PY true
+USE_TCP_PY  true
+USE_PY_FILE true
 
 X_CACHE false
 
