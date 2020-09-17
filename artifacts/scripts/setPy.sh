@@ -13,3 +13,20 @@ fi
 if [ "$USE_FILE_PY" = "false" ]
 then sed -i "s@USE_FILE_PY.*@USE_FILE_PY\tfalse@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [ "$USE_PY_FILE" = "true" ]
+then sed -i "s@USE_PY_FILE.*@USE_PY_FILE\ttrue@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [ "$USE_PY_FILE" = "false" ]
+then sed -i "s@USE_PY_FILE.*@USE_PY_FILE\tfalse@g" /opt/semosshome/RDF_Map.prop
+fi
+
+
+if [ "$USE_TCP_PY" = "true" ]
+then sed -i "s@USE_TCP_PY.*@USE_PY_FILE\ttrue@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [ "$USE_TCP_PY" = "false" ]
+then sed -i "s@USE_TCP_PY.*@USE_PY_FILE\tfalse@g" /opt/semosshome/RDF_Map.prop
+fi
