@@ -49,9 +49,9 @@ PY_WORKER	prerna.pyserve.TCPPyWorker
 PY_WORKER_CP	fst-2.56.jar;jep-3.9.0.jar;log4j-1.2.17.jar;commons-io-2.4.jar;objenesis-2.5.1.jar;jackson-core-2.11.0.jar;javassist-3.20.0-GA.jar;netty-all-4.1.47.Final.jar;classes;
 
 
-USE_FILE_PY true
-USE_TCP_PY  true
-USE_PY_FILE true
+USE_FILE_PY false
+USE_TCP_PY  false
+USE_PY_FILE false
 
 X_CACHE false
 
