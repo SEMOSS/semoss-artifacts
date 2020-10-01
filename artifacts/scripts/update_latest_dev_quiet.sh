@@ -77,7 +77,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
 	rm -r /opt/semoss-artifacts/artifacts/lib/target
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
         cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
-        cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
+        #cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
 
         # RDF bugfix
