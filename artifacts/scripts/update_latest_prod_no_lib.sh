@@ -83,7 +83,7 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $latest_version > $version )) ]]; the
         cp -r /opt/semoss-artifacts/artifacts/war/monolith-$version/WEB-INF/lib/semoss-$version.jar $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib
         cp -r /opt/semoss-artifacts/x/RDF_Map.prop /opt/semosshome
         cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
-        cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
+        #cp -r /opt/semoss-artifacts/x/log4j.prop /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
 
         # RDF bugfix
