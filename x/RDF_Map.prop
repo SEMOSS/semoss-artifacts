@@ -6,7 +6,7 @@ STORAGE LOCAL
 AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
 
 ENGINE_WATCHER  SMSSWatcher
-ENGINE_WEB_WATCHER	SMSSWebWatcher;JobSchedulerWatcher
+ENGINE_WEB_WATCHER	SMSSWebWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
 CSV_INSIGHT_CACHE_FOLDER CSV_Insights
@@ -15,9 +15,9 @@ SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
-JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
-JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
-JobSchedulerWatcher_EXT	.json
+#JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
+#JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
+#JobSchedulerWatcher_EXT	.json
 rpa.config.directory /opt/semosshome/rpa
 
 BaseFolder	/opt/semosshome
@@ -74,6 +74,9 @@ DEFAULT_SCRIPTING_LANGUAGE R
 #CURRENTLY ONLY SUPPORT VALUES OF : H2_DB OR SQLITE
 #DEFAULT IS H2_DB IF THIS IS REMOVED
 DEFAULT_INSIGHTS_RDBMS H2_DB
+
+#SCHEDULER ENDPOINT - ONLY THE ROOT OF THE URL - example: http://localhost:8080/Monolith
+SCHEDULER_ENDPOINT	http://localhost:8080/Monolith
 
 #SET THIS TO TRUE IF RUNNING LOCALLY ON LAPTOP
 #OTHERWISE, KEEP THIS FALSE FOR SERVER DEPLOYMENT
