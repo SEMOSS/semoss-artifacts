@@ -91,6 +91,10 @@ fi
 if [ "$X_CACHE" = "true" ]
 then sh setXCacheOn.sh
 fi
+if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
+then echo "No SQL Encryption Password" 
+else sh setSQLEncryptionPassword.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
