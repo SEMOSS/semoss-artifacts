@@ -16,4 +16,4 @@ else
         echo "TOMCAT_HOME is predefined at $TOMCAT_HOME"
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 
-sed "/<web-app.*/,/<\/web-app>/ {/<filter>/,/<\/filter>/ {/<init-param>/,/<\/init-param/ {/<param-name>trustedTokenDomain<\/param-name>/,/<param-value>/ s/*/$TRUSTED_TOKEN_DOMAIN/}}}" $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
+sed -i "/<web-app.*/,/<\/web-app>/ {/<filter>/,/<\/filter>/ {/<init-param>/,/<\/init-param/ {/<param-name>trustedTokenDomain<\/param-name>/,/<param-value>/ s/*/$TRUSTED_TOKEN_DOMAIN/}}}" $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
