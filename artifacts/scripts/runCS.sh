@@ -95,6 +95,14 @@ if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
 then echo "No SQL Encryption Password" 
 else sh setSQLEncryptionPassword.sh
 fi
+if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
+then echo "No custom cors definitions" 
+else sh setCorsOrigins.sh
+fi
+if [[ -z "${TRUSTED_TOKEN_DOMAIN}" ]];
+then echo "No custom trusted token domain" 
+else sh setTrustedTokenDomain.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
