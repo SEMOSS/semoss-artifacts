@@ -18,4 +18,4 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-sed -i "s#<session-timeout>120</name>#<session-timeout>$SESSION_TIMEOUT</session-timeout>#g" $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
+sed -i "s#<session-timeout>.*#<session-timeout>$SESSION_TIMEOUT</session-timeout>#g"  $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
