@@ -1,0 +1,1 @@
+sed "/<web-app.*/,/<\/web-app>/ {/<filter>/,/<\/filter>/ {/<init-param>/,/<\/init-param/ {/<param-name>cors.allowed.origins<\/param-name>/,/<param-value>/ s/<param-value>/<param-value>$CORS_ALLOWED_ORIGINS/}}}" /tmp/web.xml
