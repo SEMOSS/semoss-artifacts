@@ -103,6 +103,10 @@ if [[ -z "${TRUSTED_TOKEN_DOMAIN}" ]];
 then echo "No custom trusted token domain" 
 else sh setTrustedTokenDomain.sh
 fi
+if [[ -z "${SESSION_TIMEOUT}" ]];
+then echo "No custom session timeout" 
+else sh setSessionTimeout.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
