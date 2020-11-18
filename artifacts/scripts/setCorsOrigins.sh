@@ -17,5 +17,5 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 
 
-sed -i '/<web-app.*/,/<\/web-app>/ {/<filter>/,/<\/filter>/ {/<init-param>/,/<\/init-param/ {/<param-name>cors.allowed.origins<\/param-name>/,/<param-value>/ s/<param-value>/<param-value>CONFIG_SET_CUSTOM_CORS_ORIGINS/}}}' $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
+sed -i '/<web-app.*/,/<\/web-app>/ {/<filter>/,/<\/filter>/ {/<init-param>/,/<\/init-param/ {/<param-name>cors.allowed.origins<\/param-name>/,/<param-value>/  s/*/CONFIG_SET_CUSTOM_CORS_ORIGINS/}}}' $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
 sed -i "s|CONFIG_SET_CUSTOM_CORS_ORIGINS|$CORS_ALLOWED_ORIGINS|g" $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
