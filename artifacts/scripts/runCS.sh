@@ -33,16 +33,16 @@ if [ "$ANONYMOUS_USER_UPLOAD" = "true" ]
 then sh enableAnonymousUserUpload.sh
 fi
 if [ "$REMOTE_SECURITY" = "true" ]
-then sh setRemoteSecurity.sh
+then bash setRemoteSecurity.sh
 fi
 if [ "$REMOTE_LOCALMASTER" = "true" ]
-then sh setRemoteLocalMaster.sh
+then bash setRemoteLocalMaster.sh
 fi
 if [ "$REMOTE_SCHEDULER" = "true" ]
-then sh setRemoteScheduler.sh
+then bash setRemoteScheduler.sh
 fi
 if [ "$REMOTE_THEMES" = "true" ]
-then sh setRemoteThemes.sh
+then bash setRemoteThemes.sh
 fi
 if [ "$AZCONN" = "true" ]
 then sh setAzureProps.sh
