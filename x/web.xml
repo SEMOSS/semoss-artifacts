@@ -18,6 +18,47 @@
       <filter-name>SetCharacterEncoding</filter-name>
       <url-pattern>/*</url-pattern>
    </filter-mapping>
+   <filter>
+      <filter-name>HeaderSecurityFilter</filter-name>
+      <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+   </filter>   
+   <filter-mapping>
+      <filter-name>HeaderSecurityFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+   <!-- CORS FILTER - MUST FILL IN cors.allowed.origins -->
+   <filter>
+      <filter-name>CorsFilter</filter-name>
+      <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+      <init-param>
+         <param-name>cors.allowed.origins</param-name>
+         <param-value>*</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.allowed.methods</param-name>
+         <param-value>GET,POST,OPTIONS</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.allowed.headers</param-name>
+         <param-value>Authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.exposed.headers</param-name>
+         <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.support.credentials</param-name>
+         <param-value>false</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.preflight.maxage</param-name>
+         <param-value>1800</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>CorsFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
 
    <!-- general check that the databases loaded properly -->
    <filter>
@@ -38,9 +79,18 @@
       <filter-name>NoUserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-
+	
+   <!-- scheduler filter -->
+   <filter>
+      <filter-name>SchedulerFilter</filter-name>
+      <filter-class>prerna.web.conf.SchedulerFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>SchedulerFilter</filter-name>
+      <url-pattern>/api/schedule/*</url-pattern>
+   </filter-mapping>
+	
    <!--  allow anonymous users -->
-
    <filter>
       <filter-name>AnonymousUserFilter</filter-name>
       <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
@@ -49,7 +99,6 @@
       <filter-name>AnonymousUserFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-
 
    <!-- CAC FILTER -->
    <!--
@@ -189,6 +238,7 @@
       <filter-name>NoUserInSessionFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
+
    <!-- filter on the admin servlet -->
    <filter>
       <filter-name>AdminStartupFilter</filter-name>
@@ -211,6 +261,22 @@
    </filter-mapping>
    -->
 
+   <!-- Do you want a different timeout for the admin user -->
+   <!-- 
+   <filter>
+      <filter-name>SetAdminSessionTimeoutFilter</filter-name>
+      <filter-class>prerna.web.conf.SetAdminSessionTimeoutFilter</filter-class>
+      <init-param>
+         <param-name>timeout</param-name>
+         <param-value>120</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>SetAdminSessionTimeoutFilter</filter-name>
+      <url-pattern>/api/*</url-pattern>
+   </filter-mapping>
+   -->
+	
    <!-- servlets -->
    <servlet>
       <servlet-name>MainApplication</servlet-name>
