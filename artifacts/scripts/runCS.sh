@@ -66,6 +66,10 @@ fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
+if [[ -z "${DEFAULT_FRAME_TYPE}" ]];
+then echo "No updated default frame" 
+else sh setDefaultFrame.sh
+fi
 if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
 then echo "No updated file size limit" 
 else sh setFileUploadLimit.sh
