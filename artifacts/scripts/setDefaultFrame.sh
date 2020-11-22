@@ -1,0 +1,1 @@
+sed -i "s@DEFAULT_FRAME_TYPE.*@DEFAULT_FRAME_TYPE\t$DEFAULT_FRAME_TYPE@g" /opt/semosshome/RDF_Map.prop
