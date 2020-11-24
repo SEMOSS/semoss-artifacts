@@ -26,6 +26,12 @@ cd /opt/semoss-artifacts/artifacts/scripts
 if [ "$SECURITY_ON" = "true" ]
 then sh setSecurityOn.sh
 fi
+if [ "$ENCRYPT_SMSS" = "true" ]; then
+echo "Encoding SMSS files"
+sh setEncryptSmss.sh
+else 
+echo "No encoding for SMSS files"
+fi
 if [ "$ANONYMOUS_USERS" = "true" ]
 then sh enableAnonymousUsers.sh
 fi
