@@ -26,6 +26,11 @@ if "$ENABLE_MS" = "true"
 then sed -i "s/<MS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
+if "$ENABLE_SITEMINDER" = "true"
+then sed -i "s/<SITEMINDER_ENABLE>/true/g" /opt/semosshome/social.properties
+fi
+
+
 if [ -n "$GOOGLE_CLIENT_ID" ]
 then sed -i "s/<GOOGLECLIENTID>/$GOOGLE_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
@@ -69,3 +74,30 @@ fi
 if [ -n "$MS_REDIRECT" ]
 then sed -i "s@<MSREDIRECT>@$MS_REDIRECT@g" /opt/semosshome/social.properties
 fi
+
+
+
+
+
+
+
+if [ -n "$SITEMINDER_TENANT" ]
+then sed -i "s@<SITEMINDERTENANT>@$SITEMINDER_TENANT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_CLIENT_ID" ]
+then sed -i "s@<SITEMINDERCLIENTID>@$SITEMINDER_CLIENT_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_SECRET_KEY" ]
+then sed -i "s#<SITEMINDERSECRETKEY>#$SITEMINDER_SECRET_KEY#g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_REDIRECT" ]
+then sed -i "s@<SITEMINDERREDIRECT>@$SITEMINDER_REDIRECT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_SCOPE" ]
+then sed -i "s@<SITEMINDERSCOPE>@$SITEMINDER_SCOPE@g" /opt/semosshome/social.properties
+fi
+
