@@ -75,10 +75,13 @@ if [ -n "$MS_REDIRECT" ]
 then sed -i "s@<MSREDIRECT>@$MS_REDIRECT@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_TOKEN_URL" ]
+then sed -i "s@ms_token_url@ms_token_url\t$MS_TOKEN_URL@g" /opt/semosshome/social.properties
+fi
 
-
-
-
+if [ -n "$MS_AUTH_URL" ]
+then sed -i "s@ms_auth_url@ms_auth_url\t$MS_AUTH_URL@g" /opt/semosshome/social.properties
+fi
 
 
 if [ -n "$SITEMINDER_TENANT" ]
@@ -101,3 +104,14 @@ if [ -n "$SITEMINDER_SCOPE" ]
 then sed -i "s@<SITEMINDERSCOPE>@$SITEMINDER_SCOPE@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$SITEMINDER_SCOPE" ]
+then sed -i "s@<SITEMINDERSCOPE>@$SITEMINDER_SCOPE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_TOKEN_URL" ]
+then sed -i "s@siteminder_token_url@siteminder_token_url\t$SITEMINDER_TOKEN_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SITEMINDER_AUTH_URL" ]
+then sed -i "s@siteminder_auth_url@siteminder_auth_url\t$SITEMINDER_AUTH_URL@g" /opt/semosshome/social.properties
+fi
