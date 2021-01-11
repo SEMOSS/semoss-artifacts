@@ -96,6 +96,10 @@ if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
 then echo "No custom google analytics id" 
 else sh setGoogleAnalytics.sh
 fi
+if [[ -z "${MONOLITH_ROUTE}" ]];
+then echo "No custom monolith route" 
+else sh setRouteCookie.sh
+fi
 if [ "$T_ON" = "false" ]
 then sh setTOn.sh
 fi
