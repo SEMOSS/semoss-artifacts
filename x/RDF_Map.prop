@@ -56,6 +56,8 @@ PY_WORKER_CP	fst-2.56.jar;jep-3.9.0.jar;log4j-1.2.17.jar;commons-io-2.4.jar;obje
 
 MONOLITH_ROUTE
 
+SHARED_FILE_PATH
+
 X_CACHE false
 
 SWIFTER	.swifter
