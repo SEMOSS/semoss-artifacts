@@ -80,6 +80,10 @@ if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
 else sh setDefaultInsightCacheable.sh
 fi
+if [[ -z "${SHARED_FILE_PATH}" ]];
+then echo "No updated shared file path" 
+else sh setSharedFilePath.sh
+fi
 if [[ -z "${FILE_UPLOAD_LIMIT}" ]];
 then echo "No updated file size limit" 
 else sh setFileUploadLimit.sh
