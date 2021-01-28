@@ -118,6 +118,14 @@ if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
 then echo "No SQL Encryption Password" 
 else sh setSQLEncryptionPassword.sh
 fi
+if [[ -z "${PIVOT_ROW_MAX}" ]];
+then echo "No Custom Pivot Row Max Defined" 
+else sh setPivotRowMax.sh
+fi
+if [[ -z "${PIVOT_COL_MAX}" ]];
+then echo "No Custom Pivot Col Max Defined" 
+else sh setPivotColMax.sh
+fi
 if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
 then echo "No custom cors definitions" 
 else sh setCorsOrigins.sh
