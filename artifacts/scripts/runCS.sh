@@ -138,6 +138,14 @@ if [[ -z "${SESSION_TIMEOUT}" ]];
 then echo "No custom session timeout" 
 else sh setSessionTimeout.sh
 fi
+if [[ -z "${NETTY_R}" ]];
+then echo "No netty r defined" 
+else sh setNettyR.sh
+fi
+if [[ -z "${NETTY_PYTHON}" ]];
+then echo "No netty python defined" 
+else sh setNettyPython.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
