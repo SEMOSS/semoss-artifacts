@@ -25,6 +25,9 @@ LOG4J	/opt/semosshome/log4j.prop
 ADDITIONAL_REACTORS /opt/semosshome/reactors.json
 SOCIAL	/opt/semosshome/social.properties
 
+NETTY_R false
+NETTY_PYTHON false
+
 USE_R	true
 R_MEM_LIMIT	4096
 
