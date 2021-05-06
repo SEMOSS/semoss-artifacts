@@ -146,6 +146,10 @@ if [[ -z "${NETTY_PYTHON}" ]];
 then echo "No netty python defined" 
 else sh setNettyPython.sh
 fi
+if [[ -z "${ULIMIT_R_MEM_LIMIT}" ]];
+then echo "No ulimit defined" 
+else sh setUlimit.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
