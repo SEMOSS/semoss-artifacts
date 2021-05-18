@@ -150,6 +150,10 @@ if [[ -z "${ULIMIT_R_MEM_LIMIT}" ]];
 then echo "No ulimit defined" 
 else sh setUlimit.sh
 fi
+if [[ -z "${CHECK_MEM}" ]];
+then echo "No check memory defined" 
+else sh setCheckMem.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
