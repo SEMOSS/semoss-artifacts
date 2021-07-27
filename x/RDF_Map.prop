@@ -7,6 +7,7 @@ AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountK
 
 ENGINE_WATCHER  SMSSWatcher
 ENGINE_WEB_WATCHER	SMSSWebWatcher
+PROJECT_WATCHER	ProjectWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
 CSV_INSIGHT_CACHE_FOLDER CSV_Insights
@@ -14,6 +15,10 @@ CSV_INSIGHT_CACHE_FOLDER CSV_Insights
 SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
+
+	ProjectWatcher	prerna.util.ProjectWatcher
+ProjectWatcher_DIR		/opt/semosshome/project
+ProjectWatcher_EXT	.smss
 
 #JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
 #JobSchedulerWatcher_DIR /opt/semosshome/rpa/json
