@@ -1,0 +1,1 @@
+sed -i "s@SHOW_WELCOME_BANNER.*@SHOW_WELCOME_BANNER\t$SHOW_WELCOME_BANNER@g" /opt/semosshome/RDF_Map.prop
