@@ -17,9 +17,8 @@ SMSSWebWatcher_DIR	C:\\workspace\\Semoss_Dev\\db
 SMSSWebWatcher_EXT	.smss
 
 ProjectWatcher	prerna.util.ProjectWatcher
-ProjectWatcher_DIR		C:\\workspace\\Semoss_Dev\\project
-ProjectWatcher_EXT	.smss
-
+ProjectWatcher_DIR  C:\\workspace\\Semoss_Dev\\project
+ProjectWatcher_EXT  .smss
 
 #JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
 #JobSchedulerWatcher_DIR C:\\workspace\\Semoss_Dev\\rpa\\json
@@ -86,6 +85,8 @@ PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD password123
 #SET RESTRICTIONS ON PIVOT SIZE
 PIVOT_ROW_MAX	1000
 PIVOT_COL_MAX	100
+
+SHOW_WELCOME_BANNER true
 
 ##################################################
 ##################################################
