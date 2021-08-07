@@ -17,7 +17,7 @@ SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
 
 ProjectWatcher	prerna.util.ProjectWatcher
-ProjectWatcher_DIR		/opt/semosshome/project
+ProjectWatcher_DIR  /opt/semosshome/project
 ProjectWatcher_EXT	.smss
 
 #JobSchedulerWatcher prerna.rpa.JobSchedulerWatcher
@@ -109,6 +109,8 @@ MEM_PROFILE_SETTINGS	CONSTANT
 # specification in gigs
 USER_MEM_LIMIT	2
 RESERVED_JAVA_MEMORY	12 
+
+SHOW_WELCOME_BANNER true
 
 ##################################################
 ##################################################
