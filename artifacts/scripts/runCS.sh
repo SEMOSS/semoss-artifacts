@@ -154,6 +154,10 @@ if [[ -z "${CHECK_MEM}" ]];
 then echo "No check memory defined" 
 else sh setCheckMem.sh
 fi
+if [[ -z "${SHOW_WELCOME_BANNER}" ]];
+then echo "No show welcome banner defined" 
+else sh setShowWelcomeBanner.sh
+fi
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
