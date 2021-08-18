@@ -79,7 +79,24 @@
       <filter-name>NoUserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-	
+
+   <!-- check if we want to limit the # of concurrent sessions 
+	if you wish to not include scheduled jobs as users
+	put after the schedule filter -->
+   <filter>
+      <filter-name>SessionCounterExceededFilter</filter-name>
+      <filter-class>prerna.web.conf.SessionCounterExceededFilter</filter-class>
+	  <init-param>
+         <param-name>sessionLimit</param-name>
+	 <!-- input value > 0 if you want to activate the filter -->
+         <param-value>-1</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>SessionCounterExceededFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>	
+
    <!-- Memory limit per user - if there is enough space on the server -->
    <filter>
       <filter-name>MemoryCheckFilter</filter-name>
