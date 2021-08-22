@@ -150,13 +150,25 @@ if [[ -z "${ULIMIT_R_MEM_LIMIT}" ]];
 then echo "No ulimit defined" 
 else sh setUlimit.sh
 fi
-if [[ -z "${CHECK_MEM}" ]];
-then echo "No check memory defined" 
-else sh setCheckMem.sh
-fi
 if [[ -z "${SHOW_WELCOME_BANNER}" ]];
 then echo "No show welcome banner defined" 
 else sh setShowWelcomeBanner.sh
+fi
+if [[ -z "${CHECK_MEM}" ]];
+then echo "No check memory defined" 
+else sh setMemoryFilterCheckMem.sh
+fi
+if [[ -z "${MEM_PROFILE_SETTINGS}" ]];
+then echo "No mem profile settings defined" 
+else sh setMemoryFilterMemProfileSettings.sh
+fi
+if [[ -z "${RESERVED_JAVA_MEM}" ]];
+then echo "No reserved java mem  defined" 
+else sh setMemoryFilterReservedJavaMem.sh
+fi
+if [[ -z "${USER_MEM_LIMIT}" ]];
+then echo "No user mem limit defined" 
+else sh setMemoryFilterUserMemLimit.sh
 fi
 sh setR.sh
 sh setPy.sh

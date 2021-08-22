@@ -1,0 +1,1 @@
+sed -i "s@RESERVED_JAVA_MEM.*@RESERVED_JAVA_MEM\t$RESERVED_JAVA_MEM@g" /opt/semosshome/RDF_Map.prop

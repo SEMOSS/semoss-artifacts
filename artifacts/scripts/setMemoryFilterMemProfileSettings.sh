@@ -1,0 +1,1 @@
+sed -i "s@MEM_PROFILE_SETTINGS.*@MEM_PROFILE_SETTINGS\t$MEM_PROFILE_SETTINGS@g" /opt/semosshome/RDF_Map.prop

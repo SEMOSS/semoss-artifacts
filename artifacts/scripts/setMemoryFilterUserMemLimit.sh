@@ -1,0 +1,1 @@
+sed -i "s@USER_MEM_LIMIT.*@USER_MEM_LIMIT\t$USER_MEM_LIMIT@g" /opt/semosshome/RDF_Map.prop
