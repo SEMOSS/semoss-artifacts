@@ -115,3 +115,42 @@ fi
 if [ -n "$SITEMINDER_AUTH_URL" ]
 then sed -i "s@siteminder_auth_url@siteminder_auth_url\t$SITEMINDER_AUTH_URL@g" /opt/semosshome/social.properties
 fi
+
+
+
+
+
+
+if [ -n "$ADFS_CLIENT_ID" ]
+then sed -i "s@<ADFSCLIENTID>@$ADFS_CLIENT_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_SECRET_KEY" ]
+then sed -i "s#<ADFSSECRETKEY>#$ADFS_SECRET_KEY#g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_REDIRECT" ]
+then sed -i "s@<ADFSREDIRECT>@$ADFS_REDIRECT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_TOKEN_URL" ]
+then sed -i "s@<ADFSTOKENURL>@$ADFS_TOKEN_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_AURL_URL" ]
+then sed -i "s@<ADFSAUTHURL>@$ADFS_AURL_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_SCOPE" ]
+then sed -i "s@<ADFSSCOPE>@$ADFS_SCOPE@g" /opt/semosshome/social.properties
+fi
+
+
+if [ -n "$ADFS_BEAN" ]
+then sed -i "s@<ADFSBEAN>@$ADFS_BEAN@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$ADFS_JSON" ]
+then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
+fi
+
