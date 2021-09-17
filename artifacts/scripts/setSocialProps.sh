@@ -137,8 +137,8 @@ if [ -n "$ADFS_TOKEN_URL" ]
 then sed -i "s@<ADFSTOKENURL>@$ADFS_TOKEN_URL@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$ADFS_AURL_URL" ]
-then sed -i "s@<ADFSAUTHURL>@$ADFS_AURL_URL@g" /opt/semosshome/social.properties
+if [ -n "$ADFS_AUTH_URL" ]
+then sed -i "s@<ADFSAUTHURL>@$ADFS_AUTH_URL@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$ADFS_SCOPE" ]
