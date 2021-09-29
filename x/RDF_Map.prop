@@ -32,6 +32,8 @@ SOCIAL	/opt/semosshome/social.properties
 
 NETTY_R false
 NETTY_PYTHON false
+TCP_WORKER
+TCP_CLIENT
 ULIMIT_R_MEM_LIMIT  
 
 USE_R	true
