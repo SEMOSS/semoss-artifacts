@@ -78,7 +78,7 @@ else sh setDefaultFrame.sh
 fi
 if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
-else sh setDefaultInsightCacheable.sh
+else sh setCacheProperties.sh
 fi
 if [[ -z "${SHARED_FILE_PATH}" ]];
 then echo "No updated shared file path" 
