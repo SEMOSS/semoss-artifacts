@@ -78,7 +78,7 @@ else sh setDefaultFrame.sh
 fi
 if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
-else sh setCacheProperties.sh
+else sh setDefaultInsightCacheable.sh
 fi
 if [[ -z "${SHARED_FILE_PATH}" ]];
 then echo "No updated shared file path" 
@@ -170,6 +170,7 @@ if [[ -z "${USER_MEM_LIMIT}" ]];
 then echo "No user mem limit defined" 
 else sh setMemoryFilterUserMemLimit.sh
 fi
+sh setCacheProperties.sh
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
