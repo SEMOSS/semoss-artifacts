@@ -39,10 +39,10 @@ ULIMIT_R_MEM_LIMIT
 USE_R	true
 R_MEM_LIMIT	4096
 
-R_CONNECTION_JRI	true
+R_CONNECTION_JRI	false
 
 #JRI must be false in order to use user rserve
-IS_USER_RSERVE	true
+IS_USER_RSERVE	false
 #Options are pooled or dedicated
 R_USER_CONNECTION_TYPE	pooled
 RSERVE_CONNECTION_POOL_SIZE	6
