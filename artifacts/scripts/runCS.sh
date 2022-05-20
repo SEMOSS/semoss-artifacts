@@ -138,6 +138,10 @@ if [[ -z "${SESSION_TIMEOUT}" ]];
 then echo "No custom session timeout" 
 else sh setSessionTimeout.sh
 fi
+if [[ -z "${SESSION_LIMIT}" ]];
+then echo "No custom session limit" 
+else sh setSessionLimit.sh
+fi
 if [[ -z "${NETTY_R}" ]];
 then echo "No netty r defined" 
 else sh setNettyR.sh
