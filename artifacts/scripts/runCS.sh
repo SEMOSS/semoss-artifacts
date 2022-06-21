@@ -174,6 +174,7 @@ if [[ -z "${USER_MEM_LIMIT}" ]];
 then echo "No user mem limit defined" 
 else sh setMemoryFilterUserMemLimit.sh
 fi
+sh setCacheProperties.sh
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
