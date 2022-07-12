@@ -134,6 +134,17 @@ CLAMAV_SCANNING_PORT  3310
 CLAMAV_SCANNING_ADDRESS 
 CLAMAV_SCANNING_FS  
 
+#Limit to only admins
+ADMIN_ONLY_PROJECT_ADD	false
+ADMIN_ONLY_PROJECT_DELETE	false
+ADMIN_ONLY_PROJECT_ADD_ACCESS	false
+ADMIN_ONLY_PROJECT_SET_PUBLIC	false
+ADMIN_ONLY_DB_ADD	false
+ADMIN_ONLY_DB_DELETE	false
+ADMIN_ONLY_DB_ADD_ACCESS	false
+ADMIN_ONLY_DB_SET_PUBLIC	false
+ADMIN_ONLY_DB_SET_DISCOVERABLE	false
+
 ##################################################
 ##################################################
 ##################################################
