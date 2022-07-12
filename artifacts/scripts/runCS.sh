@@ -175,6 +175,7 @@ then echo "No user mem limit defined"
 else sh setMemoryFilterUserMemLimit.sh
 fi
 bash setCacheProperties.sh
+bash setAdminOnlyLimits.sh
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
