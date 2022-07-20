@@ -96,6 +96,10 @@ if [[ -z "${FRAME_SIZE_LIMIT}" ]];
 then echo "No updated frame size limit" 
 else sh setFrameLimit.sh
 fi
+if [[ -z "${FRAME_SIZE_LIMIT_NATIVE}" ]];
+then echo "No upadted frame size limit native" 
+else sh setFrameLimitNative.sh
+fi
 if [[ -z "${GOOGLE_ANALYTICS_ID}" ]];
 then echo "No custom google analytics id" 
 else sh setGoogleAnalytics.sh
