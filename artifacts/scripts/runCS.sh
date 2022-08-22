@@ -180,6 +180,7 @@ else sh setMemoryFilterUserMemLimit.sh
 fi
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
+bash setActivityTracking.sh
 bash setPipelineRestrictions.sh
 sh setR.sh
 sh setPy.sh
