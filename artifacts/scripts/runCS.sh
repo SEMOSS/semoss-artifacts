@@ -50,6 +50,9 @@ fi
 if [ "$REMOTE_THEMES" = "true" ]
 then bash setRemoteThemes.sh
 fi
+if [ "$REMOTE_USERTRACKING" = "true" ]
+then bash setRemoteUserTracking.sh
+fi
 if [ "$AZCONN" = "true" ]
 then sh setAzureProps.sh
 fi
