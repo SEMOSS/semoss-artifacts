@@ -181,6 +181,11 @@ if [[ -z "${USER_MEM_LIMIT}" ]];
 then echo "No user mem limit defined" 
 else sh setMemoryFilterUserMemLimit.sh
 fi
+
+if [[ -z "${OPTIONAL_COOKIES}" ]];
+then echo "No optional cookie changes defined" 
+else sh setOptionalCookies.sh
+fi
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
