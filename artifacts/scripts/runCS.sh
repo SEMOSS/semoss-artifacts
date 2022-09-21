@@ -181,6 +181,10 @@ if [[ -z "${USER_MEM_LIMIT}" ]];
 then echo "No user mem limit defined" 
 else sh setMemoryFilterUserMemLimit.sh
 fi
+if [[ -z "${CUSTOM_M2}" ]];
+then echo "No custom m2 location" 
+else sh setM2Home.sh
+fi
 
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
