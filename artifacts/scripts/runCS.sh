@@ -186,6 +186,11 @@ then echo "No custom m2 location"
 else sh setM2Home.sh
 fi
 
+if [[ -z "${MVN_HOME}" ]];
+then echo "No custom mvn home location" 
+else sh setMVNHome.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
