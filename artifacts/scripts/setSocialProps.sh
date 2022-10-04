@@ -157,3 +157,42 @@ if [ -n "$ADFS_JSON" ]
 then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$SMTP_ENABLED" ]
+then sed -i "s@<SMTPENABLED>@$SMTP_ENABLED@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_HOST" ]
+then sed -i "s@<SMTPMAILHOST>@$SMTP_MAIL_HOST@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_PORT" ]
+then sed -i "s@<SMTPMAILPORT>@$SMTP_MAIL_PORT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_SOCKETFACTORY_PORT" ]
+then sed -i "s@<SMTPMAILSOCKETFACTORYPORT>@$SMTP_MAIL_SOCKETFACTORY_PORT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_SOCKETFACTORY_CLASS" ]
+then sed -i "s@<SMTPMAILSOCKETFACTORYPORT>@$SMTP_MAIL_SOCKETFACTORY_CLASS@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_AUTH" ]
+then sed -i "s@<SMTPMAILAUTH>@$SMTP_MAIL_AUTH@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_MAIL_STARTTLS_ENABLE" ]
+then sed -i "s@<SMTPMAILSTARTTLSENABLE>@$SMTP_MAIL_STARTTLS_ENABLE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_USERNAME" ]
+then sed -i "s@<SMTPUSERNAME>@$SMTP_USERNAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$SMTP_PASSWORD" ]
+then sed -i "s@<SMTPPASSWORD>@$SMTP_PASSWORD@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "SMTP_SENDER" ]
+then sed -i "s@<SMTPSENDER>@$SMTP_SENDER@g" /opt/semosshome/social.properties
+fi
