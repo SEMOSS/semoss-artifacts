@@ -198,7 +198,7 @@ fi
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
-bash setPipelineRestrictions.sh
+bash setWidgetRestrictions.sh
 sh setR.sh
 sh setPy.sh
 cd $SCRIPT_TOMCAT_HOME/bin
