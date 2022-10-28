@@ -8,3 +8,5 @@ else
   echo "Remote UserTracking IP defined"
   sed -i "s/jdbc:h2:nio:@BaseFolder@\/db\/@ENGINE@\/databaseNewUserTracking/jdbc:h2:tcp:\/\/$REMOTE_USERTRACKING_IP\/databaseNewUserTracking;query_timeout=180000;early_filter=true;query_cache_size=24;cache_size=32768/g" /opt/semosshome/db/UserTrackingDatabase.smss
 fi
+sed -i "s@USER_TRACKING_ENABLED.*@USER_TRACKING_ENABLED\t$REMOTE_USERTRACKING@g" /opt/semosshome/RDF_Map.prop
+
