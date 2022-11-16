@@ -151,17 +151,59 @@
       <filter-name>AdminStartupFilter</filter-name>
       <url-pattern>/adminconfig/*</url-pattern>
    </filter-mapping>
+
    <!-- IF YOU WANT THE ADMIN TO ADD EVERY USER, UNCOMMENT BELOW --> 
    <!-- 
    <filter>
       <filter-name>UserExistsFilter</filter-name>
       <filter-class>prerna.web.conf.UserExistsFilter</filter-class>
+      <init-param>	
+         <param-name>useSAMLGroupWhitelist</param-name>	
+         <param-value>false</param-value>	
+      </init-param>
    </filter>
    <filter-mapping>
       <filter-name>UserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-    -->
+   -->
+
+   <!-- Do you want a different timeout for the admin user -->
+   <!-- 
+   <filter>
+      <filter-name>SetAdminSessionTimeoutFilter</filter-name>
+      <filter-class>prerna.web.conf.SetAdminSessionTimeoutFilter</filter-class>
+      <init-param>
+         <param-name>timeout</param-name>
+         <param-value>120</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>SetAdminSessionTimeoutFilter</filter-name>
+      <url-pattern>/api/*</url-pattern>
+   </filter-mapping>
+   -->
+
+   <filter>
+      <filter-name>PublicHomeCheckFilter</filter-name>
+      <filter-class>prerna.web.conf.PublicHomeCheckFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>PublicHomeCheckFilter</filter-name>
+      <url-pattern>/public_home/*</url-pattern>
+   </filter-mapping>
+
+   <!--
+   <filter>	
+      <filter-name>FilespaceAccessFilter</filter-name>	
+      <filter-class>prerna.web.conf.FilespaceAccessFilter</filter-class>	
+   </filter>	
+   <filter-mapping>	
+      <filter-name>FilespaceAccessFilter</filter-name>	
+      <url-pattern>/public_home/*</url-pattern>	
+   </filter-mapping>	
+   -->
+	
    <!-- servlets -->
    <servlet>
       <servlet-name>MainApplication</servlet-name>
