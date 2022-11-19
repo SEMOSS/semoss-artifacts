@@ -47,3 +47,13 @@ if [[ -z $ADMIN_ONLY_INSIGHT_SET_PUBLIC ]]; then
 echo "No admin only insight set public flag"
 else sed -i "s@ADMIN_ONLY_INSIGHT_SET_PUBLIC.*@ADMIN_ONLY_INSIGHT_SET_PUBLIC\t$ADMIN_ONLY_INSIGHT_SET_PUBLIC@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z $ADMIN_ONLY_INSIGHT_ADD_ACCESS ]]; then
+echo "No admin only insight add access flag"
+else sed -i "s@ADMIN_ONLY_INSIGHT_ADD_ACCESS.*@ADMIN_ONLY_INSIGHT_ADD_ACCESS\t$ADMIN_ONLY_INSIGHT_ADD_ACCESS@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z $ADMIN_ONLY_INSIGHT_SHARE ]]; then
+echo "No admin only insight share flag"
+else sed -i "s@ADMIN_ONLY_INSIGHT_SHARE.*@ADMIN_ONLY_INSIGHT_SHARE\t$ADMIN_ONLY_INSIGHT_SHARE@g" /opt/semosshome/RDF_Map.prop
+fi
