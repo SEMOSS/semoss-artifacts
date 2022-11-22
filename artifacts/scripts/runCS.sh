@@ -195,6 +195,41 @@ if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
 fi
+
+if [[ -z "${CUSTOM_LM_CONNECTION_URL}" ]];
+then echo "No custom LM connection url is defined" 
+else sh customLocalMasterEngine.sh
+fi
+
+if [[ -z "${CUSTOM_SECURITY_CONNECTION_URL}" ]];
+then echo "No custom security connection url is defined" 
+else sh customSecurityEngine.sh
+fi
+
+if [[ -z "${CUSTOM_SCHEDULER_CONNECTION_URL}" ]];
+then echo "No custom scheduler connection url is defined" 
+else sh customSchedulerEngine.sh
+fi
+
+if [[ -z "${CUSTOM_USER_TRACKING_CONNECTION_URL}" ]];
+then echo "No custom user tracking connection url is defined" 
+else sh customUserTrackingEngine.sh
+fi
+
+if [[ -z "${OPTIONAL_COOKIES}" ]];
+then echo "No optional cookie changes defined" 
+else sh setOptionalCookies.sh
+fi
+
+if [[ -z "${OPTIONAL_COOKIES}" ]];
+then echo "No optional cookie changes defined" 
+else sh setOptionalCookies.sh
+fi
+
+if [[ -z "${OPTIONAL_COOKIES}" ]];
+then echo "No optional cookie changes defined" 
+else sh setOptionalCookies.sh
+fi
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
