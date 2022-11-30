@@ -17,4 +17,4 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/index.html
+sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/core/cookies.js
