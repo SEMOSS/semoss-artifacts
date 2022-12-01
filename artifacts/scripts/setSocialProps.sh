@@ -35,7 +35,7 @@ then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
 if "$ENABLE_LINOTP" = "true"
-then sed -i "s/<LINTOP_ENABLE>/true/g" /opt/semosshome/social.properties
+then sed -i "s/<LINOTP_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$GOOGLE_CLIENT_ID" ]
