@@ -38,6 +38,9 @@ if "$ENABLE_LINOTP" = "true"
 then sed -i "s/<LINOTP_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
+
+
+
 if [ -n "$GOOGLE_CLIENT_ID" ]
 then sed -i "s/<GOOGLECLIENTID>/$GOOGLE_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
@@ -50,6 +53,9 @@ if [ -n "$GOOGLE_REDIRECT" ]
 then sed -i 's@<GOOGLEREDIRECT>@'"$GOOGLE_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
+
+
+
 if [ -n "$GITHUB_CLIENT_ID" ]
 then sed -i "s/<GITHUBCLIENTID>/$GITHUB_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
@@ -61,6 +67,9 @@ fi
 if [ -n "$GITHUB_REDIRECT" ]
 then sed -i 's@<GITHUBREDIRECT>@'"$GITHUB_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
+
+
+
 
 if [ -n "$MS_AUTHORITY" ]
 then sed -i "s@<MSAUTHORITY>@$MS_AUTHORITY@g" /opt/semosshome/social.properties
@@ -89,6 +98,8 @@ fi
 if [ -n "$MS_AUTH_URL" ]
 then sed -i "s@ms_auth_url@ms_auth_url\t$MS_AUTH_URL@g" /opt/semosshome/social.properties
 fi
+
+
 
 
 if [ -n "$SITEMINDER_TENANT" ]
@@ -125,9 +136,6 @@ fi
 
 
 
-
-
-
 if [ -n "$ADFS_CLIENT_ID" ]
 then sed -i "s@<ADFSCLIENTID>@$ADFS_CLIENT_ID@g" /opt/semosshome/social.properties
 fi
@@ -152,7 +160,6 @@ if [ -n "$ADFS_SCOPE" ]
 then sed -i "s@<ADFSSCOPE>@$ADFS_SCOPE@g" /opt/semosshome/social.properties
 fi
 
-
 if [ -n "$ADFS_BEAN" ]
 then sed -i "s@<ADFSBEAN>@$ADFS_BEAN@g" /opt/semosshome/social.properties
 fi
@@ -160,6 +167,20 @@ fi
 if [ -n "$ADFS_JSON" ]
 then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
 fi
+
+
+
+if [ -n "$LINOT_PHOSTNAME" ]
+then sed -i "s@<LINOTPHOSTNAME>@$LINOT_PHOSTNAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LINOTP_REALM" ]
+then sed -i "s@<LINOTPREALM>@$LINOTP_REALM@g" /opt/semosshome/social.properties
+fi
+
+
+
+
 
 if [ -n "$SMTP_ENABLED" ]
 then sed -i "s@<SMTPENABLED>@$SMTP_ENABLED@g" /opt/semosshome/social.properties
