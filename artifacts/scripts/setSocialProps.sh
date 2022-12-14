@@ -170,8 +170,8 @@ fi
 
 
 
-if [ -n "$LINOT_PHOSTNAME" ]
-then sed -i "s@<LINOTPHOSTNAME>@$LINOT_PHOSTNAME@g" /opt/semosshome/social.properties
+if [ -n "$LINOTP_HOSTNAME" ]
+then sed -i "s@<LINOTPHOSTNAME>@$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$LINOTP_REALM" ]
