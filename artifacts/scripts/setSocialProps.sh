@@ -35,7 +35,7 @@ then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
 if "$ENABLE_LINOTP" = "true"
-then sed -i "s/<LINOTP_ENABLE>/true/g" /opt/semosshome/social.properties
+then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
 fi
 
 
@@ -171,14 +171,16 @@ fi
 
 
 if [ -n "$LINOTP_HOSTNAME" ]
-then sed -i "s@<LINOTPHOSTNAME>@$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
+then sed -i "s:@inotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$LINOTP_REALM" ]
-then sed -i "s@<LINOTPREALM>@$LINOTP_REALM@g" /opt/semosshome/social.properties
+then sed -i "s@linotp_realm.*@linotp_realm\t$LINOTP_REALM@g" /opt/semosshome/social.properties
 fi
 
-
+if [ -n "$LINOTP_AUTO_ADD" ]
+then sed -i "s@linotp_auto_add.*@linotp_auto_add\t$LINOTP_AUTO_ADD@g" /opt/semosshome/social.properties
+fi
 
 
 
