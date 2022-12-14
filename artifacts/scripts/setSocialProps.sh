@@ -171,7 +171,7 @@ fi
 
 
 if [ -n "$LINOTP_HOSTNAME" ]
-then sed -i "s:@inotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
+then sed -i "s:@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$LINOTP_REALM" ]
