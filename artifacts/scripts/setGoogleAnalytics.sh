@@ -17,4 +17,8 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/core/cookies.js
+sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/app.constants.js
+
+if [ "$LEGACY_GOOGLE_ANALYTICS" = "true" ]
+sed -i "s#LEGACY_GOOGLE_ANALYTICS', false#LEGACY_GOOGLE_ANALYTICS', true#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/app.constants.js
+fi
