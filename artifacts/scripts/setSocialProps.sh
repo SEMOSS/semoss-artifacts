@@ -38,6 +38,9 @@ if "$ENABLE_LINOTP" = "true"
 then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
 fi
 
+if "$ENABLE_LDAP" = "true"
+then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
+fi
 
 
 
@@ -170,6 +173,7 @@ fi
 
 
 
+
 if [ -n "$LINOTP_HOSTNAME" ]
 then sed -i "s@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
@@ -181,6 +185,61 @@ fi
 if [ -n "$LINOTP_AUTO_ADD" ]
 then sed -i "s@linotp_auto_add.*@linotp_auto_add\t$LINOTP_AUTO_ADD@g" /opt/semosshome/social.properties
 fi
+
+
+
+
+
+
+if [ -n "$LDAP_TYPE" ]
+then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_PROVIDER_URL" ]
+then sed -i "s@ldap_provider_url.*@ldap_provider_url\t$LDAP_PROVIDER_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
+then sed -i "s@ldap_principal_tempalte.*@ldap_principal_tempalte\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_KEY_ID" ]
+then sed -i "s@ldap_key_id.*@ldap_key_id\t$LDAP_KEY_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_KEY_NAME" ]
+then sed -i "s@ldap_key_name.*@ldap_key_name\t$LDAP_KEY_NAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_KEY_EMAIL" ]
+then sed -i "s@ldap_key_email.*@ldap_key_email\t$LDAP_KEY_EMAIL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_KEY_USERNAME" ]
+then sed -i "s@ldap_key_username.*@ldap_key_username\t$LDAP_KEY_USERNAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_KEY_LAST_PWD_CHANGE" ]
+then sed -i "s@ldap_key_last_pwd_change.*@ldap_key_last_pwd_change\t$LDAP_KEY_LAST_PWD_CHANGE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_SEARCH_CONTEXT_NAME" ]
+then sed -i "s@ldap_search_context_name.*@ldap_search_context_name\t$LDAP_SEARCH_CONTEXT_NAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_SEARCH_CONTEXT_SCOPE" ]
+then sed -i "s@ldap_search_context_scope.*@ldap_search_context_scope\t$LDAP_SEARCH_CONTEXT_SCOPE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_SEARCH_MATCHING_ATTRIBUTES" ]
+then sed -i "s@ldap_search_matching_attributes.*@ldap_search_matching_attributes\t$LDAP_SEARCH_MATCHING_ATTRIBUTES@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_AUTO_ADD" ]
+then sed -i "s@ldap_auto_add.*@ldap_auto_add\t$LDAP_AUTO_ADD@g" /opt/semosshome/social.properties
+fi
+
+
 
 
 
