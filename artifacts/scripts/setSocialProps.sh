@@ -223,6 +223,10 @@ if [ -n "$LDAP_KEY_LAST_PWD_CHANGE" ]
 then sed -i "s@ldap_key_last_pwd_change.*@ldap_key_last_pwd_change\t$LDAP_KEY_LAST_PWD_CHANGE@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LDAP_REQUIRE_PWD_CHANGE_DAYS" ]
+then sed -i "s@ldap_require_pwd_change_days.*@ldap_require_pwd_change_days\t$LDAP_REQUIRE_PWD_CHANGE_DAYS@g" /opt/semosshome/social.properties
+fi
+
 if [ -n "$LDAP_SEARCH_CONTEXT_NAME" ]
 then sed -i "s@ldap_search_context_name.*@ldap_search_context_name\t$LDAP_SEARCH_CONTEXT_NAME@g" /opt/semosshome/social.properties
 fi
