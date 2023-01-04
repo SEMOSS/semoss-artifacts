@@ -227,6 +227,18 @@ if [ -n "$LDAP_REQUIRE_PWD_CHANGE_DAYS" ]
 then sed -i "s@ldap_require_pwd_change_days.*@ldap_require_pwd_change_days\t$LDAP_REQUIRE_PWD_CHANGE_DAYS@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_CHANGE" ]
+then sed -i "s@ldap_use_custom_context_for_pwd_change.*@ldap_use_custom_context_for_pwd_change\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_CHANGE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_USERNAME" ]
+then sed -i "s@ldap_use_custom_context_for_pwd_username.*@ldap_use_custom_context_for_pwd_username\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_USERNAME@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_PASSWORD" ]
+then sed -i "s@ldap_use_custom_context_for_pwd_password.*@ldap_use_custom_context_for_pwd_password\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_PASSWORD@g" /opt/semosshome/social.properties
+fi
+
 if [ -n "$LDAP_SEARCH_CONTEXT_NAME" ]
 then sed -i "s@ldap_search_context_name.*@ldap_search_context_name\t$LDAP_SEARCH_CONTEXT_NAME@g" /opt/semosshome/social.properties
 fi
