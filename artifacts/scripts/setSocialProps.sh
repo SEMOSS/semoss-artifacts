@@ -186,7 +186,9 @@ if [ -n "$LINOTP_AUTO_ADD" ]
 then sed -i "s@linotp_auto_add.*@linotp_auto_add\t$LINOTP_AUTO_ADD@g" /opt/semosshome/social.properties
 fi
 
-
+if [ -n "$LINOTP_CHECK_AD" ]
+then sed -i "s@linotp_check_ad.*@linotp_check_ad\t$LINOTP_CHECK_AD@g" /opt/semosshome/social.properties
+fi
 
 
 
