@@ -231,6 +231,12 @@ if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
 fi
+
+if [[ -z "${CHROOT_ENABLE}" ]];
+then echo "Chroot is not enabled" 
+else sh setChroot.sh
+fi
+
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
