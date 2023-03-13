@@ -236,7 +236,7 @@ if [[ -z "${CHROOT_ENABLE}" ]];
 then echo "Chroot is not enabled" 
 else sh setChroot.sh
 fi
-
+bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
