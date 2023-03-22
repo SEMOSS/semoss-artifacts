@@ -190,6 +190,13 @@ if [ -n "$LINOTP_CHECK_AD" ]
 then sed -i "s@linotp_check_ad.*@linotp_check_ad\t$LINOTP_CHECK_AD@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LINOTP_ADMIN_USER" ]
+then sed -i "s@linotp_adminuser.*@linotp_adminuser\t$LINOTP_ADMIN_USER@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LINOTP_ADMIN_PASSWORD" ]
+then sed -i "s@linotp_adminpassword.*@linotp_adminpassword\t$LINOTP_ADMIN_PASSWORD@g" /opt/semosshome/social.properties
+fi
 
 
 
