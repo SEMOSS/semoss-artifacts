@@ -63,6 +63,9 @@ fi
 if [ "$SETSOCIAL" = "true" ]
 then sh setSocialProps.sh
 fi
+if [ "$SETQUARTZ" = "true" ]
+then sh setQuartzProps.sh
+fi
 if [ "$SET_APPCONSTANTS" = "true" ]
 then sh setAppConstants.sh
 fi
