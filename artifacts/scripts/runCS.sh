@@ -125,6 +125,9 @@ if [[ -z "${SCHEDULER_ENDPOINT}" ]];
 then echo "No custom scheduler url defined" 
 else sh setSchedulerUrl.sh
 fi
+if [ "$SCHEDULER_FORCE_DISABLE" = "true" ]
+then sh setScheduler.sh
+fi
 if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
 then echo "No SQL Encryption Password" 
 else sh setSQLEncryptionPassword.sh
