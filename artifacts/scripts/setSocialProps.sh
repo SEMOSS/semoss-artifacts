@@ -42,6 +42,11 @@ if "$ENABLE_LDAP" = "true"
 then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
 fi
 
+if "$ENABLE_API_USER" = "true"
+then sed -i "s@api_user.*@api_user\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
+fi
+
+
 
 
 if [ -n "$GOOGLE_CLIENT_ID" ]
