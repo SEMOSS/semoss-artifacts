@@ -43,10 +43,12 @@ then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.p
 fi
 
 if "$ENABLE_API_USER" = "true"
-then sed -i "s@api_user_login.*@api_user\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
+then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
 fi
 
-
+if [ -n "$API_USER_DYNAMIC" ]
+then sed -i "s@api_user_require_dynamic_token.*@api_user_require_dynamic_token\t$API_USER_DYNAMIC@g" /opt/semosshome/social.properties
+fi
 
 
 if [ -n "$GOOGLE_CLIENT_ID" ]
