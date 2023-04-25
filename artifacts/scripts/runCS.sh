@@ -83,6 +83,9 @@ if [[ -z "${DEFAULT_FRAME_TYPE}" ]];
 then echo "No updated default frame" 
 else sh setDefaultFrame.sh
 fi
+if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
+then sh setWhiteListDomains.sh
+fi
 if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
 else sh setDefaultInsightCacheable.sh
