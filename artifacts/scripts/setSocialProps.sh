@@ -207,6 +207,7 @@ fi
 
 
 
+
 if [ -n "$LDAP_TYPE" ]
 then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
 fi
@@ -274,43 +275,42 @@ fi
 
 
 
-
 if [ -n "$SMTP_ENABLED" ]
-then sed -i "s@<SMTPENABLED>@$SMTP_ENABLED@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_enabled.*@smtp_enabled\t$SMTP_ENABLED@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_HOST" ]
-then sed -i "s@<SMTPMAILHOST>@$SMTP_MAIL_HOST@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.host.*@smtp_mail.smtp.host\t$SMTP_MAIL_HOST@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_PORT" ]
-then sed -i "s@<SMTPMAILPORT>@$SMTP_MAIL_PORT@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.port.*@smtp_mail.smtp.port\t$SMTP_MAIL_PORT@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_SOCKETFACTORY_PORT" ]
-then sed -i "s@<SMTPMAILSOCKETFACTORYPORT>@$SMTP_MAIL_SOCKETFACTORY_PORT@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.socketFactory.port.*@smtp_mail.smtp.socketFactory.port\t$SMTP_MAIL_SOCKETFACTORY_PORT@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_SOCKETFACTORY_CLASS" ]
-then sed -i "s@<SMTPMAILSOCKETFACTORYPORT>@$SMTP_MAIL_SOCKETFACTORY_CLASS@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.socketFactory.class.*@smtp_mail.smtp.socketFactory.class\t$SMTP_MAIL_SOCKETFACTORY_CLASS@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_AUTH" ]
-then sed -i "s@<SMTPMAILAUTH>@$SMTP_MAIL_AUTH@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.auth.*@smtp_mail.smtp.auth\t$SMTP_MAIL_AUTH@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_MAIL_STARTTLS_ENABLE" ]
-then sed -i "s@<SMTPMAILSTARTTLSENABLE>@$SMTP_MAIL_STARTTLS_ENABLE@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_mail.smtp.starttls.enable.*@smtp_mail.smtp.starttls.enable\t$SMTP_MAIL_STARTTLS_ENABLE@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_USERNAME" ]
-then sed -i "s@<SMTPUSERNAME>@$SMTP_USERNAME@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_username.*@smtp_username\t$SMTP_USERNAME@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$SMTP_PASSWORD" ]
-then sed -i "s@<SMTPPASSWORD>@$SMTP_PASSWORD@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_password.*@smtp_password\t$SMTP_PASSWORD@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "SMTP_SENDER" ]
-then sed -i "s@<SMTPSENDER>@$SMTP_SENDER@g" /opt/semosshome/social.properties
+then sed -i "s@smtp_sender.*@smtp_sender\t$SMTP_SENDER@g" /opt/semosshome/social.properties
 fi
