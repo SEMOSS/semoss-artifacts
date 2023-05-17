@@ -195,6 +195,10 @@ if [[ -z "${CUSTOM_M2}" ]];
 then echo "No custom m2 location" 
 else sh setM2Home.sh
 fi
+if [[ -z "${SAMESITE_COOKIE}" ]];
+then echo "No samesite cookie value defined" 
+else sh setSameSiteCookie.sh
+fi
 
 if [[ -z "${MVN_HOME}" ]];
 then echo "No custom mvn home location" 
