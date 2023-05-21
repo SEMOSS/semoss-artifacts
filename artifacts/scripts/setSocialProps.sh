@@ -311,6 +311,6 @@ if [ -n "$SMTP_PASSWORD" ]
 then sed -i "s@smtp_password.*@smtp_password\t$SMTP_PASSWORD@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "SMTP_SENDER" ]
+if [ -n "$SMTP_SENDER" ]
 then sed -i "s|smtp_sender.*|smtp_sender\t$SMTP_SENDER|g" /opt/semosshome/social.properties
 fi
