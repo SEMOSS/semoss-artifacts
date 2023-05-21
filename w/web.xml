@@ -284,6 +284,7 @@
       <session-timeout>120</session-timeout>
       <cookie-config>
          <name>monolith</name>
+         <secure>true</secure>
      </cookie-config>
    </session-config>
 </web-app>
