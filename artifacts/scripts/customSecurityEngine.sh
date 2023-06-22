@@ -16,6 +16,22 @@ else
   sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_SECURITY_DRIVER@g" /opt/semosshome/db/security.smss
 fi
 
+if [[ -z "${CUSTOM_SECURITY_DATABASE}" ]];
+then
+  echo "Custom Security Database is not defined"
+else
+  echo "Custom Security Database is defined"
+  sed -i "s@DATABASE.*@DATABASE\t$CUSTOM_SECURITY_DATABASE@g" /opt/semosshome/db/security.smss
+fi
+
+if [[ -z "${CUSTOM_SECURITY_SCHEMA}" ]];
+then
+  echo "Custom Security Schema is not defined"
+else
+  echo "Custom Security Schema is defined"
+  sed -i "s@SCHEMA.*@SCHEMA\t$CUSTOM_SECURITY_SCHEMA@g" /opt/semosshome/db/security.smss
+fi
+
 if [[ -z "${CUSTOM_SECURITY_USERNAME}" ]];
 then
   echo "Custom Security USERNAME is not defined"
