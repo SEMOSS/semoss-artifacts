@@ -16,6 +16,22 @@ else
   sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_LM_DRIVER@g" /opt/semosshome/db/LocalMasterDatabase.smss
 fi
 
+if [[ -z "${CUSTOM_LM_DATABASE}" ]];
+then
+  echo "Custom Localmaster Database is not defined"
+else
+  echo "Custom Localmaster Database is defined"
+  sed -i "s@DATABASE.*@DATABASE\t$CUSTOM_LM_DATABASE@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_LM_SCHEMA}" ]];
+then
+  echo "Custom Localmaster Schema is not defined"
+else
+  echo "Custom Localmaster Schema is defined"
+  sed -i "s@SCHEMA.*@SCHEMA\t$CUSTOM_LM_SCHEMA@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
 if [[ -z "${CUSTOM_LM_USERNAME}" ]];
 then
   echo "Custom Localmaster USERNAME is not defined"
