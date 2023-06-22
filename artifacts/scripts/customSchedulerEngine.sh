@@ -16,6 +16,22 @@ else
   sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_SCHEDULER_DRIVER@g" /opt/semosshome/db/scheduler.smss
 fi
 
+if [[ -z "${CUSTOM_SCHEDULER_DATABASE}" ]];
+then
+  echo "Custom scheduler Database is not defined"
+else
+  echo "Custom scheduler Database is defined"
+  sed -i "s@DATABASE.*@DATABASE\t$CUSTOM_SCHEDULER_DATABASE@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_SCHEDULER_SCHEMA}" ]];
+then
+  echo "Custom scheduler Schema is not defined"
+else
+  echo "Custom scheduler Schema is defined"
+  sed -i "s@SCHEMA.*@SCHEMA\t$CUSTOM_SCHEDULER_SCHEMA@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
 if [[ -z "${CUSTOM_SCHEDULER_USERNAME}" ]];
 then
   echo "Custom scheduler USERNAME is not defined"
