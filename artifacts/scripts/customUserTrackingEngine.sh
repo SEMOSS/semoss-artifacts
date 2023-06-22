@@ -16,6 +16,22 @@ else
   sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_USER_TRACKING_DRIVER@g" /opt/semosshome/db/UserTrackingDatabase.smss
 fi
 
+if [[ -z "${CUSTOM_USER_TRACKING_DATABASE}" ]];
+then
+  echo "Custom user tracking Database is not defined"
+else
+  echo "Custom user tracking Database is defined"
+  sed -i "s@DATABASE.*@DATABASE\t$CUSTOM_USER_TRACKING_DATABASE@g" /opt/semosshome/db/UserTrackingDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_USER_TRACKING_SCHEMA}" ]];
+then
+  echo "Custom user tracking Schema is not defined"
+else
+  echo "Custom user tracking Schema is defined"
+  sed -i "s@SCHEMA.*@SCHEMA\t$CUSTOM_USER_TRACKING_SCHEMA@g" /opt/semosshome/db/UserTrackingDatabase.smss
+fi
+
 if [[ -z "${CUSTOM_USER_TRACKING_USERNAME}" ]];
 then
   echo "Custom user tracking USERNAME is not defined"
