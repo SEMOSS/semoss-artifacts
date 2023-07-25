@@ -34,6 +34,10 @@ if "$ENABLE_ADFS" = "true"
 then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
+if "$ENABLE_GENERIC" = "true"
+then sed -i "s/<GENERIC_ENABLE>/true/g" /opt/semosshome/social.properties
+fi
+
 if "$ENABLE_LINOTP" = "true"
 then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
 fi
@@ -177,6 +181,52 @@ fi
 if [ -n "$ADFS_JSON" ]
 then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
 fi
+
+
+
+
+
+
+if [ -n "$GENERIC_CLIENT_ID" ]
+then sed -i "s@<GENERICCLIENTID>@$GENERIC_CLIENT_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_SECRET_KEY" ]
+then sed -i "s#<GENERICSECRETKEY>#$GENERIC_SECRET_KEY#g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_REDIRECT" ]
+then sed -i "s@<GENERICREDIRECT>@$GENERIC_REDIRECT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_TOKEN_URL" ]
+then sed -i "s@<GENERICTOKENURL>@$GENERIC_TOKEN_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_AUTH_URL" ]
+then sed -i "s@<GENERICAUTHURL>@$GENERIC_AUTH_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_USERINFO_URL" ]
+then sed -i "s@<GENERICUSERINFOURL>@$GENERIC_USERINFO_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_SCOPE" ]
+then sed -i "s@<GENERICSCOPE>@$GENERIC_SCOPE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_BEAN" ]
+then sed -i "s@<GENERICBEAN>@$GENERIC_BEAN@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_JSON" ]
+then sed -i "s@<GENERICJSON>@$GENERIC_JSON@g" /opt/semosshome/social.properties
+fi
+
+
+
+
+
 
 
 
