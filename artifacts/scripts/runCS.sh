@@ -225,6 +225,11 @@ then echo "No custom scheduler connection url is defined"
 else sh customSchedulerEngine.sh
 fi
 
+if [[ -z "${CUSTOM_THEMES_CONNECTION_URL}" ]];
+then echo "No custom themes connection url is defined" 
+else sh customThemesEngine.sh
+fi
+
 if [[ -z "${CUSTOM_USER_TRACKING_CONNECTION_URL}" ]];
 then echo "No custom user tracking connection url is defined" 
 else sh customUserTrackingEngine.sh
