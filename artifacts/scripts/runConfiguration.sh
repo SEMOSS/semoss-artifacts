@@ -254,6 +254,13 @@ if [[ -z "${CHROOT_ENABLE}" ]];
 then echo "Chroot is not enabled" 
 else sh setChroot.sh
 fi
+
+if [[ -z "${USER_TRACKING_ENABLED}" ]];
+then echo "USER_TRACKING is not enabled" 
+else sh setUserTracking.sh
+fi
+
+
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
