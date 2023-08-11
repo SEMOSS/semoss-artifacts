@@ -124,13 +124,6 @@ fi
 if [ "$X_CACHE" = "true" ]
 then sh setXCacheOn.sh
 fi
-if [[ -z "${SCHEDULER_ENDPOINT}" ]];
-then echo "No custom scheduler url defined" 
-else sh setSchedulerUrl.sh
-fi
-if [ "$SCHEDULER_FORCE_DISABLE" = "true" ]
-then sh setScheduler.sh
-fi
 if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
 then echo "No SQL Encryption Password" 
 else sh setSQLEncryptionPassword.sh
@@ -260,7 +253,7 @@ then echo "USER_TRACKING is not enabled"
 else sh setUserTracking.sh
 fi
 
-
+sh setScheduler.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
