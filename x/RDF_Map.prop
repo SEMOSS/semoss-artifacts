@@ -20,7 +20,7 @@ SMSSStorageWatcher	prerna.util.SMSSStorageWatcher
 SMSSStorageWatcher_DIR	/opt/semosshome/storage
 SMSSStorageWatcher_EXT	.smss
 
-SMSSModelWatcher	prerna.util.SMSSWebWatcher
+SMSSModelWatcher	prerna.util.SMSSModelWatcher
 SMSSModelWatcher_DIR	/opt/semosshome/model
 SMSSModelWatcher_EXT	.smss
 
