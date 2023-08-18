@@ -235,6 +235,11 @@ then echo "No custom user tracking connection url is defined"
 else sh customUserTrackingEngine.sh
 fi
 
+if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL}" ]];
+then echo "No custom model inference logs connection url is defined" 
+else sh customModelInferenceLogsEngine.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
@@ -260,6 +265,10 @@ then echo "USER_TRACKING is not enabled"
 else sh setUserTracking.sh
 fi
 
+if [[ -z "${MODEL_INFERENCE_LOGS_ENABLED}" ]];
+then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled" 
+else sh setModelInferenceLogsEnabled.sh
+fi
 
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
