@@ -258,6 +258,14 @@ then echo "USER_TRACKING is not enabled"
 else sh setUserTracking.sh
 fi
 
+if [[ -z "${MODEL_INFERENCE_LOGS_ENABLED}" ]];
+then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled" 
+else sh setModelInferenceLogsEnabled.sh
+fi
+
+
+setModelInferenceLogsEnabled.sh
+
 sh setScheduler.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
