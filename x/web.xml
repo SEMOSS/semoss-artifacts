@@ -585,10 +585,6 @@
 	  <param-value>file:////opt/semosshome/log4j2.properties</param-value>
    </context-param>
    <context-param>
-      <param-name>security-enabled</param-name>
-      <param-value>false</param-value>
-   </context-param>
-   <context-param>
       <param-name>anonymous-users-allowed</param-name>
       <param-value>false</param-value>
    </context-param>

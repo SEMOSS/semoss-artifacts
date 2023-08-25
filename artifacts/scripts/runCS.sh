@@ -24,9 +24,9 @@ cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
 cd /opt/semoss-artifacts/artifacts/scripts
 #./update_latest_dev.sh
-if [ "$SECURITY_ON" = "true" ]
-then sh setSecurityOn.sh
-fi
+# if [ "$SECURITY_ON" = "true" ]
+# then sh setSecurityOn.sh
+# fi
 if [ "$ENCRYPT_SMSS" = "true" ]; then
 echo "Encoding SMSS files"
 sh setEncryptSmss.sh
