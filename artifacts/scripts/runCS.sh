@@ -263,16 +263,18 @@ then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled"
 else sh setModelInferenceLogsEnabled.sh
 fi
 
-
-setModelInferenceLogsEnabled.sh
-
+sh setModelInferenceLogsEnabled.sh
 sh setScheduler.sh
+
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
+bash updateFEIndexHtml.sh
+
 sh setR.sh
 sh setPy.sh
+
 cd $SCRIPT_TOMCAT_HOME/bin
 ./start.sh
