@@ -1,7 +1,9 @@
+##### Redirect
 if [ -n "$REDIRECT" ]
 then sed -i 's@<REDIRECT>@'"$REDIRECT"'@g' /opt/semosshome/social.properties 
 fi
 
+##### NATIVE Properties
 if [ -n "$ENABLE_NATIVE" ]
 then sed -i "s@native_login.*@native_login\t$ENABLE_NATIVE@g" /opt/semosshome/social.properties
 fi
@@ -10,6 +12,21 @@ if [ -n "$ENABLE_NATIVE_REGISTRATION" ]
 then sed -i "s@native_registration.*@native_registration\t$ENABLE_NATIVE_REGISTRATION@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$ENABLE_NATIVE_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@native_access_keys_allowed.*@native_access_keys_allowed\t$ENABLE_NATIVE_ACCESS_KEY@g" /opt/semosshome/social.properties
+fi
+
+##### API USER Properties
+if "$ENABLE_API_USER" = "true"
+then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$API_USER_DYNAMIC" ]
+then sed -i "s@api_user_require_dynamic_token.*@api_user_require_dynamic_token\t$API_USER_DYNAMIC@g" /opt/semosshome/social.properties
+fi
+
+
+##### For Providers - Enable Login True
 if "$ENABLE_GOOGLE" = "true"
 then sed -i "s/<GOOGLE_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
@@ -46,15 +63,8 @@ if "$ENABLE_LDAP" = "true"
 then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_API_USER" = "true"
-then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
-fi
 
-if [ -n "$API_USER_DYNAMIC" ]
-then sed -i "s@api_user_require_dynamic_token.*@api_user_require_dynamic_token\t$API_USER_DYNAMIC@g" /opt/semosshome/social.properties
-fi
-
-
+##### Google Properties
 if [ -n "$GOOGLE_CLIENT_ID" ]
 then sed -i "s/<GOOGLECLIENTID>/$GOOGLE_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
@@ -67,9 +77,12 @@ if [ -n "$GOOGLE_REDIRECT" ]
 then sed -i 's@<GOOGLEREDIRECT>@'"$GOOGLE_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
+if [ -n "$GOOGLE_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@google_access_keys_allowed.*@google_access_keys_allowed\t$GOOGLE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
-
+##### Github Properties
 if [ -n "$GITHUB_CLIENT_ID" ]
 then sed -i "s/<GITHUBCLIENTID>/$GITHUB_CLIENT_ID/g" /opt/semosshome/social.properties
 fi
@@ -82,9 +95,12 @@ if [ -n "$GITHUB_REDIRECT" ]
 then sed -i 's@<GITHUBREDIRECT>@'"$GITHUB_REDIRECT"'@g' /opt/semosshome/social.properties
 fi
 
+if [ -n "$GITHUB_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@github_access_keys_allowed.*@github_access_keys_allowed\t$GITHUB_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
-
+##### MS Properties
 if [ -n "$MS_AUTHORITY" ]
 then sed -i "s@<MSAUTHORITY>@$MS_AUTHORITY@g" /opt/semosshome/social.properties
 fi
@@ -113,9 +129,12 @@ if [ -n "$MS_AUTH_URL" ]
 then sed -i "s@ms_auth_url@ms_auth_url\t$MS_AUTH_URL@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@ms_access_keys_allowed.*@ms_access_keys_allowed\t$MS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
-
+##### Siteminder Properties
 if [ -n "$SITEMINDER_TENANT" ]
 then sed -i "s@<SITEMINDERTENANT>@$SITEMINDER_TENANT@g" /opt/semosshome/social.properties
 fi
@@ -148,8 +167,12 @@ if [ -n "$SITEMINDER_AUTH_URL" ]
 then sed -i "s@siteminder_auth_url@siteminder_auth_url\t$SITEMINDER_AUTH_URL@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$SITEMINDER_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@siteminder_access_keys_allowed@siteminder_access_keys_allowed\t$SITEMINDER_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
+##### ADFS Properties
 if [ -n "$ADFS_CLIENT_ID" ]
 then sed -i "s@<ADFSCLIENTID>@$ADFS_CLIENT_ID@g" /opt/semosshome/social.properties
 fi
@@ -182,11 +205,13 @@ if [ -n "$ADFS_JSON" ]
 then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$ADFS_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@adfs_access_keys_allowed@adfs_access_keys_allowed\t$ADFS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
 
-
-
+##### Generic Properties
 if [ -n "$GENERIC_CLIENT_ID" ]
 then sed -i "s@<GENERICCLIENTID>@$GENERIC_CLIENT_ID@g" /opt/semosshome/social.properties
 fi
@@ -223,14 +248,13 @@ if [ -n "$GENERIC_JSON" ]
 then sed -i "s@<GENERICJSON>@$GENERIC_JSON@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GENERIC_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@generic_access_keys_allowed@generic_access_keys_allowed\t$GENERIC_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
 
-
-
-
-
-
+##### LinOTP Properties
 if [ -n "$LINOTP_HOSTNAME" ]
 then sed -i "s@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
@@ -247,17 +271,20 @@ if [ -n "$LINOTP_CHECK_AD" ]
 then sed -i "s@linotp_check_ad.*@linotp_check_ad\t$LINOTP_CHECK_AD@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$LINOTP_MASTER_PRINCIPAL" ]
-then sed -i "s@linotp_master_principal.*@linotp_master_principal\t$LINOTP_ADMIN_USER@g" /opt/semosshome/social.properties
+if [ -n "$LINOTP_ADMIN_USER" ]
+then sed -i "s@linotp_adminuser.*@linotp_adminuser\t$LINOTP_ADMIN_USER@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$LINOTP_MASTER_CREDENTIALS" ]
-then sed -i "s@linotp_master_credentials.*@linotp_master_credentials\t$LINOTP_ADMIN_PASSWORD@g" /opt/semosshome/social.properties
+if [ -n "$LINOTP_ADMIN_PASSWORD" ]
+then sed -i "s@linotp_adminpassword.*@linotp_adminpassword\t$LINOTP_ADMIN_PASSWORD@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LINOTP_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@linotp_access_keys_allowed@linotp_access_keys_allowed\t$LINOTP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
 
-
-
+##### LDAP Properties
 if [ -n "$LDAP_TYPE" ]
 then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
 fi
@@ -322,9 +349,12 @@ if [ -n "$LDAP_AUTO_ADD" ]
 then sed -i "s@ldap_auto_add.*@ldap_auto_add\t$LDAP_AUTO_ADD@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LDAP_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@ldap_access_keys_allowed@ldap_access_keys_allowed\t$LDAP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
-
+##### SMTP
 if [ -n "$SMTP_ENABLED" ]
 then sed -i "s@smtp_enabled.*@smtp_enabled\t$SMTP_ENABLED@g" /opt/semosshome/social.properties
 fi
