@@ -1,12 +1,12 @@
-This section is for properties
+#This section is for properties
 
 AZ_KEY  <AZUREKEY>
 AZ_NAME <AZURENAME>
 STORAGE LOCAL
 AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
 
-ENGINE_WATCHER  SMSSWatcher
-ENGINE_WEB_WATCHER	SMSSWebWatcher;SMSSStorageWatcher;SMSSModelWatcher
+ENGINE_WATCHER	SMSSWatcher
+ENGINE_WEB_WATCHER	SMSSWebWatcher;SMSSStorageWatcher;SMSSModelWatcher;SMSSVectorWatcher;SMSSServiceWatcher
 PROJECT_WATCHER	ProjectWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
@@ -15,14 +15,27 @@ CSV_INSIGHT_CACHE_FOLDER CSV_Insights
 SMSSWebWatcher	prerna.util.SMSSWebWatcher
 SMSSWebWatcher_DIR	/opt/semosshome/db
 SMSSWebWatcher_EXT	.smss
+SMSSWebWatcher_ETYPE	DATABASE
 
-SMSSStorageWatcher	prerna.util.SMSSStorageWatcher
+SMSSStorageWatcher	prerna.util.SMSSNoInitEngineWatcher
 SMSSStorageWatcher_DIR	/opt/semosshome/storage
 SMSSStorageWatcher_EXT	.smss
+SMSSStorageWatcher_ETYPE	STORAGE
 
-SMSSModelWatcher	prerna.util.SMSSModelWatcher
+SMSSModelWatcher	prerna.util.SMSSNoInitEngineWatcher
 SMSSModelWatcher_DIR	/opt/semosshome/model
 SMSSModelWatcher_EXT	.smss
+SMSSModelWatcher_ETYPE	MODEL
+
+SMSSVectorWatcher	prerna.util.SMSSNoInitEngineWatcher
+SMSSVectorWatcher_DIR	C:\\workspace\\Semoss_Dev\\vector
+SMSSVectorWatcher_EXT	.smss
+SMSSVectorWatcher_ETYPE	VECTOR
+
+SMSSServiceWatcher	prerna.util.SMSSNoInitEngineWatcher
+SMSSServiceWatcher_DIR	C:\\workspace\\Semoss_Dev\\service
+SMSSServiceWatcher_EXT	.smss
+SMSSServiceWatcher_ETYPE	SERVICE
 
 ProjectWatcher	prerna.util.ProjectWatcher
 ProjectWatcher_DIR  /opt/semosshome/project
