@@ -271,7 +271,12 @@ bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
-bash updateFEIndexHtml.sh
+
+
+if [[ -z "${FE_ROUTE}" ]];
+then echo "FE_ROUTE is not enabled" 
+else bash updateFEIndexHtml.sh
+fi
 
 sh setR.sh
 sh setPy.sh
