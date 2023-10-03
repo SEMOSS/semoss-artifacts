@@ -28,12 +28,12 @@ SMSSModelWatcher_EXT	.smss
 SMSSModelWatcher_ETYPE	MODEL
 
 SMSSVectorWatcher	prerna.util.SMSSNoInitEngineWatcher
-SMSSVectorWatcher_DIR	C:\\workspace\\Semoss_Dev\\vector
+SMSSVectorWatcher_DIR	/opt/semosshome/vector
 SMSSVectorWatcher_EXT	.smss
 SMSSVectorWatcher_ETYPE	VECTOR
 
 SMSSServiceWatcher	prerna.util.SMSSNoInitEngineWatcher
-SMSSServiceWatcher_DIR	C:\\workspace\\Semoss_Dev\\service
+SMSSServiceWatcher_DIR	/opt/semosshome/service
 SMSSServiceWatcher_EXT	.smss
 SMSSServiceWatcher_ETYPE	SERVICE
 
