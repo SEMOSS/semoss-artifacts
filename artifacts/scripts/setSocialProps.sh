@@ -13,7 +13,7 @@ then sed -i "s@native_registration.*@native_registration\t$ENABLE_NATIVE_REGISTR
 fi
 
 if [ -n "$ENABLE_NATIVE_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@native_access_keys_allowed.*@native_access_keys_allowed\t$ENABLE_NATIVE_ACCESS_KEY@g" /opt/semosshome/social.properties
+then sed -i "s@native_access_keys_allowed.*@native_access_keys_allowed\t$ENABLE_NATIVE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
 ##### API USER Properties
