@@ -60,6 +60,7 @@ NETTY_R false
 NETTY_PYTHON false
 TCP_WORKER prerna.tcp.SocketServer
 TCP_CLIENT prerna.tcp.client.SocketClient
+NATIVE_PY_SERVER
 ULIMIT_R_MEM_LIMIT  
 
 USE_R	true
