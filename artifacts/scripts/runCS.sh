@@ -278,8 +278,8 @@ then echo "FE_ROUTE is not enabled"
 else bash updateFEIndexHtml.sh
 fi
 
-sh setR.sh
-sh setPy.sh
+bash setR.sh
+bash setPy.sh
 
 cd $SCRIPT_TOMCAT_HOME/bin
 ./start.sh
