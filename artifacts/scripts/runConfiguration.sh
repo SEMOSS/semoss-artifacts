@@ -275,5 +275,5 @@ bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
-sh setR.sh
-sh setPy.sh
+bash setR.sh
+bash setPy.sh
