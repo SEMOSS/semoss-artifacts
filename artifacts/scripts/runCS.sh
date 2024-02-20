@@ -188,9 +188,15 @@ if [[ -z "${CUSTOM_M2}" ]];
 then echo "No custom m2 location" 
 else sh setM2Home.sh
 fi
+
 if [[ -z "${SAMESITE_COOKIE}" ]];
 then echo "No samesite cookie value defined" 
 else sh setSameSiteCookie.sh
+fi
+
+if [[ -z "${ADDITIONAL_REACTOR_PACKAGES}" ]];
+then echo "No additional reactor packages value defined to load" 
+else sh setAdditionalReactorPackages.sh
 fi
 
 if [[ -z "${MVN_HOME}" ]];
