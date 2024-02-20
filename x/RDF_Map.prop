@@ -54,6 +54,7 @@ rpa.config.directory /opt/semosshome/rpa
 BaseFolder	/opt/semosshome
 LOG4J	/opt/semosshome/log4j.prop
 ADDITIONAL_REACTORS /opt/semosshome/reactors.json
+ADDITIONAL_REACTOR_PACKAGES  
 SOCIAL	/opt/semosshome/social.properties
 
 
