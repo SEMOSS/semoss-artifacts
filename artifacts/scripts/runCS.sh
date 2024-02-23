@@ -271,7 +271,7 @@ fi
 
 sh setModelInferenceLogsEnabled.sh
 sh setScheduler.sh
-
+bash setVirusScanning.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
