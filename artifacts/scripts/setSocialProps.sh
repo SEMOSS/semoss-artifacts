@@ -249,10 +249,28 @@ then sed -i "s@<GENERICJSON>@$GENERIC_JSON@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$GENERIC_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@generic_access_keys_allowed@generic_access_keys_allowed\t$GENERIC_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+then sed -i "s@generic_access_keys_allowed.*@generic_access_keys_allowed\t$GENERIC_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GENERIC_GROUPS" ]
+then sed -i "s@generic_groups.*@generic_groups\t$GENERIC_GROUPS@g" /opt/semosshome/social.properties
+fi
 
+if [ -n "$GENERIC_GROUP_URL" ]
+then sed -i "s@generic_group_url.*@generic_group_url\t$GENERIC_GROUP_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_GROUP_JSON_PATTERN" ]
+then sed -i "s@generic_groupJsonPattern.*@generic_groupJsonPattern\t$GENERIC_GROUP_JSON_PATTERN@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_GROUP_STRING_RETURN" ]
+then sed -i "s@generic_group_string_return.*@generic_group_string_return\t$GENERIC_GROUP_STRING_RETURN@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_GROUP_STRING_REGEX" ]
+then sed -i "s@generic_group_string_regex.*@generic_group_string_regex\t$GENERIC_GROUP_STRING_REGEX@g" /opt/semosshome/social.properties
+fi
 
 ##### LinOTP Properties
 if [ -n "$LINOTP_HOSTNAME" ]
