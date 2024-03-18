@@ -272,8 +272,12 @@ if [ -n "$GENERIC_GROUP_STRING_REGEX" ]
 then sed -i "s@generic_group_string_regex.*@generic_group_string_regex\t$GENERIC_GROUP_STRING_REGEX@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$GENERIC_SANITIZE_RESPONSE" ]
-then sed -i "s@generic_sanitizeUserResponse.*@generic_sanitizeUserResponse\t$GENERIC_SANITIZE_RESPONSE@g" /opt/semosshome/social.properties
+if [ -n "$GENERIC_SANITIZE_USER_RESPONSE" ]
+then sed -i "s@generic_sanitizeUserResponse.*@generic_sanitizeUserResponse\t$GENERIC_SANITIZE_USER_RESPONSE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$GENERIC_SANITIZE_GROUP_RESPONSE" ]
+then sed -i "s@generic_sanitizeGroupResponse.*@generic_sanitizeGroupResponse\t$GENERIC_SANITIZE_GROUP_RESPONSE@g" /opt/semosshome/social.properties
 fi
 
 ##### LinOTP Properties
