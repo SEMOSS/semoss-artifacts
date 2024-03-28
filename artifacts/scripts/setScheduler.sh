@@ -9,11 +9,7 @@ if [[ -z "${SCHEDULER_ENDPOINT}" ]]; then
 else 
     sed -i "s@SCHEDULER_ENDPOINT.*@SCHEDULER_ENDPOINT\t$SCHEDULER_ENDPOINT@g" /opt/semosshome/RDF_Map.prop
 fi
-if [[ -z "${SCHEDULER_KEYSTORE}" ]]; then 
-     echo "No custom scheduler keystore"
-else 
-    sed -i "s@SCHEDULER_KEYSTORE.*@SCHEDULER_KEYSTORE\t$SCHEDULER_KEYSTORE@g" /opt/semosshome/RDF_Map.prop
-fi
+
 if [[ -z "${SCHEDULER_KEYSTORE_PASSWORD}" ]]; then 
      echo "No custom scheduler keystore password"
 else 
@@ -23,5 +19,13 @@ if [[ -z "${SCHEDULER_CERTIFICATE_PASSWORD}" ]]; then
      echo "No custom scheduler cert password"
 else 
     sed -i "s@SCHEDULER_CERTIFICATE_PASSWORD.*@SCHEDULER_CERTIFICATE_PASSWORD\t$SCHEDULER_CERTIFICATE_PASSWORD@g" /opt/semosshome/RDF_Map.prop
+fi
+
+# THIS MUST GO AT END
+# OTHERWISE REGEX WILL REPLACE SCHEDULER_KEYSTORE_PASSWORD with this value
+if [[ -z "${SCHEDULER_KEYSTORE}" ]]; then 
+     echo "No custom scheduler keystore"
+else 
+    sed -i "s@SCHEDULER_KEYSTORE.*@SCHEDULER_KEYSTORE\t$SCHEDULER_KEYSTORE@g" /opt/semosshome/RDF_Map.prop
 fi
 
