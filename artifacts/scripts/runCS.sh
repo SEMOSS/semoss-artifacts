@@ -83,12 +83,20 @@ if [[ -z "${DEFAULT_FRAME_TYPE}" ]];
 then echo "No updated default frame" 
 else sh setDefaultFrame.sh
 fi
-if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
-then sh setWhiteListDomains.sh
+if [[ -z "${DEFAULT_GRID_TYPE}" ]];
+then echo "No default sql grid type" 
+else sh setDefaultGridType.sh
+fi
+if [[ -z "${DEFAULT_INSIGHTS_RDBMS}" ]];
+then echo "No default insight sql rdbms type" 
+else sh setDefaultInsightRDBMS.sh
 fi
 if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
 else sh setDefaultInsightCacheable.sh
+fi
+if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
+then sh setWhiteListDomains.sh
 fi
 if [[ -z "${SHARED_FILE_PATH}" ]];
 then echo "No updated shared file path" 
