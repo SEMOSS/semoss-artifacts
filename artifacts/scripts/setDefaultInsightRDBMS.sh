@@ -1,1 +1,2 @@
+# either H2 or SQLITE value
 sed -i "s@DEFAULT_INSIGHTS_RDBMS.*@DEFAULT_INSIGHTS_RDBMS\t$DEFAULT_INSIGHTS_RDBMS@g" /opt/semosshome/RDF_Map.prop
