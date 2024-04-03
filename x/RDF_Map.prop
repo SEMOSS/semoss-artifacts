@@ -56,7 +56,7 @@ LOG4J	/opt/semosshome/log4j.prop
 ADDITIONAL_REACTORS /opt/semosshome/reactors.json
 ADDITIONAL_REACTOR_PACKAGES  
 SOCIAL	/opt/semosshome/social.properties
-
+EMAIL_TEMPLATES	/opt/semosshome/emailTemplates/
 
 NETTY_R false
 NETTY_PYTHON true
