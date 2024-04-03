@@ -57,6 +57,7 @@ GOOGLE_CHROME_HOME C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.
 ADDITIONAL_REACTORS C:\\workspace\\Semoss_Dev\\reactors.json
 ADDITIONAL_REACTOR_PACKAGES  
 SOCIAL	C:\\workspace\\Semoss_Dev\\social.properties
+EMAIL_TEMPLATES	C:\\workspace\\Semoss_Dev\\emailTemplates\\
 
 USE_R	true
 R_MEM_LIMIT	4096
