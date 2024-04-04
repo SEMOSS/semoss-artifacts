@@ -191,6 +191,16 @@
       <filter-name>APIFilter</filter-name>
       <url-pattern>/data/*</url-pattern>
    </filter-mapping>
+
+   <!--  allow anonymous users -->
+   <filter>
+      <filter-name>AnonymousUserFilter</filter-name>
+      <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>AnonymousUserFilter</filter-name>
+      <url-pattern>/api/*</url-pattern>
+   </filter-mapping>
    
    <!-- SSO Filter for SAML -->
    <!--
@@ -256,16 +266,6 @@
       <filter-name>SPSSOFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping> -->
-   
-  <!--  allow anonymous users -->
-   <filter>
-      <filter-name>AnonymousUserFilter</filter-name>
-      <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
-   </filter>
-   <filter-mapping>
-      <filter-name>AnonymousUserFilter</filter-name>
-      <url-pattern>/api/*</url-pattern>
-   </filter-mapping>
    
    <!-- CAC FILTER -->
    <!--  
@@ -451,6 +451,16 @@
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
 
+   <!-- If you are logged in - make sure we haven't flagged you as a locked account -->
+   <filter>
+      <filter-name>AccountLockedFilter</filter-name>
+      <filter-class>prerna.web.conf.AccountLockedFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>AccountLockedFilter</filter-name>
+      <url-pattern>/api/*</url-pattern>
+   </filter-mapping>
+	
    <!-- filter on the admin servlet -->
    <filter>
       <filter-name>AdminStartupFilter</filter-name>
