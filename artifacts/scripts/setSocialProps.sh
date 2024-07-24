@@ -51,6 +51,10 @@ if "$ENABLE_ADFS" = "true"
 then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
+if "$ENABLE_OKTA" = "true"
+then sed -i "s/<OKTA_ENABLE>/true/g" /opt/semosshome/social.properties
+fi
+
 if "$ENABLE_GENERIC" = "true"
 then sed -i "s/<GENERIC_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
@@ -209,6 +213,39 @@ if [ -n "$ADFS_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@adfs_access_keys_allowed@adfs_access_keys_allowed\t$ADFS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+
+##### Okta Properties
+if [ -n "$OKTA_CLIENT_ID" ]
+then sed -i "s@okta_client_id.*@okta_client_id\t$OKTA_CLIENT_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_SECRET_KEY" ]
+then sed -i "s@okta_secret_key.*@okta_secret_key\t$OKTA_SECRET_KEY@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_REDIRECT" ]
+then sed -i "s@okta_redirect_uri.*@okta_redirect_uri\t$OKTA_REDIRECT@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_AUTH_URL" ]
+then sed -i "s@okta_auth_url.*@okta_auth_url\t$OKTA_AUTH_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_TOKEN_URL" ]
+then sed -i "s@okta_token_url.*@okta_token_url\t$OKTA_TOKEN_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_USERINFO_URL" ]
+then sed -i "s@okta_userinfo_url.*@okta_userinfo_url\t$OKTA_USERINFO_URL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_SCOPE" ]
+then sed -i "s@okta_scope.*@okta_scope\t$OKTA_SCOPE@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_ACCESS_KEY_ALLOWED" ]
+then sed -i "s@okta_access_keys_allowed.*@okta_access_keys_allowed\t$OKTA_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+fi
 
 
 ##### Generic Properties
