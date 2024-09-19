@@ -13,7 +13,7 @@ then
   echo "Custom themes Driver is not defined"
 else
   echo "Custom themes Driver is defined"
-  sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_STHEMES_DRIVER@g" /opt/semosshome/db/themes.smss
+  sed -i "s@DRIVER.*@DRIVER\t$CUSTOM_THEMES_DRIVER@g" /opt/semosshome/db/themes.smss
 fi
 
 if [[ -z "${CUSTOM_THEMES_DATABASE}" ]];
