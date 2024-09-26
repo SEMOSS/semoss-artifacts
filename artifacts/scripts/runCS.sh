@@ -277,6 +277,11 @@ then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled"
 else sh setModelInferenceLogsEnabled.sh
 fi
 
+if [[ -z "${ERROR_REPORT_VALVE_ENABLED}" ]];
+then echo "ERROR_REPORT_VALVE_ENABLED is not enabled" 
+else sh setErrorReportValveEnabled.sh
+fi
+
 sh setModelInferenceLogsEnabled.sh
 sh setScheduler.sh
 bash setVirusScanning.sh
