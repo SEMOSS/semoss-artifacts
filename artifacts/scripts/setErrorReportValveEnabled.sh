@@ -1,2 +1,3 @@
 #!/bin/bash
-sed -i '/<!--[[:space:]]*<Valve className="org.apache.catalina.valves.ErrorReportValve"/,/<\/Valve>[[:space:]]*-->/{s/<!--[[:space:]]*//;s/[[:space:]]*-->//;}' $TOMCAT_HOME/conf/server.xml
+sed -i 's/<!--ERROR_REPORT_VALVE_START//' $TOMCAT_HOME/conf/server.xml
+sed -i 's/ERROR_REPORT_VALVE_END-->//' $TOMCAT_HOME/conf/server.xml
