@@ -1,4 +1,4 @@
-#This section is for properties
+'#This section is for properties
 
 AZ_KEY  <AZUREKEY>
 AZ_NAME <AZURENAME>
@@ -77,6 +77,8 @@ IS_USER_RSERVE	false
 R_USER_CONNECTION_TYPE	pooled
 RSERVE_CONNECTION_POOL_SIZE	6
 R_USER_RECOVERY_DEFAULT false
+#Kill existing Rserve processes on startup
+R_KILL_ON_STARTUP true
 
 FILE_TRANSFER_LIMIT 50
 
