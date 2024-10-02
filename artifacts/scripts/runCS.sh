@@ -79,6 +79,12 @@ fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
+
+if [[ -z "${MONOLITH_COOKIE_SET_SECURE}" ]]; then
+echo "No Custom Monolith Secure Cookie"
+else sh setMonolithSecureCookie.sh
+fi
+
 if [[ -z "${DEFAULT_FRAME_TYPE}" ]];
 then echo "No updated default frame" 
 else sh setDefaultFrame.sh
