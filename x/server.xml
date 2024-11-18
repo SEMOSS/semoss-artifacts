@@ -57,7 +57,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-      <Connector compressableMimeType="text/xml,text/html,text/css,text/javascript,application/javascript,application/json" compression="on" compressionMinSize="1024" connectionTimeout="20000" noCompressionUserAgents="gozilla, traviata" port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol" redirectPort="8443" sendFile="false" />
+      <Connector compressibleMimeType="text/xml,text/html,text/css,text/javascript,application/javascript,application/json" compression="on" compressionMinSize="1024" connectionTimeout="20000" noCompressionUserAgents="gozilla, traviata" port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol" redirectPort="8443" sendFile="false" />
       <!--
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
