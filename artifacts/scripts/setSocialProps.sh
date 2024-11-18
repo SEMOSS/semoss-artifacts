@@ -137,6 +137,11 @@ if [ -n "$MS_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@ms_access_keys_allowed.*@ms_access_keys_allowed\t$MS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_LOGIN_EXTERNAL" ]
+then sed -i "s@ms_login_external.*@ms_login_external\t$MS_LOGIN_EXTERNAL@g" /opt/semosshome/social.properties
+fi
+
+
 
 ##### Siteminder Properties
 if [ -n "$SITEMINDER_TENANT" ]
