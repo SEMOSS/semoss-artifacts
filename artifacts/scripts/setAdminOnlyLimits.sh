@@ -13,6 +13,11 @@ echo "No admin only project add access flag"
 else sed -i "s@ADMIN_ONLY_PROJECT_ADD_ACCESS.*@ADMIN_ONLY_PROJECT_ADD_ACCESS\t$ADMIN_ONLY_PROJECT_ADD_ACCESS@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z $ADMIN_ONLY_PROJECT_SET_PUBLIC ]]; then
+echo "No admin only project set public flag"
+else sed -i "s@ADMIN_ONLY_PROJECT_SET_PUBLIC.*@ADMIN_ONLY_PROJECT_SET_PUBLIC\t$ADMIN_ONLY_PROJECT_SET_PUBLIC@g" /opt/semosshome/RDF_Map.prop
+fi
+
 if [[ -z $ADMIN_ONLY_PROJECT_SET_DISCOVERABLE ]]; then
 echo "No admin only project set discoverable flag"
 else sed -i "s@ADMIN_ONLY_PROJECT_SET_DISCOVERABLE.*@ADMIN_ONLY_PROJECT_SET_DISCOVERABLE\t$ADMIN_ONLY_PROJECT_SET_DISCOVERABLE@g" /opt/semosshome/RDF_Map.prop
