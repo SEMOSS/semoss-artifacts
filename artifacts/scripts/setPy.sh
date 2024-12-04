@@ -45,10 +45,10 @@ if [ "$NATIVE_PY_SERVER" = "false" ]
 then sed -i "s@NATIVE_PY_SERVER.*@NATIVE_PY_SERVER\tfalse@g" /opt/semosshome/RDF_Map.prop
 fi
 
-if [[ -z "${USERNAME_NATIVE_PY_SERVER}" ]];
+if [[ -z "${PY_SERVER_USER}" ]];
 then echo "No defined user for running native py server"
 else
-sed -i "s@USERNAME_NATIVE_PY_SERVER.*@USERNAME_NATIVE_PY_SERVER\t$USERNAME_NATIVE_PY_SERVER@g" /opt/semosshome/RDF_Map.prop
+sed -i "s@PY_SERVER_USER.*@PY_SERVER_USER\t$PY_SERVER_USER@g" /opt/semosshome/RDF_Map.prop
 fi
 
 if [[ -z "${PYTHONHOME_SITE_PACKAGES}" ]];
