@@ -63,6 +63,7 @@ NETTY_PYTHON true
 TCP_WORKER prerna.tcp.SocketServer
 TCP_CLIENT prerna.tcp.client.NativePySocketClient
 NATIVE_PY_SERVER true
+NATIVE_PY_SERVER_USER
 PYTHONHOME /usr
 ULIMIT_R_MEM_LIMIT  
 
