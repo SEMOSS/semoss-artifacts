@@ -31,6 +31,12 @@ if [ "$USE_TCP_PY" = "false" ]
 then sed -i "s@USE_TCP_PY.*@USE_PY_FILE\tfalse@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z "${NATIVE_PY_SERVER_USER}" ]];
+then echo "No defined user for running native py server"
+else
+sed -i "s@NATIVE_PY_SERVER_USER.*@NATIVE_PY_SERVER_USER\t$NATIVE_PY_SERVER_USER@g" /opt/semosshome/RDF_Map.prop
+fi
+
 if [ "$NATIVE_PY_SERVER" = "true" ]
 then sed -i "s@NATIVE_PY_SERVER.*@NATIVE_PY_SERVER\ttrue@g" /opt/semosshome/RDF_Map.prop
 fi
@@ -39,11 +45,6 @@ if [ "$NATIVE_PY_SERVER" = "false" ]
 then sed -i "s@NATIVE_PY_SERVER.*@NATIVE_PY_SERVER\tfalse@g" /opt/semosshome/RDF_Map.prop
 fi
 
-if [[ -z "${NATIVE_PY_SERVER_USER}" ]];
-then echo "No defined user for running native py server"
-else
-sed -i "s@NATIVE_PY_SERVER_USER.*@NATIVE_PY_SERVER_USER\t$NATIVE_PY_SERVER_USER@g" /opt/semosshome/RDF_Map.prop
-fi
 
 if [[ -z "${PYTHONHOME_SITE_PACKAGES}" ]];
 then echo "No specific python home site packages declared"
