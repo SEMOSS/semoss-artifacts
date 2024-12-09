@@ -42,4 +42,7 @@ if [ "$R_USER_RECOVERY" = "false" ]
 then sed -i "s:R_USER_RECOVERY_DEFAULT.*:R_USER_RECOVERY_DEFAULT\tfalse:g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [ "$DEFAULT_SCRIPTING_LANGUAGE" = "R" ]
+then sed -i "s:DEFAULT_SCRIPTING_LANGUAGE.*:DEFAULT_SCRIPTING_LANGUAGE\tR:g" /opt/semosshome/RDF_Map.prop
+fi
 
