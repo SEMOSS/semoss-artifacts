@@ -141,6 +141,9 @@ if [ -n "$MS_LOGIN_EXTERNAL" ]
 then sed -i "s@ms_login_external.*@ms_login_external\t$MS_LOGIN_EXTERNAL@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_SCOPE" ]
+then sed -i "s@ms_scope.*@ms_scope\t$MS_SCOPE@g" /opt/semosshome/social.properties
+fi
 
 
 ##### Siteminder Properties
