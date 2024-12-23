@@ -294,6 +294,7 @@ else sh setErrorReportValveEnabled.sh
 fi
 
 sh setModelInferenceLogsEnabled.sh
+sh setPromptDatabaseEnabled.sh
 sh setScheduler.sh
 bash setVirusScanning.sh
 bash setDisableTerminal.sh
