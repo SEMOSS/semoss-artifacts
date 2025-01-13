@@ -242,7 +242,7 @@ fi
 
 if [[ -z "${CUSTOM_PROMPT_DB_CONNECTION_URL}" ]];
 then echo "No custom prmopt db connection url is defined" 
-else sh customPromptDbEngine.sh
+else sh customPromptEngine.sh
 fi
 
 if [[ -z "${OPTIONAL_COOKIES}" ]];
@@ -277,7 +277,7 @@ fi
 
 if [[ -z "${PROMPT_DB_ENABLED}" ]];
 then echo "PROMPT_DB_ENABLED is not enabled" 
-else sh setPromptDbEnabled.sh
+else sh setPromptDatabaseEnabled.sh
 fi
 
 bash setDisableTerminal.sh
