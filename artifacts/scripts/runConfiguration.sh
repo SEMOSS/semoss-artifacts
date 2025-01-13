@@ -240,6 +240,11 @@ then echo "No custom model inference logs connection url is defined"
 else sh customModelInferenceLogsEngine.sh
 fi
 
+if [[ -z "${CUSTOM_PROMPT_DB_CONNECTION_URL}" ]];
+then echo "No custom prmopt db connection url is defined" 
+else sh customPromptDbEngine.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
@@ -268,6 +273,11 @@ fi
 if [[ -z "${MODEL_INFERENCE_LOGS_ENABLED}" ]];
 then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled" 
 else sh setModelInferenceLogsEnabled.sh
+fi
+
+if [[ -z "${PROMPT_DB_ENABLED}" ]];
+then echo "PROMPT_DB_ENABLED is not enabled" 
+else sh setPromptDbEnabled.sh
 fi
 
 bash setDisableTerminal.sh
