@@ -145,6 +145,10 @@ if [ -n "$MS_SCOPE" ]
 then sed -i "s@ms_scope.*@ms_scope\t$MS_SCOPE@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_GRAPHAPI_LOOKUP" ]
+then sed -i "s@ms_graphapi_lookup.*@ms_graphapi_lookup\t$MS_GRAPHAPI_LOOKUP@g" /opt/semosshome/social.properties
+fi
+
 
 ##### Siteminder Properties
 if [ -n "$SITEMINDER_TENANT" ]
