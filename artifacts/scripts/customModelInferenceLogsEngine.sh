@@ -55,3 +55,35 @@ else
   echo "Custom Model Inference Logs CONNECTION_URL is defined"
   sed -i "s@CONNECTION_URL.*@CONNECTION_URL\t$CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
 fi
+
+if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_USE_CONNECTION_POOLING}" ]];
+then
+  echo "Custom Model Inference Logs USE_CONNECTION_POOLING is not defined"
+else
+  echo "Custom Model Inference Logs USE_CONNECTION_POOLING is defined"
+  sed -i "s@USE_CONNECTION_POOLING.*@USE_CONNECTION_POOLING\t$CUSTOM_MODEL_INFERENCE_LOGS_USE_CONNECTION_POOLING@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_POOL_MIN_SIZE}" ]];
+then
+  echo "Custom Model Inference Logs POOL_MIN_SIZE is not defined"
+else
+  echo "Custom Model Inference Logs POOL_MIN_SIZE is defined"
+  sed -i "s@POOL_MIN_SIZE.*@POOL_MIN_SIZE\t$CUSTOM_MODEL_INFERENCE_LOGS_POOL_MIN_SIZE@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_POOL_MAX_SIZE}" ]];
+then
+  echo "Custom Model Inference Logs POOL_MAX_SIZE is not defined"
+else
+  echo "Custom Model Inference Logs POOL_MAX_SIZE is defined"
+  sed -i "s@POOL_MAX_SIZE.*@POOL_MAX_SIZE\t$CUSTOM_MODEL_INFERENCE_LOGS_POOL_MAX_SIZE@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_AUTO_COMMIT}" ]];
+then
+  echo "Custom Model Inference Logs AUTO_COMMIT is not defined"
+else
+  echo "Custom Model Inference Logs AUTO_COMMIT is defined"
+  sed -i "s@AUTO_COMMIT.*@AUTO_COMMIT\t$CUSTOM_MODEL_INFERENCE_LOGS_USE_AUTO_COMMIT@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
+fi
