@@ -16,6 +16,10 @@ if [ -n "$ENABLE_NATIVE_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@native_access_keys_allowed.*@native_access_keys_allowed\t$ENABLE_NATIVE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$NATIVE_DISPLAY_NAME" ]
+then sed -i "s@native_display_name.*@native_display_name\t$NATIVE_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
+
 ##### API USER Properties
 if "$ENABLE_API_USER" = "true"
 then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
@@ -25,6 +29,9 @@ if [ -n "$API_USER_DYNAMIC" ]
 then sed -i "s@api_user_require_dynamic_token.*@api_user_require_dynamic_token\t$API_USER_DYNAMIC@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$API_USER_DISPLAY_NAME" ]
+then sed -i "s@api_user_display_name.*@api_user_display_name\t$API_USER_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### For Providers - Enable Login True
 if "$ENABLE_GOOGLE" = "true"
@@ -85,6 +92,9 @@ if [ -n "$GOOGLE_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@google_access_keys_allowed.*@google_access_keys_allowed\t$GOOGLE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GOOGLE_DISPLAY_NAME" ]
+then sed -i "s@google_display_name.*@google_display_name\t$GOOGLE_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### Github Properties
 if [ -n "$GITHUB_CLIENT_ID" ]
@@ -103,6 +113,9 @@ if [ -n "$GITHUB_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@github_access_keys_allowed.*@github_access_keys_allowed\t$GITHUB_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GITHUB_DISPLAY_NAME" ]
+then sed -i "s@github_display_name.*@github_display_name\t$GITHUB_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### MS Properties
 if [ -n "$MS_AUTHORITY" ]
@@ -149,6 +162,9 @@ if [ -n "$MS_GRAPHAPI_LOOKUP" ]
 then sed -i "s@ms_graphapi_lookup.*@ms_graphapi_lookup\t$MS_GRAPHAPI_LOOKUP@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_DISPLAY_NAME" ]
+then sed -i "s@ms_display_name.*@ms_display_name\t$MS_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### Siteminder Properties
 if [ -n "$SITEMINDER_TENANT" ]
@@ -187,6 +203,9 @@ if [ -n "$SITEMINDER_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@siteminder_access_keys_allowed@siteminder_access_keys_allowed\t$SITEMINDER_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$SITEMINDER_DISPLAY_NAME" ]
+then sed -i "s@siteminder_display_name.*@siteminder_display_name\t$SITEMINDER_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### ADFS Properties
 if [ -n "$ADFS_CLIENT_ID" ]
@@ -225,6 +244,10 @@ if [ -n "$ADFS_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@adfs_access_keys_allowed@adfs_access_keys_allowed\t$ADFS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$ADFS_DISPLAY_NAME" ]
+then sed -i "s@adfs_display_name.*@adfs_display_name\t$ADFS_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
+
 
 ##### Okta Properties
 if [ -n "$OKTA_CLIENT_ID" ]
@@ -259,6 +282,9 @@ if [ -n "$OKTA_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@okta_access_keys_allowed.*@okta_access_keys_allowed\t$OKTA_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$OKTA_DISPLAY_NAME" ]
+then sed -i "s@okta_display_name.*@okta_display_name\t$OKTA_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### Generic Properties
 if [ -n "$GENERIC_CLIENT_ID" ]
@@ -329,6 +355,10 @@ if [ -n "$GENERIC_SANITIZE_GROUP_RESPONSE" ]
 then sed -i "s@generic_sanitizeGroupResponse.*@generic_sanitizeGroupResponse\t$GENERIC_SANITIZE_GROUP_RESPONSE@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GENERIC_DISPLAY_NAME" ]
+then sed -i "s@generic_display_name.*@generic_display_name\t$GENERIC_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
+
 ##### LinOTP Properties
 if [ -n "$LINOTP_HOSTNAME" ]
 then sed -i "s@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
@@ -358,6 +388,9 @@ if [ -n "$LINOTP_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@linotp_access_keys_allowed@linotp_access_keys_allowed\t$LINOTP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LINOTP_DISPLAY_NAME" ]
+then sed -i "s@linotp_display_name.*@linotp_display_name\t$LINOTP_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### LDAP Properties
 if [ -n "$LDAP_TYPE" ]
@@ -428,6 +461,9 @@ if [ -n "$LDAP_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@ldap_access_keys_allowed@ldap_access_keys_allowed\t$LDAP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$LDAP_DISPLAY_NAME" ]
+then sed -i "s@ldap_display_name.*@ldap_display_name\t$LDAP_DISPLAY_NAME@g" /opt/semosshome/social.properties
+fi
 
 ##### SMTP
 if [ -n "$SMTP_ENABLED" ]
