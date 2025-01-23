@@ -55,3 +55,35 @@ else
   echo "Custom scheduler CONNECTION_URL is defined"
   sed -i "s@CONNECTION_URL.*@CONNECTION_URL\t$CUSTOM_SCHEDULER_CONNECTION_URL@g" /opt/semosshome/db/scheduler.smss
 fi
+
+if [[ -z "${CUSTOM_SCHEDULER_USE_CONNECTION_POOLING}" ]];
+then
+  echo "Custom scheduler USE_CONNECTION_POOLING is not defined"
+else
+  echo "Custom scheduler USE_CONNECTION_POOLING is defined"
+  sed -i "s@USE_CONNECTION_POOLING.*@USE_CONNECTION_POOLING\t$CUSTOM_SCHEDULER_USE_CONNECTION_POOLING@g" /opt/semosshome/db/scheduler.smss
+fi
+
+if [[ -z "${CUSTOM_SCHEDULER_POOL_MIN_SIZE}" ]];
+then
+  echo "Custom scheduler POOL_MIN_SIZE is not defined"
+else
+  echo "Custom scheduler POOL_MIN_SIZE is defined"
+  sed -i "s@POOL_MIN_SIZE.*@POOL_MIN_SIZE\t$CUSTOM_SCHEDULER_POOL_MIN_SIZE@g" /opt/semosshome/db/scheduler.smss
+fi
+
+if [[ -z "${CUSTOM_SCHEDULER_POOL_MAX_SIZE}" ]];
+then
+  echo "Custom scheduler POOL_MAX_SIZE is not defined"
+else
+  echo "Custom scheduler POOL_MAX_SIZE is defined"
+  sed -i "s@POOL_MAX_SIZE.*@POOL_MAX_SIZE\t$CUSTOM_SCHEDULER_POOL_MAX_SIZE@g" /opt/semosshome/db/scheduler.smss
+fi
+
+if [[ -z "${CUSTOM_SCHEDULER_AUTO_COMMIT}" ]];
+then
+  echo "Custom scheduler AUTO_COMMIT is not defined"
+else
+  echo "Custom scheduler AUTO_COMMIT is defined"
+  sed -i "s@AUTO_COMMIT.*@AUTO_COMMIT\t$CUSTOM_SCHEDULER_USE_AUTO_COMMIT@g" /opt/semosshome/db/scheduler.smss
+fi

@@ -55,3 +55,35 @@ else
   echo "Custom Prompt CONNECTION_URL is defined"
   sed -i "s@CONNECTION_URL.*@CONNECTION_URL\t$CUSTOM_PROMPT_CONNECTION_URL@g" /opt/semosshome/db/PromptDatabase.smss
 fi
+
+if [[ -z "${CUSTOM_PROMPT_USE_CONNECTION_POOLING}" ]];
+then
+  echo "Custom Prompt USE_CONNECTION_POOLING is not defined"
+else
+  echo "Custom Prompt USE_CONNECTION_POOLING is defined"
+  sed -i "s@USE_CONNECTION_POOLING.*@USE_CONNECTION_POOLING\t$CUSTOM_PROMPT_USE_CONNECTION_POOLING@g" /opt/semosshome/db/PromptDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_PROMPT_POOL_MIN_SIZE}" ]];
+then
+  echo "Custom Prompt POOL_MIN_SIZE is not defined"
+else
+  echo "Custom Prompt POOL_MIN_SIZE is defined"
+  sed -i "s@POOL_MIN_SIZE.*@POOL_MIN_SIZE\t$CUSTOM_PROMPT_POOL_MIN_SIZE@g" /opt/semosshome/db/PromptDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_PROMPT_POOL_MAX_SIZE}" ]];
+then
+  echo "Custom Prompt POOL_MAX_SIZE is not defined"
+else
+  echo "Custom Prompt POOL_MAX_SIZE is defined"
+  sed -i "s@POOL_MAX_SIZE.*@POOL_MAX_SIZE\t$CUSTOM_PROMPT_POOL_MAX_SIZE@g" /opt/semosshome/db/PromptDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_PROMPT_AUTO_COMMIT}" ]];
+then
+  echo "Custom Prompt AUTO_COMMIT is not defined"
+else
+  echo "Custom Prompt AUTO_COMMIT is defined"
+  sed -i "s@AUTO_COMMIT.*@AUTO_COMMIT\t$CUSTOM_PROMPT_USE_AUTO_COMMIT@g" /opt/semosshome/db/PromptDatabase.smss
+fi

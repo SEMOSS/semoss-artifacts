@@ -55,3 +55,35 @@ else
   echo "Custom Localmaster CONNECTION_URL is defined"
   sed -i "s@CONNECTION_URL.*@CONNECTION_URL\t$CUSTOM_LM_CONNECTION_URL@g" /opt/semosshome/db/LocalMasterDatabase.smss
 fi
+
+if [[ -z "${CUSTOM_LM_USE_CONNECTION_POOLING}" ]];
+then
+  echo "Custom Localmaster USE_CONNECTION_POOLING is not defined"
+else
+  echo "Custom Localmaster USE_CONNECTION_POOLING is defined"
+  sed -i "s@USE_CONNECTION_POOLING.*@USE_CONNECTION_POOLING\t$CUSTOM_LM_USE_CONNECTION_POOLING@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_LM_POOL_MIN_SIZE}" ]];
+then
+  echo "Custom Localmaster POOL_MIN_SIZE is not defined"
+else
+  echo "Custom Localmaster POOL_MIN_SIZE is defined"
+  sed -i "s@POOL_MIN_SIZE.*@POOL_MIN_SIZE\t$CUSTOM_LM_POOL_MIN_SIZE@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_LM_POOL_MAX_SIZE}" ]];
+then
+  echo "Custom Localmaster POOL_MAX_SIZE is not defined"
+else
+  echo "Custom Localmaster POOL_MAX_SIZE is defined"
+  sed -i "s@POOL_MAX_SIZE.*@POOL_MAX_SIZE\t$CUSTOM_LM_POOL_MAX_SIZE@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
+
+if [[ -z "${CUSTOM_LM_AUTO_COMMIT}" ]];
+then
+  echo "Custom Localmaster AUTO_COMMIT is not defined"
+else
+  echo "Custom Localmaster AUTO_COMMIT is defined"
+  sed -i "s@AUTO_COMMIT.*@AUTO_COMMIT\t$CUSTOM_LM_USE_AUTO_COMMIT@g" /opt/semosshome/db/LocalMasterDatabase.smss
+fi
