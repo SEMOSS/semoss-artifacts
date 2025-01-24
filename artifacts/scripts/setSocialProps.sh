@@ -162,6 +162,23 @@ if [ -n "$MS_GRAPHAPI_LOOKUP" ]
 then sed -i "s@ms_graphapi_lookup.*@ms_graphapi_lookup\t$MS_GRAPHAPI_LOOKUP@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_GRAPHAPI_APPLICATION_CREDENTIALS" ]
+then sed -i "s@ms_graphapi_application_credentials.*@ms_graphapi_application_credentials\t$MS_GRAPHAPI_APPLICATION_CREDENTIALS@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$MS_GRAPHAPI_CLIENT_ID" ]
+then sed -i "s@ms_graphapi_client_id.*@ms_graphapi_client_id\t$MS_GRAPHAPI_CLIENT_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$MS_GRAPHAPI_SECRET_KEY" ]
+then sed -i "s@ms_graphapi_secret_key.*@ms_graphapi_secret_key\t$MS_GRAPHAPI_SECRET_KEY@g" /opt/semosshome/social.properties
+fi
+
+
+if [ -n "$MS_GRAPHAPI_GROUP_ID" ]
+then sed -i "s@ms_graphapi_groupId.*@ms_graphapi_groupId\t$MS_GRAPHAPI_GROUP_ID@g" /opt/semosshome/social.properties
+fi
+
 if [ -n "$MS_DISPLAY_NAME" ]
 then sed -i "s@ms_display_name.*@ms_display_name\t$MS_DISPLAY_NAME@g" /opt/semosshome/social.properties
 fi
