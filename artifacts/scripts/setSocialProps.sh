@@ -174,9 +174,12 @@ if [ -n "$MS_GRAPHAPI_SECRET_KEY" ]
 then sed -i "s@ms_graphapi_secret_key.*@ms_graphapi_secret_key\t$MS_GRAPHAPI_SECRET_KEY@g" /opt/semosshome/social.properties
 fi
 
-
 if [ -n "$MS_GRAPHAPI_GROUP_ID" ]
 then sed -i "s@ms_graphapi_groupId.*@ms_graphapi_groupId\t$MS_GRAPHAPI_GROUP_ID@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$MS_GRAPHAPI_JSON_PATTERN" ]
+then sed -i "s@ms_graphapi_jsonPattern.*@ms_graphapi_jsonPattern\t$MS_GRAPHAPI_JSON_PATTERN@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$MS_DISPLAY_NAME" ]
