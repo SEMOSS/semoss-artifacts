@@ -293,6 +293,11 @@ then echo "ERROR_REPORT_VALVE_ENABLED is not enabled"
 else sh setErrorReportValveEnabled.sh
 fi
 
+if [[ -z "${USER_EXISTS_FILTER}" ]];
+then echo "USER_EXISTS_FILTER is not enabled" 
+else sh setUserExistsFilter.sh
+fi
+
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
 sh setScheduler.sh
