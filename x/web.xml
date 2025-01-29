@@ -472,7 +472,7 @@
    </filter-mapping>
 
    <!-- IF YOU WANT THE ADMIN TO ADD EVERY USER, UNCOMMENT BELOW --> 
-   <!-- 
+   <!--UserExistsFilter 
    <filter>
       <filter-name>UserExistsFilter</filter-name>
       <filter-class>prerna.web.conf.UserExistsFilter</filter-class>
@@ -485,7 +485,7 @@
       <filter-name>UserExistsFilter</filter-name>
       <url-pattern>/api/*</url-pattern>
    </filter-mapping>
-   -->
+   UserExistsFilter-->
 
    <!-- Do you want a different timeout for the admin user -->
    <!-- 
