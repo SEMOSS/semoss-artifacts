@@ -343,6 +343,10 @@ if [ -n "$GENERIC_JSON" ]
 then sed -i "s@<GENERICJSON>@$GENERIC_JSON@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$GENERIC_AUTO_ADD" ]
+then sed -i "s@generic_auto_add.*@generic_auto_add\t$GENERIC_AUTO_ADD@g" /opt/semosshome/social.properties
+fi
+
 if [ -n "$GENERIC_ACCESS_KEY_ALLOWED" ]
 then sed -i "s@generic_access_keys_allowed.*@generic_access_keys_allowed\t$GENERIC_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
 fi
