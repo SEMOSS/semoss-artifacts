@@ -273,11 +273,6 @@ then echo "No optional cookie changes defined"
 else sh setOptionalCookies.sh
 fi
 
-if [[ -z "${CHROOT_ENABLE}" ]];
-then echo "Chroot is not enabled" 
-else sh setChroot.sh
-fi
-
 if [[ -z "${USER_TRACKING_ENABLED}" ]];
 then echo "USER_TRACKING is not enabled" 
 else sh setUserTracking.sh
@@ -308,6 +303,7 @@ bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
 bash setExternalPermissionManagement.sh
+bash setChroot.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 
