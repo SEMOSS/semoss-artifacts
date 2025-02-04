@@ -307,7 +307,7 @@ bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
-
+bash setExternalPermissionManagement.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 

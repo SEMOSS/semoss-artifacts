@@ -1,0 +1,53 @@
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_ENABLED}" ]];
+then echo "No defined external permissino management enabled"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_ENABLED.*@EXTERNAL_PERMISSION_MANAGEMENT_ENABLED\t$EXTERNAL_PERMISSION_MANAGEMENT_ENABLED@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_URL}" ]];
+then echo "No defined external permission management url"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_URL.*@EXTERNAL_PERMISSION_MANAGEMENT_URL\t$EXTERNAL_PERMISSION_MANAGEMENT_URL@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION}" ]];
+then echo "No defined external permission management default permission"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION.*@EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION\t$EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_AUTH_USERNAME}" ]];
+then echo "No defined external permission management auth username"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_AUTH_USERNAME.*@EXTERNAL_PERMISSION_MANAGEMENT_AUTH_USERNAME\t$EXTERNAL_PERMISSION_MANAGEMENT_AUTH_USERNAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_AUTH_PASSWORD}" ]];
+then echo "No defined external permission management auth password"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_AUTH_PASSWORD.*@EXTERNAL_PERMISSION_MANAGEMENT_AUTH_PASSWORD\t$EXTERNAL_PERMISSION_MANAGEMENT_AUTH_PASSWORD@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_REQUEST_KEY}" ]];
+then echo "No defined external permission management request key"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_REQUEST_KEY.*@EXTERNAL_PERMISSION_MANAGEMENT_REQUEST_KEY\t$EXTERNAL_PERMISSION_MANAGEMENT_REQUEST_KEY@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_ENGINEID}" ]];
+then echo "No defined external permission management engineid key"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_ENGINEID.*@EXTERNAL_PERMISSION_MANAGEMENT_ENGINEID\t$EXTERNAL_PERMISSION_MANAGEMENT_ENGINEID@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_ENGINENAME}" ]];
+then echo "No defined external permission management enginename key"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_ENGINENAME.*@EXTERNAL_PERMISSION_MANAGEMENT_ENGINENAME\t$EXTERNAL_PERMISSION_MANAGEMENT_ENGINENAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_PERMISSION_MANAGEMENT_ENGINETYPE}" ]];
+then echo "No defined external permission management enginetype key"
+else
+sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_ENGINETYPE.*@EXTERNAL_PERMISSION_MANAGEMENT_ENGINETYPE\t$EXTERNAL_PERMISSION_MANAGEMENT_ENGINETYPE@g" /opt/semosshome/RDF_Map.prop
+fi
