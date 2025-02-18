@@ -45,7 +45,7 @@ then
   echo "Custom themes PASSWORD is not defined"
 else
   echo "Custom themes PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_THEMES_PASSWORD@g" /opt/semosshome/db/themes.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_THEMES_PASSWORD|g" /opt/semosshome/db/themes.smss
 fi
 
 if [[ -z "${CUSTOM_THEMES_CONNECTION_URL}" ]];
