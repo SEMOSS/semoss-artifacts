@@ -45,7 +45,7 @@ then
   echo "Custom Security PASSWORD is not defined"
 else
   echo "Custom Security PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_SECURITY_PASSWORD@g" /opt/semosshome/db/security.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_SECURITY_PASSWORD|g" /opt/semosshome/db/security.smss
 fi
 
 if [[ -z "${CUSTOM_SECURITY_CONNECTION_URL}" ]];
