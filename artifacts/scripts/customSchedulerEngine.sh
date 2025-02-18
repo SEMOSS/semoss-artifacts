@@ -45,7 +45,7 @@ then
   echo "Custom scheduler PASSWORD is not defined"
 else
   echo "Custom scheduler PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_SCHEDULER_PASSWORD@g" /opt/semosshome/db/scheduler.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_SCHEDULER_PASSWORD|g" /opt/semosshome/db/scheduler.smss
 fi
 
 if [[ -z "${CUSTOM_SCHEDULER_CONNECTION_URL}" ]];
