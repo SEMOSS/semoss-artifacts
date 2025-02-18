@@ -45,7 +45,7 @@ then
   echo "Custom Prompt PASSWORD is not defined"
 else
   echo "Custom Prompt PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_PROMPT_PASSWORD@g" /opt/semosshome/db/PromptDatabase.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_PROMPT_PASSWORD|g" /opt/semosshome/db/PromptDatabase.smss
 fi
 
 if [[ -z "${CUSTOM_PROMPT_CONNECTION_URL}" ]];
