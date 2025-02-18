@@ -45,7 +45,7 @@ then
   echo "Custom user tracking PASSWORD is not defined"
 else
   echo "Custom user tracking PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_USER_TRACKING_PASSWORD@g" /opt/semosshome/db/UserTrackingDatabase.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_USER_TRACKING_PASSWORD|g" /opt/semosshome/db/UserTrackingDatabase.smss
 fi
 
 if [[ -z "${CUSTOM_USER_TRACKING_CONNECTION_URL}" ]];
