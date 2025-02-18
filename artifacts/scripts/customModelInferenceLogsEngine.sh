@@ -45,7 +45,7 @@ then
   echo "Custom Model Inference Logs PASSWORD is not defined"
 else
   echo "Custom Model Inference Logs PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_MODEL_INFERENCE_LOGS_PASSWORD@g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_MODEL_INFERENCE_LOGS_PASSWORD|g" /opt/semosshome/db/ModelInferenceLogsDatabase.smss
 fi
 
 if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL}" ]];
