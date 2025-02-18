@@ -45,7 +45,7 @@ then
   echo "Custom Localmaster PASSWORD is not defined"
 else
   echo "Custom Localmaster PASSWORD is defined"
-  sed -i "s@PASSWORD.*@PASSWORD\t$CUSTOM_LM_PASSWORD@g" /opt/semosshome/db/LocalMasterDatabase.smss
+  sed -i "s|PASSWORD.*|PASSWORD\t$CUSTOM_LM_PASSWORD|g" /opt/semosshome/db/LocalMasterDatabase.smss
 fi
 
 if [[ -z "${CUSTOM_LM_CONNECTION_URL}" ]];
