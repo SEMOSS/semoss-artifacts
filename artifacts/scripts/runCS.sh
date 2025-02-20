@@ -296,6 +296,7 @@ fi
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
 sh setScheduler.sh
+bash setSecrets.sh
 bash setVirusScanning.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
