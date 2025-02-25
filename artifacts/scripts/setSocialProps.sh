@@ -306,6 +306,14 @@ if [ -n "$OKTA_DISPLAY_NAME" ]
 then sed -i "s@okta_display_name.*@okta_display_name\t$OKTA_DISPLAY_NAME@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$OKTA_JSON" ]
+then sed -i "s@okta_jsonPattern.*@okta_jsonPattern\t$OKTA_JSON@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$OKTA_BEAN" ]
+then sed -i "s@okta_beanProps.*@okta_beanProps\t$OKTA_BEAN@g" /opt/semosshome/social.properties
+fi
+
 ##### Generic Properties
 if [ -n "$GENERIC_CLIENT_ID" ]
 then sed -i "s@<GENERICCLIENTID>@$GENERIC_CLIENT_ID@g" /opt/semosshome/social.properties
