@@ -429,6 +429,21 @@ if [ -n "$LDAP_TYPE" ]
 then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
 fi
 
+
+if [ -n "$LDAP_MASTER_PRINCIPAL" ]
+then sed -i "s@ldap_master_principal.*@ldap_master_principal\t$LDAP_MASTER_PRINCIPAL@g" /opt/semosshome/social.properties
+fi
+
+if [ -n "$LDAP_MASTER_CREDENTIALS" ]
+then sed -i "s@ldap_master_credentials.*@ldap_master_credentials\t$LDAP_MASTER_CREDENTIALS@g" /opt/semosshome/social.properties
+fi
+
+
+if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
+then sed -i "s@ldap_principal_tempalte.*@ldap_principal_tempalte\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+fi
+
+
 if [ -n "$LDAP_PROVIDER_URL" ]
 then sed -i "s@ldap_provider_url.*@ldap_provider_url\t$LDAP_PROVIDER_URL@g" /opt/semosshome/social.properties
 fi
