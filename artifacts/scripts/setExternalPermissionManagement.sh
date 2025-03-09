@@ -71,3 +71,60 @@ then echo "No defined external permission management default permission"
 else
 sed -i "s@EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION.*@EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION\t$EXTERNAL_PERMISSION_MANAGEMENT_DEFAULT_PERMISSION@g" /opt/semosshome/RDF_Map.prop
 fi
+
+
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_ENABLED}" ]];
+then echo "No defined external database management enabled"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_ENABLED.*@EXTERNAL_DATABASE_MANAGEMENT_ENABLED\t$EXTERNAL_DATABASE_MANAGEMENT_ENABLED@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_URL}" ]];
+then echo "No defined external database management url"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_URL.*@EXTERNAL_DATABASE_MANAGEMENT_URL\t$EXTERNAL_DATABASE_MANAGEMENT_URL@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_AUTH_USERNAME}" ]];
+then echo "No defined external database management auth username"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_AUTH_USERNAME.*@EXTERNAL_DATABASE_MANAGEMENT_AUTH_USERNAME\t$EXTERNAL_DATABASE_MANAGEMENT_AUTH_USERNAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_AUTH_PASSWORD}" ]];
+then echo "No defined external database management auth password"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_AUTH_PASSWORD.*@EXTERNAL_DATABASE_MANAGEMENT_AUTH_PASSWORD\t$EXTERNAL_DATABASE_MANAGEMENT_AUTH_PASSWORD@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_REQUEST_KEY}" ]];
+then echo "No defined external database management request key"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_REQUEST_KEY.*@EXTERNAL_DATABASE_MANAGEMENT_REQUEST_KEY\t$EXTERNAL_DATABASE_MANAGEMENT_REQUEST_KEY@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_RESPONSE_JMES_PATH}" ]];
+then echo "No defined external database management response jmes path"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_RESPONSE_JMES_PATH.*@EXTERNAL_DATABASE_MANAGEMENT_RESPONSE_JMES_PATH\t$EXTERNAL_DATABASE_MANAGEMENT_RESPONSE_JMES_PATH@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_TABLENAME}" ]];
+then echo "No defined external database management tablename key"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_TABLENAME.*@EXTERNAL_DATABASE_MANAGEMENT_TABLENAME\t$EXTERNAL_DATABASE_MANAGEMENT_TABLENAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_COLUMNNAME}" ]];
+then echo "No defined external database management columnname key"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_COLUMNNAME.*@EXTERNAL_DATABASE_MANAGEMENT_COLUMNNAME\t$EXTERNAL_DATABASE_MANAGEMENT_COLUMNNAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${EXTERNAL_DATABASE_MANAGEMENT_DATATYPE}" ]];
+then echo "No defined external database management datatype key"
+else
+sed -i "s@EXTERNAL_DATABASE_MANAGEMENT_DATATYPE.*@EXTERNAL_DATABASE_MANAGEMENT_DATATYPE\t$EXTERNAL_DATABASE_MANAGEMENT_DATATYPE@g" /opt/semosshome/RDF_Map.prop
+fi
+ 
