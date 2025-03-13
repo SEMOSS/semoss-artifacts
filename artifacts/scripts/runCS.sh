@@ -225,37 +225,37 @@ fi
 
 if [[ -z "${CUSTOM_LM_CONNECTION_URL}" ]];
 then echo "No custom LM connection url is defined" 
-else sh customLocalMasterEngine.sh
+else bash customLocalMasterEngine.sh
 fi
 
 if [[ -z "${CUSTOM_SECURITY_CONNECTION_URL}" ]];
 then echo "No custom security connection url is defined" 
-else sh customSecurityEngine.sh
+else bash customSecurityEngine.sh
 fi
 
 if [[ -z "${CUSTOM_SCHEDULER_CONNECTION_URL}" ]];
 then echo "No custom scheduler connection url is defined" 
-else sh customSchedulerEngine.sh
+else bash customSchedulerEngine.sh
 fi
 
 if [[ -z "${CUSTOM_THEMES_CONNECTION_URL}" ]];
 then echo "No custom themes connection url is defined" 
-else sh customThemesEngine.sh
+else bash customThemesEngine.sh
 fi
 
 if [[ -z "${CUSTOM_USER_TRACKING_CONNECTION_URL}" ]];
 then echo "No custom user tracking connection url is defined" 
-else sh customUserTrackingEngine.sh
+else bash customUserTrackingEngine.sh
 fi
 
 if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL}" ]];
 then echo "No custom model inference logs connection url is defined" 
-else sh customModelInferenceLogsEngine.sh
+else bash customModelInferenceLogsEngine.sh
 fi
 
 if [[ -z "${CUSTOM_PROMPT_CONNECTION_URL}" ]];
 then echo "No custom prompt connection url is defined" 
-else sh customPromptEngine.sh
+else bash customPromptEngine.sh
 fi
 
 if [[ -z "${OPTIONAL_COOKIES}" ]];
