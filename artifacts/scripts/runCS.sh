@@ -150,6 +150,12 @@ if [[ -z "${PIVOT_COL_MAX}" ]];
 then echo "No Custom Pivot Col Max Defined" 
 else sh setPivotColMax.sh
 fi
+
+if [[ -z "${ENABLE_CORS}" ]];
+then echo "CORS is not enabled" 
+else sh setEnableCors.sh
+fi
+
 if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
 then echo "No custom cors definitions" 
 else sh setCorsOrigins.sh
