@@ -61,7 +61,7 @@
       <url-pattern>/*</url-pattern>
    </filter-mapping>
    <!-- CORS FILTER - MUST FILL IN cors.allowed.origins -->
-   <!-- 
+   <!--CORS_FILTER_FLAG
    <filter>
       <filter-name>CorsFilter</filter-name>
       <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -94,7 +94,7 @@
       <filter-name>CorsFilter</filter-name>
       <url-pattern>/*</url-pattern>
    </filter-mapping>
-	-->
+	CORS_FILTER_FLAG_END-->
    <!-- general check that the databases loaded properly -->
    <filter>
       <filter-name>StartUpSuccessFilter</filter-name>
