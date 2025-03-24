@@ -129,8 +129,12 @@ then echo "No custom google analytics id"
 else sh setGoogleAnalytics.sh
 fi
 if [[ -z "${MONOLITH_ROUTE}" ]];
-then echo "No custom monolith route" 
+then echo "No custom monolith route provided for <DNS>/route/Monolith" 
 else sh setRouteCookie.sh
+fi
+if [[ -z "${LOAD_BALANCER_COOKIE_NAME}" ]];
+then echo "No custom load balancer cookie name" 
+else sh setLoadBalancerCookieName.sh
 fi
 if [ "$T_ON" = "false" ]
 then sh setTOn.sh
