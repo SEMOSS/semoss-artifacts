@@ -1,3 +1,6 @@
+### DEPRECATED THROUGH setCors.sh
+
+
 if [ -z "${TOMCAT_HOME}" ]; then
 	SCRIPT_TOMCAT_HOME="$(ls /opt/ | grep "apache-tomcat")"
 	echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
