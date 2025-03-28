@@ -157,13 +157,14 @@ fi
 
 if [[ -z "${ENABLE_CORS}" ]];
 then echo "CORS is not enabled" 
-else sh setEnableCors.sh
+else sh setCors.sh
 fi
 
-if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
-then echo "No custom cors definitions" 
-else sh setCorsOrigins.sh
-fi
+# Deprecated as its included in setCors.sh
+# if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
+# then echo "No custom cors definitions" 
+# else sh setCorsOrigins.sh
+# fi
 if [[ -z "${TRUSTED_TOKEN_DOMAIN}" ]];
 then echo "No custom trusted token domain" 
 else sh setTrustedTokenDomain.sh
