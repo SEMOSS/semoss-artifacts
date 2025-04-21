@@ -57,6 +57,12 @@ else
 sed -i "s@PYTHONHOME_SITE_PACKAGES.*@PYTHONHOME_SITE_PACKAGES\t$PYTHONHOME_SITE_PACKAGES@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z "${SMSS_PYTHONHOME}" ]];
+then echo "No specific pythonhome for rdf map declared"
+else
+sed -i "s#^\(PYTHONHOME\) .*#\1 $SMSS_PYTHONHOME#" /opt/semosshome/RDF_Map.prop
+fi
+
 if [ "$DEFAULT_SCRIPTING_LANGUAGE" = "PY" ]
 then sed -i "s:DEFAULT_SCRIPTING_LANGUAGE.*:DEFAULT_SCRIPTING_LANGUAGE\tPY:g" /opt/semosshome/RDF_Map.prop
 fi
