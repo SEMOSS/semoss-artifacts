@@ -530,6 +530,12 @@
          <param-name>antiClickJackingOption</param-name>
          <param-value>SAMEORIGIN</param-value>
       </init-param>
+      <!--ANTI_CLICK_JACKING_URI_FLAG
+      <init-param>
+         <param-name>antiClickJackingUri</param-name>
+         <param-value>HEADER_SECURITY_JACKING_URI</param-value>
+      </init-param>
+      ANTI_CLICK_JACKING_URI_FLAG_END-->
       <init-param>
          <param-name>blockContentTypeSniffingEnabled</param-name>
          <param-value>true</param-value>

@@ -316,6 +316,7 @@ bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
 bash setExternalPermissionManagement.sh
 bash setChroot.sh
+bash setHeaderSecurity.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 
