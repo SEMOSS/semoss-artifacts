@@ -506,6 +506,7 @@
         <async-supported>true</async-supported>
     </filter>
 -->
+   <!--HEADER_SECURITY_FILTER_FLAG_START-->
    <filter>
       <filter-name>HeaderSecurityFilter</filter-name>
       <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
@@ -538,7 +539,7 @@
       <filter-name>HeaderSecurityFilter</filter-name>
       <url-pattern>/*</url-pattern>
    </filter-mapping>
-
+   <!--HEADER_SECURITY_FILTER_FLAG_END-->
   <!-- A filter that sets character encoding that is used to decode -->
   <!-- parameters in a POST request -->
 <!--
