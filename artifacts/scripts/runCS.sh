@@ -304,6 +304,7 @@ then echo "USER_EXISTS_FILTER is not enabled"
 else sh setUserExistsFilter.sh
 fi
 
+bash setServerDefaultPage.sh
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
 sh setScheduler.sh
