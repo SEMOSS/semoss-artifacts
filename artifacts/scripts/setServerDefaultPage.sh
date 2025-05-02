@@ -1,6 +1,6 @@
 # if you want to direct directly to our auth endpoints
 # you will set CUSTOM_DEFAULT_PAGE to Monolith/login
-# and you will then set the CUSTOM_DEFAULT_PAGE_URL to https://YOUR_DNS/Monolith/api/auth/<your provider>
+# and you will then set the CUSTOM_DEFAULT_PAGE_URL to https://YOUR_DNS/Monolith/api/auth/login/<your provider>
 
 if [ -n "$CUSTOM_DEFAULT_PAGE" ]; then
     sed -i 's|docBase="SemossWeb"|docBase='"\"$CUSTOM_DEFAULT_PAGE"\"'|g' $TOMCAT_HOME/conf/server.xml
