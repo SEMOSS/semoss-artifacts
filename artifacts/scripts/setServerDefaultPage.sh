@@ -7,5 +7,5 @@ if [ -n "$CUSTOM_DEFAULT_PAGE" ]; then
 fi
 
 if [ -n "$CUSTOM_DEFAULT_PAGE_URL" ]; then
-    sed -i 's|http://www.google.com|$CUSTOM_DEFAULT_PAGE_URL|g' $TOMCAT_HOME/webapps/Monolith/login/index.html
+    sed -i "s|http://www.google.com|$CUSTOM_DEFAULT_PAGE_URL|g" $TOMCAT_HOME/webapps/Monolith/login/index.html
 fi

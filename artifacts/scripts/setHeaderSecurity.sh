@@ -23,6 +23,6 @@ if [ -n "$HEADER_SECURITY_JACKING_URI" ]; then
     sed -i '/<!--ANTI_CLICK_JACKING_URI_FLAG/d' $TOMCAT_HOME/conf/web.xml
     sed -i '/ANTI_CLICK_JACKING_URI_FLAG_END-->/d' $TOMCAT_HOME/conf/web.xml
 
-    sed -i "s|SAMEORIGIN|$HEADER_SECURITY_JACKING_URI|g" $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
-    sed -i "s|SAMEORIGIN|$HEADER_SECURITY_JACKING_URI|g" $TOMCAT_HOME/conf/web.xml
+    sed -i "s|HEADER_SECURITY_JACKING_URI|$HEADER_SECURITY_JACKING_URI|g" $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
+    sed -i "s|HEADER_SECURITY_JACKING_URI|$HEADER_SECURITY_JACKING_URI|g" $TOMCAT_HOME/conf/web.xml
 fi
