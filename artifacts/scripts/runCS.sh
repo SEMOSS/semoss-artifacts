@@ -160,6 +160,11 @@ then echo "CORS is not enabled"
 else sh setCors.sh
 fi
 
+if [[ -z "${ENABLE_CSRF}" ]];
+then echo "CSRF is not enabled" 
+else sh setCSRF.sh
+fi
+
 # Deprecated as its included in setCors.sh
 # if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
 # then echo "No custom cors definitions" 
