@@ -18,7 +18,7 @@
       <filter-name>SetCharacterEncoding</filter-name>
       <url-pattern>/*</url-pattern>
    </filter-mapping>
-   <!-- 
+   <!--CSRF_FILTER_FLAG_START
    <filter>
       <filter-name>CustomRestCsrfPreventionFilter</filter-name>
       <filter-class>prerna.web.conf.CustomRestCsrfPreventionFilter</filter-class>
@@ -39,7 +39,7 @@
       <filter-name>CustomRestCsrfPreventionFilter</filter-name>
       <url-pattern>/*</url-pattern>
    </filter-mapping>
-   -->
+   CSRF_FILTER_FLAG_END-->
    <!--HEADER_SECURITY_FILTER_FLAG_START-->
    <filter>
       <filter-name>HeaderSecurityFilter</filter-name>
