@@ -24,9 +24,9 @@ cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
 cd /opt/semoss-artifacts/artifacts/scripts
 #./update_latest_dev.sh
-if [ "$SECURITY_ON" = "true" ]
-then sh setSecurityOn.sh
-fi
+# if [ "$SECURITY_ON" = "true" ]
+# then sh setSecurityOn.sh
+# fi
 if [ "$ENCRYPT_SMSS" = "true" ]; then
 echo "Encoding SMSS files"
 sh setEncryptSmss.sh
@@ -79,16 +79,30 @@ fi
 if [ "$CUSTOM_MONOLITH_COOKIE" = "true" ]
 then sh setMonolithCookie.sh
 fi
+
+if [[ -z "${MONOLITH_COOKIE_SET_SECURE}" ]]; then
+echo "No Custom Monolith Secure Cookie"
+else sh setMonolithSecureCookie.sh
+fi
+
 if [[ -z "${DEFAULT_FRAME_TYPE}" ]];
 then echo "No updated default frame" 
 else sh setDefaultFrame.sh
 fi
-if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
-then sh setWhiteListDomains.sh
+if [[ -z "${DEFAULT_GRID_TYPE}" ]];
+then echo "No default sql grid type" 
+else sh setDefaultGridType.sh
+fi
+if [[ -z "${DEFAULT_INSIGHTS_RDBMS}" ]];
+then echo "No default insight sql rdbms type" 
+else sh setDefaultInsightRDBMS.sh
 fi
 if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
 else sh setDefaultInsightCacheable.sh
+fi
+if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
+then sh setWhiteListDomains.sh
 fi
 if [[ -z "${SHARED_FILE_PATH}" ]];
 then echo "No updated shared file path" 
@@ -128,13 +142,6 @@ fi
 if [ "$X_CACHE" = "true" ]
 then sh setXCacheOn.sh
 fi
-if [[ -z "${SCHEDULER_ENDPOINT}" ]];
-then echo "No custom scheduler url defined" 
-else sh setSchedulerUrl.sh
-fi
-if [ "$SCHEDULER_FORCE_DISABLE" = "true" ]
-then sh setScheduler.sh
-fi
 if [[ -z "${PM_SEMOSS_EXECUTE_SQL_ENCRYPTION_PASSWORD}" ]];
 then echo "No SQL Encryption Password" 
 else sh setSQLEncryptionPassword.sh
@@ -147,10 +154,22 @@ if [[ -z "${PIVOT_COL_MAX}" ]];
 then echo "No Custom Pivot Col Max Defined" 
 else sh setPivotColMax.sh
 fi
-if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
-then echo "No custom cors definitions" 
-else sh setCorsOrigins.sh
+
+if [[ -z "${ENABLE_CORS}" ]];
+then echo "CORS is not enabled" 
+else sh setCors.sh
 fi
+
+if [[ -z "${ENABLE_CSRF}" ]];
+then echo "CSRF is not enabled" 
+else sh setCSRF.sh
+fi
+
+# Deprecated as its included in setCors.sh
+# if [[ -z "${CORS_ALLOWED_ORIGINS}" ]];
+# then echo "No custom cors definitions" 
+# else sh setCorsOrigins.sh
+# fi
 if [[ -z "${TRUSTED_TOKEN_DOMAIN}" ]];
 then echo "No custom trusted token domain" 
 else sh setTrustedTokenDomain.sh
@@ -199,9 +218,15 @@ if [[ -z "${CUSTOM_M2}" ]];
 then echo "No custom m2 location" 
 else sh setM2Home.sh
 fi
+
 if [[ -z "${SAMESITE_COOKIE}" ]];
 then echo "No samesite cookie value defined" 
 else sh setSameSiteCookie.sh
+fi
+
+if [[ -z "${ADDITIONAL_REACTOR_PACKAGES}" ]];
+then echo "No additional reactor packages value defined to load" 
+else sh setAdditionalReactorPackages.sh
 fi
 
 if [[ -z "${MVN_HOME}" ]];
@@ -216,42 +241,37 @@ fi
 
 if [[ -z "${CUSTOM_LM_CONNECTION_URL}" ]];
 then echo "No custom LM connection url is defined" 
-else sh customLocalMasterEngine.sh
+else bash customLocalMasterEngine.sh
 fi
 
 if [[ -z "${CUSTOM_SECURITY_CONNECTION_URL}" ]];
 then echo "No custom security connection url is defined" 
-else sh customSecurityEngine.sh
+else bash customSecurityEngine.sh
 fi
 
 if [[ -z "${CUSTOM_SCHEDULER_CONNECTION_URL}" ]];
 then echo "No custom scheduler connection url is defined" 
-else sh customSchedulerEngine.sh
+else bash customSchedulerEngine.sh
 fi
 
 if [[ -z "${CUSTOM_THEMES_CONNECTION_URL}" ]];
 then echo "No custom themes connection url is defined" 
-else sh customThemesEngine.sh
+else bash customThemesEngine.sh
 fi
 
 if [[ -z "${CUSTOM_USER_TRACKING_CONNECTION_URL}" ]];
 then echo "No custom user tracking connection url is defined" 
-else sh customUserTrackingEngine.sh
+else bash customUserTrackingEngine.sh
 fi
 
 if [[ -z "${CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL}" ]];
 then echo "No custom model inference logs connection url is defined" 
-else sh customModelInferenceLogsEngine.sh
+else bash customModelInferenceLogsEngine.sh
 fi
 
-if [[ -z "${CUSTOM_PROMPT_DB_CONNECTION_URL}" ]];
-then echo "No custom prmopt db connection url is defined" 
-else sh customPromptEngine.sh
-fi
-
-if [[ -z "${OPTIONAL_COOKIES}" ]];
-then echo "No optional cookie changes defined" 
-else sh setOptionalCookies.sh
+if [[ -z "${CUSTOM_PROMPT_CONNECTION_URL}" ]];
+then echo "No custom prompt connection url is defined" 
+else bash customPromptEngine.sh
 fi
 
 if [[ -z "${OPTIONAL_COOKIES}" ]];
@@ -264,9 +284,9 @@ then echo "No optional cookie changes defined"
 else sh setOptionalCookies.sh
 fi
 
-if [[ -z "${CHROOT_ENABLE}" ]];
-then echo "Chroot is not enabled" 
-else sh setChroot.sh
+if [[ -z "${OPTIONAL_COOKIES}" ]];
+then echo "No optional cookie changes defined" 
+else sh setOptionalCookies.sh
 fi
 
 if [[ -z "${USER_TRACKING_ENABLED}" ]];
@@ -279,15 +299,35 @@ then echo "MODEL_INFERENCE_LOGS_ENABLED is not enabled"
 else sh setModelInferenceLogsEnabled.sh
 fi
 
-if [[ -z "${PROMPT_DB_ENABLED}" ]];
-then echo "PROMPT_DB_ENABLED is not enabled" 
-else sh setPromptDatabaseEnabled.sh
+if [[ -z "${ERROR_REPORT_VALVE_ENABLED}" ]];
+then echo "ERROR_REPORT_VALVE_ENABLED is not enabled" 
+else sh setErrorReportValveEnabled.sh
 fi
 
+if [[ -z "${USER_EXISTS_FILTER}" ]];
+then echo "USER_EXISTS_FILTER is not enabled" 
+else sh setUserExistsFilter.sh
+fi
+
+bash setServerDefaultPage.sh
+sh setModelInferenceLogsEnabled.sh
+sh setPromptDatabaseEnabled.sh
+sh setScheduler.sh
+bash setSecrets.sh
+bash setVirusScanning.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
 bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
+bash setExternalPermissionManagement.sh
+bash setChroot.sh
+bash setHeaderSecurity.sh
+
+if [[ -z "${FE_ROUTE}" ]];
+then echo "FE_ROUTE is not enabled" 
+else bash updateFEIndexHtml.sh
+fi
+
 bash setR.sh
 bash setPy.sh
