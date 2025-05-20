@@ -162,3 +162,14 @@ if [[ -z $ADMIN_ONLY_FUNCTION_ADD ]]; then
 echo "No admin only function set discoverable flag"
 else sed -i "s@ADMIN_ONLY_FUNCTION_ADD.*@ADMIN_ONLY_FUNCTION_ADD\t$ADMIN_ONLY_FUNCTION_ADD@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z $ADMIN_ONLY_VIEW_MENU_BAR ]]; then
+echo "No admin only view menu bar flag"
+else sed -i "s@ADMIN_ONLY_VIEW_MENU_BAR.*@ADMIN_ONLY_VIEW_MENU_BAR\t$ADMIN_ONLY_VIEW_MENU_BAR@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z $ADMIN_ONLY_NON_APPROVED_PROD_ITEM ]]; then
+echo "No admin only non approved prod item flag"
+else sed -i "s@ADMIN_ONLY_NON_APPROVED_PROD_ITEM.*@ADMIN_ONLY_NON_APPROVED_PROD_ITEM\t$ADMIN_ONLY_NON_APPROVED_PROD_ITEM@g" /opt/semosshome/RDF_Map.prop
+fi
+
