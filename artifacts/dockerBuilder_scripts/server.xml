@@ -169,11 +169,12 @@
 				suffix=".txt"/>
 	 
 	 <!--ERROR_REPORT_VALVE_START
-	 <Valve className="org.apache.catalina.valves.ErrorReportValve"
-				errorCode.404="webapps/Monolith/error/404error.html"
-				errorCode.0="webapps/Monolith/error/error.html"
-				showReport="false"
-				showServerInfo="false" />
+	<Valve className="org.apache.catalina.valves.ErrorReportValve"
+	       errorCode.404="webapps/Monolith/error/404error.html"
+	       errorCode.403="webapps/Monolith/error/403error.html"
+	       errorCode.0="webapps/Monolith/error/error.html"
+	       showReport="false"
+	       showServerInfo="false" />
 	ERROR_REPORT_VALVE_END-->
 	      
 	<Context path="" docBase="SemossWeb" reloadable="true"></Context>
