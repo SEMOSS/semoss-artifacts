@@ -40,12 +40,23 @@
     <repository>
       <id>central</id>
       <name>Maven Central</name>
-      <url>https://repo1.maven.org/maven2</url>
+      <url>https://repo.maven.apache.org/maven2</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
     </repository>
     <repository>
+      <name>Central Portal Snapshots</name>
+      <id>central-portal-snapshots</id>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <!-- <repository>
       <id>snapshot</id>
       <name>Sonatype's Maven repository - SNAPSHOT</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -66,7 +77,7 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-    </repository>
+    </repository> -->
   </repositories>
   <dependencies>
     <dependency>
