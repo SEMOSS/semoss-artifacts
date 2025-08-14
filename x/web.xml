@@ -612,7 +612,11 @@
       <init-param>	
          <param-name>useSAMLGroupWhitelist</param-name>	
          <param-value>false</param-value>	
-      </init-param>	
+      </init-param>
+      <init-param>
+         <param-name>useSAMLAttributeWhitelist</param-name>
+         <param-value>false</param-value>
+      </init-param>
    </servlet>	
    <servlet-mapping>	
       <servlet-name>SamlVerifierServlet</servlet-name>	
