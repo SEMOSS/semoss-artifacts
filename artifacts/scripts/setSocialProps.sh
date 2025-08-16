@@ -21,7 +21,7 @@ then sed -i "s@native_display_name.*@native_display_name\t$NATIVE_DISPLAY_NAME@g
 fi
 
 ##### API USER Properties
-if "$ENABLE_API_USER" = "true"
+if [ "$ENABLE_API_USER" = "true" ]
 then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
 fi
 
@@ -34,43 +34,43 @@ then sed -i "s@api_user_display_name.*@api_user_display_name\t$API_USER_DISPLAY_
 fi
 
 ##### For Providers - Enable Login True
-if "$ENABLE_GOOGLE" = "true"
+if [ "$ENABLE_GOOGLE" = "true" ]
 then sed -i "s/<GOOGLE_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_GITHUB" = "true"
+if [ "$ENABLE_GITHUB" = "true" ]
 then sed -i "s/<GITHUB_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_DROPBOX" = "true"
+if [ "$ENABLE_DROPBOX" = "true" ]
 then sed -i "s/<DROPBOX_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_MS" = "true"
+if [ "$ENABLE_MS" = "true" ]
 then sed -i "s/<MS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_SITEMINDER" = "true"
+if [ "$ENABLE_SITEMINDER" = "true" ]
 then sed -i "s/<SITEMINDER_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_ADFS" = "true"
+if [ "$ENABLE_ADFS" = "true" ]
 then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_OKTA" = "true"
+if [ "$ENABLE_OKTA" = "true" ]
 then sed -i "s/<OKTA_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_GENERIC" = "true"
+if [ "$ENABLE_GENERIC" = "true" ]
 then sed -i "s/<GENERIC_ENABLE>/true/g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_LINOTP" = "true"
+if [ "$ENABLE_LINOTP" = "true" ]
 then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
 fi
 
-if "$ENABLE_LDAP" = "true"
+if [ "$ENABLE_LDAP" = "true" ]
 then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
 fi
 

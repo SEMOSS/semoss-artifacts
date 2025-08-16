@@ -312,7 +312,7 @@ fi
 bash setServerDefaultPage.sh
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
-sh setScheduler.sh
+bash setScheduler.sh
 bash setSecrets.sh
 bash setVirusScanning.sh
 bash setDisableTerminal.sh

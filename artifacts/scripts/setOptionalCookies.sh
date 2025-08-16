@@ -11,6 +11,6 @@ fi
 
 if [[ -z $OPTIONAL_COOKIES ]]; then
 echo "No change in optional cookies"
-else sed -i "s@.constant('OPTIONAL_COOKIES'.*@.constant('OPTIONAL_COOKIES',$OPTIONAL_COOKIES)@g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/app.constants.js
+else sed -i "s@.constant('OPTIONAL_COOKIES'.*@.constant('OPTIONAL_COOKIES',$OPTIONAL_COOKIES)@g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/packages/legacy/app.constants.js
 fi
 

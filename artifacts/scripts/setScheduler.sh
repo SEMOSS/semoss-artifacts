@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [[ -z "${SCHEDULER_FORCE_DISABLE}" ]]; then 
      echo "No custom scheduler force disable"
