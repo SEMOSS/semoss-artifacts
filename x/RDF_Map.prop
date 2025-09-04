@@ -6,7 +6,7 @@ STORAGE LOCAL
 AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
 
 ENGINE_WATCHER	SMSSWatcher
-ENGINE_WEB_WATCHER	SMSSWebWatcher;SMSSStorageWatcher;SMSSModelWatcher;SMSSVectorWatcher;SMSSFunctionWatcher
+ENGINE_WEB_WATCHER	SMSSWebWatcher;SMSSStorageWatcher;SMSSModelWatcher;SMSSVectorWatcher;SMSSFunctionWatcher;SMSSGuardrailWatcher
 PROJECT_WATCHER	ProjectWatcher
 
 INSIGHT_CACHE_DIR /opt/semosshome/InsightCache
@@ -32,10 +32,15 @@ SMSSVectorWatcher_DIR	/opt/semosshome/vector
 SMSSVectorWatcher_EXT	.smss
 SMSSVectorWatcher_ETYPE	VECTOR
 
-SMSSFunctionWatcher	prerna.util.SMSSNoInitEngineWatcher
-SMSSFunctionWatcher_DIR	/opt/semosshome/function
-SMSSFunctionWatcher_EXT	.smss
+SMSSFunctionWatcher prerna.util.SMSSNoInitEngineWatcher
+SMSSFunctionWatcher_DIR /opt/semosshome/function
+SMSSFunctionWatcher_EXT .smss
 SMSSFunctionWatcher_ETYPE	FUNCTION
+
+SMSSGuardrailWatcher    prerna.util.SMSSNoInitEngineWatcher
+SMSSGuardrailWatcher_DIR	/opt/semosshome/guardrail
+SMSSGuardrailWatcher_EXT	.smss
+SMSSGuardrailWatcher_ETYPE	GUARDRAIL
 
 #SMSSVenvWatcher	prerna.util.SMSSNoInitEngineWatcher
 #SMSSVenvWatcher_DIR	opt/semosshome/function/venv
