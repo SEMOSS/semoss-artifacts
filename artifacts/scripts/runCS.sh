@@ -274,6 +274,11 @@ then echo "No custom prompt connection url is defined"
 else bash customPromptEngine.sh
 fi
 
+if [[ -z "${CUSTOM_AUDITLOGS_CONNECTION_URL}" ]];           
+then echo "No custom audit log connection url is defined" 
+else bash customAuditLogsDatabase.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
