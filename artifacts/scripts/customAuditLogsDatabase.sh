@@ -21,7 +21,7 @@ then
   echo "Custom Audit Logs Database is not defined"
 else
   echo "Custom Audit Logs Database is defined"
-  sed -i "s@DATABASE.*@DATABASE\t$CUSTOM_AUDITLOGS_DATABASE@g" /opt/semosshome/db/AuditLogs.smss
+  sed -i "s@^DATABASE[[:space:]]\+.*@DATABASE\t$CUSTOM_AUDITLOGS_DATABASE@" /opt/semosshome/db/AuditLogs.smss
 fi
 
 if [[ -z "${CUSTOM_AUDITLOGS_SCHEMA}" ]];
