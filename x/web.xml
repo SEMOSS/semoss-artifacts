@@ -650,7 +650,7 @@
    </context-param>
    <context-param>
 	  <param-name>log4jConfiguration</param-name>
-	  <param-value>file:////opt/semosshome/log4j2.properties</param-value>
+	  <param-value>file:////opt/semosshome/log4j2.xml</param-value>
    </context-param>
    <context-param>
       <param-name>anonymous-users-allowed</param-name>
