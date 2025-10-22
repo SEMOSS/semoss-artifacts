@@ -440,7 +440,7 @@ fi
 
 
 if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
-then sed -i "s@ldap_principal_tempalte.*@ldap_principal_tempalte\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+then sed -i "s@ldap_principal_template.*@ldap_principal_template\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
 fi
 
 
@@ -449,7 +449,7 @@ then sed -i "s@ldap_provider_url.*@ldap_provider_url\t$LDAP_PROVIDER_URL@g" /opt
 fi
 
 if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
-then sed -i "s@ldap_principal_tempalte.*@ldap_principal_tempalte\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+then sed -i "s@ldap_principal_template.*@ldap_principal_template\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
 fi
 
 if [ -n "$LDAP_KEY_ID" ]
