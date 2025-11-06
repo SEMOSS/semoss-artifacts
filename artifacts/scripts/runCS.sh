@@ -317,6 +317,7 @@ fi
 bash setServerDefaultPage.sh
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
+bash setAuditLogsEnabled.sh
 bash setScheduler.sh
 bash setSecrets.sh
 bash setVirusScanning.sh
