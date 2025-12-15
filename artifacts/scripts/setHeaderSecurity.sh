@@ -1,10 +1,10 @@
 #!/bin/bash
 if [ -n "$HEADER_SECURITY_DISABLED" ]; then
     sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_START-->|<!--HEADER_SECURITY_FILTER_FLAG_START|g" $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
-    sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_END-->| <HEADER_SECURITY_FILTER_FLAG_END-->|g" $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
+    sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_END-->| HEADER_SECURITY_FILTER_FLAG_END-->|g" $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
 
     sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_END-->| <HEADER_SECURITY_FILTER_FLAG_END-->|g" $TOMCAT_HOME/conf/web.xml
-    sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_END-->| <HEADER_SECURITY_FILTER_FLAG_END-->|g" $TOMCAT_HOME/conf/web.xml
+    sed -i "s|<!--HEADER_SECURITY_FILTER_FLAG_END-->| HEADER_SECURITY_FILTER_FLAG_END-->|g" $TOMCAT_HOME/conf/web.xml
 fi
 
 # Check if jacking option is defined
