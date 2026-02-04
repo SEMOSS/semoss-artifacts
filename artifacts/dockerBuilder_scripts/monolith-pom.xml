@@ -6,7 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.semoss</groupId>
 	<artifactId>monolith</artifactId>
-	<version>${ci.version}</version>
+	<version>5.0.0</version>
+	<!-- <version>${ci.version}</version> -->
 	<packaging>war</packaging>
 	<name>Monolith</name>
 	<description>SEMOSS Monolith</description>
@@ -263,8 +264,11 @@
 								startUpFail/**,
 							</warSourceIncludes>
 							<packagingExcludes>
-								%regex[WEB-INF/lib/(?!semoss-${ci.version}).*.jar]
+								%regex[WEB-INF/lib/(?!semoss-5.0.0).*.jar]
 							</packagingExcludes>
+							<!-- <packagingExcludes>
+								%regex[WEB-INF/lib/(?!semoss-${ci.version}).*.jar]
+							</packagingExcludes> -->
 						</configuration>
 					</plugin>
 					<plugin>
