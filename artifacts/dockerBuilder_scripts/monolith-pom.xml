@@ -6,8 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.semoss</groupId>
 	<artifactId>monolith</artifactId>
-	<!-- <version>${ci.version}</version> -->
-	<version>5.0.0</version>
+	<version>${ci.version}</version>
 	<packaging>war</packaging>
 	<name>Monolith</name>
 	<description>SEMOSS Monolith</description>
@@ -264,11 +263,8 @@
 								startUpFail/**,
 							</warSourceIncludes>
 							<packagingExcludes>
-								%regex[WEB-INF/lib/(?!semoss-5.0.0).*.jar]
-							</packagingExcludes>
-							<!-- <packagingExcludes>
 								%regex[WEB-INF/lib/(?!semoss-${ci.version}).*.jar]
-							</packagingExcludes> -->
+							</packagingExcludes>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -400,11 +396,11 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<dependency>
+		<!-- Commenting to fix mvn license:add-third-party -->
+		<!-- <dependency>
 			<groupId>org.semoss</groupId>
 			<artifactId>semoss</artifactId>
-			<version>5.0.0</version>
-			<!-- <version>${ci.version}</version> -->
+			<version>${ci.version}</version>
 			<classifier>shaded-dependencies</classifier>
 			<exclusions>
 				<exclusion>
@@ -412,7 +408,7 @@
 					<artifactId>athena-jdbc-uber</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
 		<!-- this is the primary tomcat specific jar -->
 		<dependency>
