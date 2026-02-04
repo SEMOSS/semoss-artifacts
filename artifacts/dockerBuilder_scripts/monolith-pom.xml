@@ -6,7 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.semoss</groupId>
 	<artifactId>monolith</artifactId>
-	<version>${ci.version}</version>
+	<!-- <version>${ci.version}</version> -->
+	<version>5.0.0</version>
 	<packaging>war</packaging>
 	<name>Monolith</name>
 	<description>SEMOSS Monolith</description>
