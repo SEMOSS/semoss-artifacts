@@ -19,15 +19,6 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-if [[ -n "${SEMOSS_MAX_POST_SIZE}" ]]; then
-        if grep -q 'maxPostSize="' "$SCRIPT_TOMCAT_HOME/conf/server.xml"; then
-                sed -i "s/maxPostSize=\"[^\"]*\"/maxPostSize=\"${SEMOSS_MAX_POST_SIZE}\"/" "$SCRIPT_TOMCAT_HOME/conf/server.xml"
-        else
-                sed -i "s/port=\"8080\"/port=\"8080\" maxPostSize=\"${SEMOSS_MAX_POST_SIZE}\"/" "$SCRIPT_TOMCAT_HOME/conf/server.xml"
-        fi
-fi
-
-
 cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
 cd /opt/semoss-artifacts/artifacts/scripts
@@ -320,6 +311,11 @@ fi
 if [[ -z "${USER_EXISTS_FILTER}" ]];
 then echo "USER_EXISTS_FILTER is not enabled" 
 else sh setUserExistsFilter.sh
+fi
+
+if [[ -n "${SEMOSS_MAX_POST_SIZE}" ]]; then
+echo "Setting SEMOSS_MAX_POST_SIZE to ${SEMOSS_MAX_POST_SIZE} in server.xml"
+sh setMaxPostSize.sh "${SEMOSS_MAX_POST_SIZE}" "${SCRIPT_TOMCAT_HOME}"
 fi
 
 bash setServerDefaultPage.sh
