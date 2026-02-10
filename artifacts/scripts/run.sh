@@ -17,5 +17,9 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
+# Default to 2MB if not provided by the environment.
+: "${SEMOSS_MAX_POST_SIZE:=2097152}"
+export CATALINA_OPTS="$CATALINA_OPTS -Dsemoss.maxPostSize=${SEMOSS_MAX_POST_SIZE}"
+
 cd  $SCRIPT_TOMCAT_HOME/bin
 ./catalina.sh run
