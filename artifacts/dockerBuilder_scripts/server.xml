@@ -68,7 +68,6 @@
                compression="on"
                compressionMinSize="1024"
                connectionTimeout="20000"
-               maxPostSize="${semoss.maxPostSize}"
                noCompressionUserAgents="gozilla, traviata"
                port="8080"
                protocol="org.apache.coyote.http11.Http11NioProtocol"

@@ -19,6 +19,14 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
+if [[ -n "${SEMOSS_MAX_POST_SIZE}" ]]; then
+        if grep -q 'maxPostSize="' "$SCRIPT_TOMCAT_HOME/conf/server.xml"; then
+                sed -i "s/maxPostSize=\"[^\"]*\"/maxPostSize=\"${SEMOSS_MAX_POST_SIZE}\"/" "$SCRIPT_TOMCAT_HOME/conf/server.xml"
+        else
+                sed -i "s/port=\"8080\"/port=\"8080\" maxPostSize=\"${SEMOSS_MAX_POST_SIZE}\"/" "$SCRIPT_TOMCAT_HOME/conf/server.xml"
+        fi
+fi
+
 
 cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
