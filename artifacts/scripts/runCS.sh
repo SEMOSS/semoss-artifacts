@@ -19,7 +19,6 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-
 cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
 cd /opt/semoss-artifacts/artifacts/scripts
@@ -312,6 +311,11 @@ fi
 if [[ -z "${USER_EXISTS_FILTER}" ]];
 then echo "USER_EXISTS_FILTER is not enabled" 
 else sh setUserExistsFilter.sh
+fi
+
+if [[ -n "${SEMOSS_MAX_POST_SIZE}" ]]; then
+echo "Setting SEMOSS_MAX_POST_SIZE to ${SEMOSS_MAX_POST_SIZE} in server.xml"
+sh setMaxPostSize.sh "${SEMOSS_MAX_POST_SIZE}" "${SCRIPT_TOMCAT_HOME}"
 fi
 
 bash setServerDefaultPage.sh

@@ -19,3 +19,4 @@ artifacts/web/*
 !artifacts/scripts/*
 !w/
 !x/
+**/.DS_Store
