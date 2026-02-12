@@ -321,6 +321,7 @@ fi
 bash setServerDefaultPage.sh
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
+bash setPlaywrightExport.sh
 bash setAuditLogsEnabled.sh
 bash setScheduler.sh
 bash setSecrets.sh
