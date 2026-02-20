@@ -34,6 +34,10 @@
          <param-name>randomClass</param-name>
          <param-value>java.security.SecureRandom</param-value>
       </init-param>
+      <init-param>
+         <param-name>excluded-paths</param-name>
+         <param-value>/api/model/openai,/api/ext,/api/model/anthropic</param-value>
+      </init-param>
    </filter>
    <filter-mapping>
       <filter-name>CustomRestCsrfPreventionFilter</filter-name>
