@@ -334,6 +334,7 @@ bash setWidgetRestrictions.sh
 bash setExternalPermissionManagement.sh
 bash setChroot.sh
 bash setHeaderSecurity.sh
+bash setNodeServerEndpoint.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 
