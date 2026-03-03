@@ -135,9 +135,6 @@ if [[ -z "${LOAD_BALANCER_COOKIE_NAME}" ]];
 then echo "No custom load balancer cookie name" 
 else sh setLoadBalancerCookieName.sh
 fi
-if [ "$T_ON" = "false" ]
-then sh setTOn.sh
-fi
 if [ "$X_CACHE" = "true" ]
 then sh setXCacheOn.sh
 fi
