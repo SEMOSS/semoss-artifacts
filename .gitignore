@@ -20,3 +20,4 @@ artifacts/web/*
 !w/
 !x/
 **/.DS_Store
+.claude/
