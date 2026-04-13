@@ -249,16 +249,6 @@
       <filter-name>SchedulerFilter</filter-name>
       <url-pattern>/api/schedule/*</url-pattern>
    </filter-mapping>
-   
-   <!-- Generate API User -->
-   <filter>
-      <filter-name>APIFilter</filter-name>
-      <filter-class>prerna.web.conf.APIFilter</filter-class>
-   </filter>
-   <filter-mapping>
-      <filter-name>APIFilter</filter-name>
-      <url-pattern>/data/*</url-pattern>
-   </filter-mapping>
 
    <!--  allow anonymous users -->
    <filter>
