@@ -281,6 +281,18 @@ CHROOT_DIR /opt/chroot
 CHROOT_ENABLE true
 CHROOT_SYMLINK_PATHS /usr/lib/python
 
+#AGENT_SANDBOX#
+# Enforcement mode: DISABLED (default — no sandbox), PERMISSIVE (apply if available, warn otherwise), ENFORCE (fail if sandbox unavailable)
+AGENT_SANDBOX_ENFORCE	DISABLED
+# Comma-separated absolute paths granted read-only access inside the sandbox. Leave blank to use OS defaults (/usr/lib, /System, java.home, etc.)
+AGENT_SANDBOX_DEFAULT_READS
+# Allow the sandboxed agent to reach localhost (required for MCP server callbacks)
+AGENT_SANDBOX_LOOPBACK_NETWORK	true
+# Absolute path to the Claude Code CLI binary. Leave blank to probe common install locations.
+CLAUDE_CODE_CLI_PATH
+# Absolute path to the GitHub Copilot CLI binary. Leave blank to probe common install locations.
+GITHUB_COPILOT_CLI_PATH
+
 EXTERNAL_PERMISSION_MANAGEMENT_ENABLED  false
 EXTERNAL_PERMISSION_MANAGEMENT_URL
 EXTERNAL_PERMISSION_MANAGEMENT_AUTH_USERNAME

@@ -1,5 +1,6 @@
 /*
 !.gitignore
+!AGENTS.md
 !artifacts/
 artifacts/cluster/*
 !artifacts/cluster/pom.xml
