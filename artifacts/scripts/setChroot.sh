@@ -28,3 +28,18 @@ else
 sed -i "s@CHROOT_SYMLINK_PATHS.*@CHROOT_SYMLINK_PATHS\t$CHROOT_SYMLINK_PATHS@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z "${SANDBOX_MODE}" && -n "${CHROOT_SANDBOX_MODE}" ]];
+then SANDBOX_MODE="$CHROOT_SANDBOX_MODE"
+fi
+
+if [[ -z "${SANDBOX_MODE}" ]];
+then echo "No defined sandbox mode"
+else
+sed -i "s@SANDBOX_MODE.*@SANDBOX_MODE\t$SANDBOX_MODE@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${SANDBOX_IO_DIR}" ]];
+then echo "No defined sandbox io dir"
+else
+sed -i "s@SANDBOX_IO_DIR.*@SANDBOX_IO_DIR\t$SANDBOX_IO_DIR@g" /opt/semosshome/RDF_Map.prop
+fi

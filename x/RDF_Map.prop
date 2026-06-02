@@ -280,6 +280,10 @@ CHROOT_DEBOOTSTRAP_DIR
 CHROOT_DIR /opt/chroot
 CHROOT_ENABLE true
 CHROOT_SYMLINK_PATHS /usr/lib/python
+# Python user-process sandbox mode. FAKECHROOT preserves the existing behavior;
+# set SANDBOX_MODE to NAMESPACE to use the Linux namespace jail.
+SANDBOX_MODE FAKECHROOT
+SANDBOX_IO_DIR /tmp/semoss-sandbox
 
 #AGENT_SANDBOX#
 # Enforcement mode: DISABLED (default — no sandbox), PERMISSIVE (apply if available, warn otherwise), ENFORCE (fail if sandbox unavailable)
