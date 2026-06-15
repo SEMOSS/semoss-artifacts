@@ -186,6 +186,22 @@ if [ -n "$MS_DISPLAY_NAME" ]
 then sed -i "s@ms_display_name.*@ms_display_name\t$MS_DISPLAY_NAME@g" /opt/semosshome/social.properties
 fi
 
+if [ -n "$MS_GROUPS" ]
+then sed -i "s@ms_groups.*@ms_groups\t$MS_GROUPS@g" /opt/semosshome/social.properties
+fi
+if [ -n "$MS_GROUP_URL" ]
+then sed -i "s@ms_group_url.*@ms_group_url\t$MS_GROUP_URL@g" /opt/semosshome/social.properties
+fi
+if [ -n "$MS_GROUP_JSON_PATTERN" ]
+then sed -i "s@ms_groupJsonPattern.*@ms_groupJsonPattern\t$MS_GROUP_JSON_PATTERN@g" /opt/semosshome/social.properties
+fi
+if [ -n "$MS_GROUP_STRING_RETURN" ]
+then sed -i "s@ms_group_string_return.*@ms_group_string_return\t$MS_GROUP_STRING_RETURN@g" /opt/semosshome/social.properties
+fi
+if [ -n "$MS_GROUP_STRING_REGEX" ]
+then sed -i "s@ms_group_string_regex.*@ms_group_string_regex\t$MS_GROUP_STRING_REGEX@g" /opt/semosshome/social.properties
+fi
+
 ##### Siteminder Properties
 if [ -n "$SITEMINDER_TENANT" ]
 then sed -i "s@<SITEMINDERTENANT>@$SITEMINDER_TENANT@g" /opt/semosshome/social.properties
