@@ -572,17 +572,6 @@
       <url-pattern>/public_home/*</url-pattern>
    </filter-mapping>
 
-   <!--
-   <filter>	
-      <filter-name>FilespaceAccessFilter</filter-name>	
-      <filter-class>prerna.web.conf.FilespaceAccessFilter</filter-class>	
-   </filter>	
-   <filter-mapping>	
-      <filter-name>FilespaceAccessFilter</filter-name>	
-      <url-pattern>/public_home/*</url-pattern>	
-   </filter-mapping>	
-   -->
-
    <!-- servlets -->
    <!-- Servlet For SEMOSS UI - SEMOSS BE communication -->	
    <servlet>
@@ -600,6 +589,23 @@
    <servlet-mapping>
       <servlet-name>MainApplication</servlet-name>
       <url-pattern>/api/*</url-pattern>
+   </servlet-mapping>
+   <!--  GitHub Integration Endpoints -->
+   <servlet>
+      <servlet-name>GitHubApplication</servlet-name>
+      <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+      <init-param>
+         <param-name>javax.ws.rs.Application</param-name>
+         <param-value>prerna.semoss.web.app.GitHubApplication</param-value>
+      </init-param>
+      <init-param>
+         <param-name>resteasy.servlet.mapping.prefix</param-name>
+         <param-value>/github</param-value>
+      </init-param>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>GitHubApplication</servlet-name>
+      <url-pattern>/github/*</url-pattern>
    </servlet-mapping>
    <!-- Servlet For External Applications Registering a Trusted Token To Alias User -->	
    <servlet>	
@@ -699,6 +705,9 @@
    </listener>
    <listener>
       <listener-class>prerna.web.conf.UserDBLoader</listener-class>
+   </listener>
+   <listener>
+      <listener-class>prerna.semoss.web.github.GitHubLifecycleListener</listener-class>
    </listener>
    <session-config>
       <session-timeout>120</session-timeout>
