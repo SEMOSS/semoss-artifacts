@@ -19,7 +19,6 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-
 cd $SCRIPT_TOMCAT_HOME/bin
 ./stop.sh
 cd /opt/semoss-artifacts/artifacts/scripts
@@ -271,6 +270,11 @@ then echo "No custom prompt connection url is defined"
 else bash customPromptEngine.sh
 fi
 
+if [[ -z "${CUSTOM_AUDITLOGS_CONNECTION_URL}" ]];           
+then echo "No custom audit log connection url is defined" 
+else bash customAuditLogsDatabase.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
@@ -306,9 +310,16 @@ then echo "USER_EXISTS_FILTER is not enabled"
 else sh setUserExistsFilter.sh
 fi
 
+if [[ -n "${SEMOSS_MAX_POST_SIZE}" ]]; then
+echo "Setting SEMOSS_MAX_POST_SIZE to ${SEMOSS_MAX_POST_SIZE} in server.xml"
+sh setMaxPostSize.sh "${SEMOSS_MAX_POST_SIZE}" "${SCRIPT_TOMCAT_HOME}"
+fi
+
 bash setServerDefaultPage.sh
 sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
+bash setPlaywrightExport.sh
+bash setAuditLogsEnabled.sh
 bash setScheduler.sh
 bash setSecrets.sh
 bash setVirusScanning.sh
@@ -322,7 +333,9 @@ bash setActivityTracking.sh
 bash setWidgetRestrictions.sh
 bash setExternalPermissionManagement.sh
 bash setChroot.sh
+bash setSandbox.sh
 bash setHeaderSecurity.sh
+bash setNodeServerEndpoint.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 
