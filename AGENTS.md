@@ -108,16 +108,18 @@ The default CMD for Ubuntu/UBI images starts Tomcat directly. For deployments th
 
 Every `set*.sh` script mutates a live config file using `sed -i`. Two patterns are used:
 
-**Placeholder replacement** — `social.properties` uses `<PLACEHOLDER>` sentinels in the template:
+**Placeholder replacement** — `RDF_Map.prop` and `quartz.properties` still use `<PLACEHOLDER>` sentinels (e.g. `setAzureProps.sh`, `setQuartzProps.sh`):
 ```bash
-sed -i "s/<GOOGLECLIENTID>/$GOOGLE_CLIENT_ID/g" /opt/semosshome/social.properties
+sed -i "s@<AZUREKEY>@$AZURE_ACCT_KEY@g" /opt/semosshome/RDF_Map.prop
 ```
 
-**Line replacement** — `RDF_Map.prop` and `web.xml` use key-pattern replacement:
+**Line replacement** — `web.xml` and all of `social.properties` use key-pattern replacement. `social.properties` no longer contains any `<PLACEHOLDER>` sentinels: every value ships blank or with a real default (login toggles default to `false`) and is set by matching on the key, so an unset env var leaves a clean blank/default rather than a stray `<TOKEN>`:
 ```bash
 sed -i "s@native_login.*@native_login\t$ENABLE_NATIVE@g" /opt/semosshome/social.properties
 sed -i '/<web-app.*/,/<\/web-app>/ { ... s/false/true/ }' $TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml
 ```
+
+**OAuth provider loop** — in `setSocialProps.sh` the OAuth/SSO providers (`adfs dropbox generic github google ms okta siteminder`) all share the same uniform key set, so they are filled by a single loop rather than a copy/pasted block each. Env vars are read as `${PROVIDER}_${SUFFIX}` (e.g. `GOOGLE_CLIENT_ID`, `OKTA_JSON`, `MS_GROUP_URL`) and applied via the `set_prop` helper (which escapes `\ & |` so secrets/URLs/scopes are written verbatim). Each provider's `{provider}_login` toggle defaults to `false` and is flipped to `true` when `ENABLE_{PROVIDER}=true`. To add a provider: add its prefix to `OAUTH_PROVIDERS` and a matching key block in `x/social.properties`. To add a shared key across all providers: add one `ENV_SUFFIX:propKey` pair to `OAUTH_KEYS`. Provider-specific keys (`ms_authority/tenant`, `ms_graphapi_*`, `siteminder_tenant`) and non-OAuth logins (native, api_user, linotp, ldap, smtp) are handled outside the loop.
 
 Scripts that target `web.xml` mutate `$TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml`. Scripts that target RDF_Map mutate `/opt/semosshome/RDF_Map.prop`.
 
@@ -144,7 +146,7 @@ Core SEMOSS backend config. Key sections:
 
 ### `x/social.properties` → `/opt/semosshome/social.properties`
 
-OAuth/SSO configuration template. All values ship as `<PLACEHOLDER>` sentinels. Supports: native login, Google, GitHub, Microsoft (+ Graph API group lookup), Siteminder, ADFS, Okta, Generic OIDC, LinOTP, LDAP, CAC. Also contains SMTP configuration.
+OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — every value ships blank or with a real default (login toggles default to `false`; e.g. `google_scope`, `ms_scope User.Read`, `*_auto_add true`), and `setSocialProps.sh` fills them by key-append. Every OAuth provider exposes the same uniform key set — `client_id, secret_key, redirect_uri, auth_url, token_url, userinfo_url, scope, jsonPattern, beanProps, auto_add, access_keys_allowed, display_name, groups, group_url, groupJsonPattern, group_string_return, group_string_regex, sanitizeUserResponse, sanitizeGroupResponse`. A blank `{provider}_redirect_uri` is fine: the Monolith login endpoint defaults it to the request's own callback URL. Supports: native login, Google, GitHub, Dropbox, Microsoft (+ Graph API group lookup), Siteminder, ADFS, Okta, Generic OIDC, LinOTP, LDAP, CAC. Also contains SMTP configuration.
 
 ---
 
@@ -175,7 +177,7 @@ OAuth/SSO configuration template. All values ship as `<PLACEHOLDER>` sentinels. 
 
 ## Adding a new configuration parameter
 
-1. Add the key with a default value to `x/RDF_Map.prop` (for backend config) or as a `<PLACEHOLDER>` in `x/social.properties` (for auth/social config).
+1. Add the key with a default value to `x/RDF_Map.prop` (for backend config) or to `x/social.properties` (for auth/social config). For an OAuth-provider key that all providers share, add it to the uniform block for each provider and add one `ENV_SUFFIX:propKey` pair to `OAUTH_KEYS` in `setSocialProps.sh` — no per-provider code needed.
 2. Create a new `set<FeatureName>.sh` in `artifacts/scripts/` that uses `sed -i` to replace the value.
 3. Wire it into `runCS.sh` and `runConfiguration.sh` with the appropriate env-var guard.
 4. If the feature requires toggling XML content in `web.xml`, wrap the relevant XML block in comment sentinels (`<!--FLAG_START ... FLAG_END-->`) and use `sed` on those sentinels in the new script.

@@ -1,6 +1,15 @@
+# Rewrite a "<key>\t<value>" line, escaping sed replacement metacharacters
+# (\ & |) so secrets/URLs/scopes containing them are set verbatim.
+set_prop() {
+	key="$1"
+	value="$2"
+	esc=$(printf '%s' "$value" | sed -e 's/[\\&|]/\\&/g')
+	sed -i "s|^${key}[[:space:]].*|${key}\t${esc}|g;s|^${key}\$|${key}\t${esc}|g" /opt/semosshome/social.properties
+}
+
 ##### Redirect
 if [ -n "$REDIRECT" ]
-then sed -i 's@<REDIRECT>@'"$REDIRECT"'@g' /opt/semosshome/social.properties 
+then set_prop redirect "$REDIRECT"
 fi
 
 ##### NATIVE Properties
@@ -33,381 +42,115 @@ if [ -n "$API_USER_DISPLAY_NAME" ]
 then sed -i "s@api_user_display_name.*@api_user_display_name\t$API_USER_DISPLAY_NAME@g" /opt/semosshome/social.properties
 fi
 
-##### For Providers - Enable Login True
-if [ "$ENABLE_GOOGLE" = "true" ]
-then sed -i "s/<GOOGLE_ENABLE>/true/g" /opt/semosshome/social.properties
+##### =====================================================================
+##### OAuth / SSO providers - unified loop
+#
+# Every OAuth provider shares the same set of social.properties keys, so they
+# are all filled by one loop instead of a copy/pasted block per provider.
+#
+#   * To add a provider: add its prefix to OAUTH_PROVIDERS and add a matching
+#     key block to x/social.properties.
+#   * To add a shared key: add one "ENV_SUFFIX:propKey" pair to OAUTH_KEYS.
+#
+# Env vars are read as ${PROVIDER}_${ENV_SUFFIX} (e.g. GOOGLE_CLIENT_ID,
+# OKTA_JSON, MS_GROUP_URL). Provider-specific keys (ms_authority/tenant,
+# ms_graphapi_*, siteminder_tenant) are handled in the custom blocks below;
+# non-OAuth logins (native, api_user, linotp, ldap, smtp) are handled
+# separately above/below and are intentionally left out of the loop.
+##### =====================================================================
+
+OAUTH_PROVIDERS="adfs dropbox generic github google ms okta siteminder"
+
+# <ENV_VAR_SUFFIX>:<social.properties key suffix>
+OAUTH_KEYS="CLIENT_ID:client_id \
+SECRET_KEY:secret_key \
+REDIRECT:redirect_uri \
+AUTH_URL:auth_url \
+TOKEN_URL:token_url \
+USERINFO_URL:userinfo_url \
+SCOPE:scope \
+JSON:jsonPattern \
+BEAN:beanProps \
+AUTO_ADD:auto_add \
+ACCESS_KEY_ALLOWED:access_keys_allowed \
+DISPLAY_NAME:display_name \
+GROUPS:groups \
+GROUP_URL:group_url \
+GROUP_JSON_PATTERN:groupJsonPattern \
+GROUP_STRING_RETURN:group_string_return \
+GROUP_STRING_REGEX:group_string_regex \
+SANITIZE_USER_RESPONSE:sanitizeUserResponse \
+SANITIZE_GROUP_RESPONSE:sanitizeGroupResponse"
+
+for provider in $OAUTH_PROVIDERS
+do
+	PU=$(echo "$provider" | tr '[:lower:]' '[:upper:]')
+
+	# enable flag: {provider}_login defaults to false; flip to true when ENABLE_{PROVIDER}=true
+	eval "enable_val=\${ENABLE_${PU}}"
+	if [ "$enable_val" = "true" ]
+	then set_prop "${provider}_login" true
+	fi
+
+	# shared OAuth keys
+	for pair in $OAUTH_KEYS
+	do
+		env_suffix=${pair%%:*}
+		prop_key=${pair#*:}
+		eval "val=\${${PU}_${env_suffix}}"
+		if [ -n "$val" ]
+		then set_prop "${provider}_${prop_key}" "$val"
+		fi
+	done
+done
+
+##### MS-specific Properties (outside the OAuth loop)
+if [ -n "$MS_AUTHORITY" ]
+then set_prop ms_authority "$MS_AUTHORITY"
 fi
 
-if [ "$ENABLE_GITHUB" = "true" ]
-then sed -i "s/<GITHUB_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_TENANT" ]
+then set_prop ms_tenant "$MS_TENANT"
 fi
 
-if [ "$ENABLE_DROPBOX" = "true" ]
-then sed -i "s/<DROPBOX_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_LOGIN_EXTERNAL" ]
+then set_prop ms_login_external "$MS_LOGIN_EXTERNAL"
 fi
 
-if [ "$ENABLE_MS" = "true" ]
-then sed -i "s/<MS_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_GRAPHAPI_LOOKUP" ]
+then set_prop ms_graphapi_lookup "$MS_GRAPHAPI_LOOKUP"
 fi
 
-if [ "$ENABLE_SITEMINDER" = "true" ]
-then sed -i "s/<SITEMINDER_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_GRAPHAPI_APPLICATION_CREDENTIALS" ]
+then set_prop ms_graphapi_application_credentials "$MS_GRAPHAPI_APPLICATION_CREDENTIALS"
 fi
 
-if [ "$ENABLE_ADFS" = "true" ]
-then sed -i "s/<ADFS_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_GRAPHAPI_CLIENT_ID" ]
+then set_prop ms_graphapi_client_id "$MS_GRAPHAPI_CLIENT_ID"
 fi
 
-if [ "$ENABLE_OKTA" = "true" ]
-then sed -i "s/<OKTA_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_GRAPHAPI_SECRET_KEY" ]
+then set_prop ms_graphapi_secret_key "$MS_GRAPHAPI_SECRET_KEY"
 fi
 
-if [ "$ENABLE_GENERIC" = "true" ]
-then sed -i "s/<GENERIC_ENABLE>/true/g" /opt/semosshome/social.properties
+if [ -n "$MS_GRAPHAPI_GROUP_ID" ]
+then set_prop ms_graphapi_groupId "$MS_GRAPHAPI_GROUP_ID"
 fi
 
+if [ -n "$MS_GRAPHAPI_JSON_PATTERN" ]
+then set_prop ms_graphapi_jsonPattern "$MS_GRAPHAPI_JSON_PATTERN"
+fi
+
+##### Siteminder-specific Properties (outside the OAuth loop)
+if [ -n "$SITEMINDER_TENANT" ]
+then set_prop siteminder_tenant "$SITEMINDER_TENANT"
+fi
+
+##### LinOTP Properties
 if [ "$ENABLE_LINOTP" = "true" ]
 then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
 fi
 
-if [ "$ENABLE_LDAP" = "true" ]
-then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
-fi
-
-
-##### Google Properties
-if [ -n "$GOOGLE_CLIENT_ID" ]
-then sed -i "s/<GOOGLECLIENTID>/$GOOGLE_CLIENT_ID/g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GOOGLE_SECRET_KEY" ]
-then sed -i "s/<GOOGLESECRETKEY>/$GOOGLE_SECRET_KEY/g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GOOGLE_REDIRECT" ]
-then sed -i 's@<GOOGLEREDIRECT>@'"$GOOGLE_REDIRECT"'@g' /opt/semosshome/social.properties
-fi
-
-if [ -n "$GOOGLE_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@google_access_keys_allowed.*@google_access_keys_allowed\t$GOOGLE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GOOGLE_DISPLAY_NAME" ]
-then sed -i "s@google_display_name.*@google_display_name\t$GOOGLE_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-##### Github Properties
-if [ -n "$GITHUB_CLIENT_ID" ]
-then sed -i "s/<GITHUBCLIENTID>/$GITHUB_CLIENT_ID/g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GITHUB_SECRET_KEY" ]
-then sed -i "s/<GITHUBSECRETKEY>/$GITHUB_SECRET_KEY/g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GITHUB_REDIRECT" ]
-then sed -i 's@<GITHUBREDIRECT>@'"$GITHUB_REDIRECT"'@g' /opt/semosshome/social.properties
-fi
-
-if [ -n "$GITHUB_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@github_access_keys_allowed.*@github_access_keys_allowed\t$GITHUB_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GITHUB_DISPLAY_NAME" ]
-then sed -i "s@github_display_name.*@github_display_name\t$GITHUB_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-##### MS Properties
-if [ -n "$MS_AUTHORITY" ]
-then sed -i "s@<MSAUTHORITY>@$MS_AUTHORITY@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_TENANT" ]
-then sed -i "s@<MSTENANT>@$MS_TENANT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_CLIENT_ID" ]
-then sed -i "s@<MSCLIENTID>@$MS_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_SECRET_KEY" ]
-then sed -i "s#<MSSECRETKEY>#$MS_SECRET_KEY#g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_REDIRECT" ]
-then sed -i "s@<MSREDIRECT>@$MS_REDIRECT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_TOKEN_URL" ]
-then sed -i "s@ms_token_url@ms_token_url\t$MS_TOKEN_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_AUTH_URL" ]
-then sed -i "s@ms_auth_url@ms_auth_url\t$MS_AUTH_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@ms_access_keys_allowed.*@ms_access_keys_allowed\t$MS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_LOGIN_EXTERNAL" ]
-then sed -i "s@ms_login_external.*@ms_login_external\t$MS_LOGIN_EXTERNAL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_SCOPE" ]
-then sed -i "s@ms_scope.*@ms_scope\t$MS_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_LOOKUP" ]
-then sed -i "s@ms_graphapi_lookup.*@ms_graphapi_lookup\t$MS_GRAPHAPI_LOOKUP@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_APPLICATION_CREDENTIALS" ]
-then sed -i "s@ms_graphapi_application_credentials.*@ms_graphapi_application_credentials\t$MS_GRAPHAPI_APPLICATION_CREDENTIALS@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_CLIENT_ID" ]
-then sed -i "s@ms_graphapi_client_id.*@ms_graphapi_client_id\t$MS_GRAPHAPI_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_SECRET_KEY" ]
-then sed -i "s@ms_graphapi_secret_key.*@ms_graphapi_secret_key\t$MS_GRAPHAPI_SECRET_KEY@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_GROUP_ID" ]
-then sed -i "s@ms_graphapi_groupId.*@ms_graphapi_groupId\t$MS_GRAPHAPI_GROUP_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GRAPHAPI_JSON_PATTERN" ]
-then sed -i "s@ms_graphapi_jsonPattern.*@ms_graphapi_jsonPattern\t$MS_GRAPHAPI_JSON_PATTERN@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_DISPLAY_NAME" ]
-then sed -i "s@ms_display_name.*@ms_display_name\t$MS_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$MS_GROUPS" ]
-then sed -i "s@ms_groups.*@ms_groups\t$MS_GROUPS@g" /opt/semosshome/social.properties
-fi
-if [ -n "$MS_GROUP_URL" ]
-then sed -i "s@ms_group_url.*@ms_group_url\t$MS_GROUP_URL@g" /opt/semosshome/social.properties
-fi
-if [ -n "$MS_GROUP_JSON_PATTERN" ]
-then sed -i "s@ms_groupJsonPattern.*@ms_groupJsonPattern\t$MS_GROUP_JSON_PATTERN@g" /opt/semosshome/social.properties
-fi
-if [ -n "$MS_GROUP_STRING_RETURN" ]
-then sed -i "s@ms_group_string_return.*@ms_group_string_return\t$MS_GROUP_STRING_RETURN@g" /opt/semosshome/social.properties
-fi
-if [ -n "$MS_GROUP_STRING_REGEX" ]
-then sed -i "s@ms_group_string_regex.*@ms_group_string_regex\t$MS_GROUP_STRING_REGEX@g" /opt/semosshome/social.properties
-fi
-
-##### Siteminder Properties
-if [ -n "$SITEMINDER_TENANT" ]
-then sed -i "s@<SITEMINDERTENANT>@$SITEMINDER_TENANT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_CLIENT_ID" ]
-then sed -i "s@<SITEMINDERCLIENTID>@$SITEMINDER_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_SECRET_KEY" ]
-then sed -i "s#<SITEMINDERSECRETKEY>#$SITEMINDER_SECRET_KEY#g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_REDIRECT" ]
-then sed -i "s@<SITEMINDERREDIRECT>@$SITEMINDER_REDIRECT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_SCOPE" ]
-then sed -i "s@<SITEMINDERSCOPE>@$SITEMINDER_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_SCOPE" ]
-then sed -i "s@<SITEMINDERSCOPE>@$SITEMINDER_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_TOKEN_URL" ]
-then sed -i "s@siteminder_token_url@siteminder_token_url\t$SITEMINDER_TOKEN_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_AUTH_URL" ]
-then sed -i "s@siteminder_auth_url@siteminder_auth_url\t$SITEMINDER_AUTH_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@siteminder_access_keys_allowed@siteminder_access_keys_allowed\t$SITEMINDER_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$SITEMINDER_DISPLAY_NAME" ]
-then sed -i "s@siteminder_display_name.*@siteminder_display_name\t$SITEMINDER_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-##### ADFS Properties
-if [ -n "$ADFS_CLIENT_ID" ]
-then sed -i "s@<ADFSCLIENTID>@$ADFS_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_SECRET_KEY" ]
-then sed -i "s#<ADFSSECRETKEY>#$ADFS_SECRET_KEY#g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_REDIRECT" ]
-then sed -i "s@<ADFSREDIRECT>@$ADFS_REDIRECT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_TOKEN_URL" ]
-then sed -i "s@<ADFSTOKENURL>@$ADFS_TOKEN_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_AUTH_URL" ]
-then sed -i "s@<ADFSAUTHURL>@$ADFS_AUTH_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_SCOPE" ]
-then sed -i "s@<ADFSSCOPE>@$ADFS_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_BEAN" ]
-then sed -i "s@<ADFSBEAN>@$ADFS_BEAN@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_JSON" ]
-then sed -i "s@<ADFSJSON>@$ADFS_JSON@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@adfs_access_keys_allowed@adfs_access_keys_allowed\t$ADFS_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$ADFS_DISPLAY_NAME" ]
-then sed -i "s@adfs_display_name.*@adfs_display_name\t$ADFS_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-
-##### Okta Properties
-if [ -n "$OKTA_CLIENT_ID" ]
-then sed -i "s@okta_client_id.*@okta_client_id\t$OKTA_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_SECRET_KEY" ]
-then sed -i "s@okta_secret_key.*@okta_secret_key\t$OKTA_SECRET_KEY@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_REDIRECT" ]
-then sed -i "s@okta_redirect_uri.*@okta_redirect_uri\t$OKTA_REDIRECT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_AUTH_URL" ]
-then sed -i "s@okta_auth_url.*@okta_auth_url\t$OKTA_AUTH_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_TOKEN_URL" ]
-then sed -i "s@okta_token_url.*@okta_token_url\t$OKTA_TOKEN_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_USERINFO_URL" ]
-then sed -i "s@okta_userinfo_url.*@okta_userinfo_url\t$OKTA_USERINFO_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_SCOPE" ]
-then sed -i "s@okta_scope.*@okta_scope\t$OKTA_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@okta_access_keys_allowed.*@okta_access_keys_allowed\t$OKTA_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_DISPLAY_NAME" ]
-then sed -i "s@okta_display_name.*@okta_display_name\t$OKTA_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_JSON" ]
-then sed -i "s@okta_jsonPattern.*@okta_jsonPattern\t$OKTA_JSON@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$OKTA_BEAN" ]
-then sed -i "s@okta_beanProps.*@okta_beanProps\t$OKTA_BEAN@g" /opt/semosshome/social.properties
-fi
-
-##### Generic Properties
-if [ -n "$GENERIC_CLIENT_ID" ]
-then sed -i "s@<GENERICCLIENTID>@$GENERIC_CLIENT_ID@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_SECRET_KEY" ]
-then sed -i "s#<GENERICSECRETKEY>#$GENERIC_SECRET_KEY#g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_REDIRECT" ]
-then sed -i "s@<GENERICREDIRECT>@$GENERIC_REDIRECT@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_TOKEN_URL" ]
-then sed -i "s@<GENERICTOKENURL>@$GENERIC_TOKEN_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_AUTH_URL" ]
-then sed -i "s@<GENERICAUTHURL>@$GENERIC_AUTH_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_USERINFO_URL" ]
-then sed -i "s@<GENERICUSERINFOURL>@$GENERIC_USERINFO_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_SCOPE" ]
-then sed -i "s@<GENERICSCOPE>@$GENERIC_SCOPE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_BEAN" ]
-then sed -i "s@<GENERICBEAN>@$GENERIC_BEAN@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_JSON" ]
-then sed -i "s@<GENERICJSON>@$GENERIC_JSON@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_AUTO_ADD" ]
-then sed -i "s@generic_auto_add.*@generic_auto_add\t$GENERIC_AUTO_ADD@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@generic_access_keys_allowed.*@generic_access_keys_allowed\t$GENERIC_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_GROUPS" ]
-then sed -i "s@generic_groups.*@generic_groups\t$GENERIC_GROUPS@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_GROUP_URL" ]
-then sed -i "s@generic_group_url.*@generic_group_url\t$GENERIC_GROUP_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_GROUP_JSON_PATTERN" ]
-then sed -i "s@generic_groupJsonPattern.*@generic_groupJsonPattern\t$GENERIC_GROUP_JSON_PATTERN@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_GROUP_STRING_RETURN" ]
-then sed -i "s@generic_group_string_return.*@generic_group_string_return\t$GENERIC_GROUP_STRING_RETURN@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_GROUP_STRING_REGEX" ]
-then sed -i "s@generic_group_string_regex.*@generic_group_string_regex\t$GENERIC_GROUP_STRING_REGEX@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_SANITIZE_USER_RESPONSE" ]
-then sed -i "s@generic_sanitizeUserResponse.*@generic_sanitizeUserResponse\t$GENERIC_SANITIZE_USER_RESPONSE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_SANITIZE_GROUP_RESPONSE" ]
-then sed -i "s@generic_sanitizeGroupResponse.*@generic_sanitizeGroupResponse\t$GENERIC_SANITIZE_GROUP_RESPONSE@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$GENERIC_DISPLAY_NAME" ]
-then sed -i "s@generic_display_name.*@generic_display_name\t$GENERIC_DISPLAY_NAME@g" /opt/semosshome/social.properties
-fi
-
-##### LinOTP Properties
 if [ -n "$LINOTP_HOSTNAME" ]
 then sed -i "s@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
 fi
@@ -441,6 +184,10 @@ then sed -i "s@linotp_display_name.*@linotp_display_name\t$LINOTP_DISPLAY_NAME@g
 fi
 
 ##### LDAP Properties
+if [ "$ENABLE_LDAP" = "true" ]
+then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
+fi
+
 if [ -n "$LDAP_TYPE" ]
 then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
 fi
