@@ -326,6 +326,7 @@ bash setVirusScanning.sh
 bash setRedis.sh
 bash setRoomProperties.sh
 bash setA2AProperties.sh
+bash setAgentDefaultTools.sh
 bash setDisableTerminal.sh
 bash setCacheProperties.sh
 bash setAdminOnlyLimits.sh
