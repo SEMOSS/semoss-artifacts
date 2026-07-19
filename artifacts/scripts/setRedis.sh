@@ -45,3 +45,27 @@ then echo "No Redis pool min idle defined"
 else
 sed -i "s@REDIS_POOL_MIN_IDLE.*@REDIS_POOL_MIN_IDLE\t$REDIS_POOL_MIN_IDLE@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z "${REDIS_SENTINEL_ENABLED}" ]];
+then echo "No Redis sentinel enabled setting defined"
+else
+sed -i "s@REDIS_SENTINEL_ENABLED.*@REDIS_SENTINEL_ENABLED\t$REDIS_SENTINEL_ENABLED@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${REDIS_MASTER_NAME}" ]];
+then echo "No Redis master name defined"
+else
+sed -i "s@REDIS_MASTER_NAME.*@REDIS_MASTER_NAME\t$REDIS_MASTER_NAME@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${REDIS_SENTINEL_NODES}" ]];
+then echo "No Redis sentinel nodes defined"
+else
+sed -i "s@REDIS_SENTINEL_NODES.*@REDIS_SENTINEL_NODES\t$REDIS_SENTINEL_NODES@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${REDIS_SENTINEL_PASSWORD}" ]];
+then echo "No Redis sentinel password defined"
+else
+sed -i "s@REDIS_SENTINEL_PASSWORD.*@REDIS_SENTINEL_PASSWORD\t$REDIS_SENTINEL_PASSWORD@g" /opt/semosshome/RDF_Map.prop
+fi
