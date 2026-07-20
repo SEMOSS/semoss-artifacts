@@ -69,3 +69,21 @@ then echo "No Redis sentinel password defined"
 else
 sed -i "s@REDIS_SENTINEL_PASSWORD.*@REDIS_SENTINEL_PASSWORD\t$REDIS_SENTINEL_PASSWORD@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z "${REDIS_CLUSTER_ENABLED}" ]];
+then echo "No Redis cluster enabled setting defined"
+else
+sed -i "s@REDIS_CLUSTER_ENABLED.*@REDIS_CLUSTER_ENABLED\t$REDIS_CLUSTER_ENABLED@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${REDIS_CLUSTER_NODES}" ]];
+then echo "No Redis cluster nodes defined"
+else
+sed -i "s@REDIS_CLUSTER_NODES.*@REDIS_CLUSTER_NODES\t$REDIS_CLUSTER_NODES@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${REDIS_CLUSTER_MAX_ATTEMPTS}" ]];
+then echo "No Redis cluster max attempts defined"
+else
+sed -i "s@REDIS_CLUSTER_MAX_ATTEMPTS.*@REDIS_CLUSTER_MAX_ATTEMPTS\t$REDIS_CLUSTER_MAX_ATTEMPTS@g" /opt/semosshome/RDF_Map.prop
+fi
