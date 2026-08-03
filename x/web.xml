@@ -578,7 +578,7 @@
       <servlet-name>MainApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <init-param>
-         <param-name>javax.ws.rs.Application</param-name>
+         <param-name>jakarta.ws.rs.Application</param-name>
          <param-value>prerna.semoss.web.app.MonolithApplication</param-value>
       </init-param>
       <init-param>
@@ -595,7 +595,7 @@
       <servlet-name>GitHubApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <init-param>
-         <param-name>javax.ws.rs.Application</param-name>
+         <param-name>jakarta.ws.rs.Application</param-name>
          <param-value>prerna.semoss.web.app.GitHubApplication</param-value>
       </init-param>
       <init-param>
@@ -612,7 +612,7 @@
       <servlet-name>TrustedTokenApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <init-param>
-         <param-name>javax.ws.rs.Application</param-name>
+         <param-name>jakarta.ws.rs.Application</param-name>
          <param-value>prerna.semoss.web.app.TrustedTokenApplication</param-value>
       </init-param>
       <init-param>
@@ -629,7 +629,7 @@
       <servlet-name>HealthApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <init-param>
-         <param-name>javax.ws.rs.Application</param-name>
+         <param-name>jakarta.ws.rs.Application</param-name>
          <param-value>prerna.semoss.web.app.HealthApplication</param-value>
       </init-param>
       <init-param>
@@ -663,7 +663,7 @@
       <servlet-name>AdminApplication</servlet-name>
       <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <init-param>
-         <param-name>javax.ws.rs.Application</param-name>
+         <param-name>jakarta.ws.rs.Application</param-name>
          <param-value>prerna.semoss.web.app.AdminApplication</param-value>
       </init-param>
       <init-param>

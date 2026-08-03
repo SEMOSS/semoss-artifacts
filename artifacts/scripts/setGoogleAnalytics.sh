@@ -1,15 +1,12 @@
 if [ -z "${TOMCAT_HOME}" ]; then
-        if [ -d "/opt/apache-tomcat-8.0.41" ] 
-        then 
-                echo "Directory /opt/apache-tomcat-8.0.41 exists."
-                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-8.0.41
-                echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
-        elif [ -d "/opt/apache-tomcat-9.0.26" ] 
+        # TOMCAT_HOME is normally exported by the Dockerfile; discover it otherwise
+        SCRIPT_TOMCAT_HOME=$(ls -d /opt/apache-tomcat-*/ 2>/dev/null | sort -V | tail -n 1)
+        SCRIPT_TOMCAT_HOME="${SCRIPT_TOMCAT_HOME%/}"
+        if [ -n "$SCRIPT_TOMCAT_HOME" ]
         then
-                echo "Directory /opt/apache-tomcat-9.0.26 exists."
-                SCRIPT_TOMCAT_HOME=/opt/apache-tomcat-9.0.26
+                echo "Directory $SCRIPT_TOMCAT_HOME exists."
                 echo "TOMCAT_HOME is $SCRIPT_TOMCAT_HOME"
-        else 
+        else
                 echo "No Tomcat installation has been found"
         fi
 else
@@ -17,8 +14,9 @@ else
         SCRIPT_TOMCAT_HOME="${TOMCAT_HOME}"
 fi
 
-sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/app.constants.js
+sed -i "s#UA-52251505-1#$GOOGLE_ANALYTICS_ID#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/packages/legacy/app.constants.js
 
 if [ "$LEGACY_GOOGLE_ANALYTICS" = "true" ]
-sed -i "s#LEGACY_GOOGLE_ANALYTICS', false#LEGACY_GOOGLE_ANALYTICS', true#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/app.constants.js
+then
+sed -i "s#LEGACY_GOOGLE_ANALYTICS', false#LEGACY_GOOGLE_ANALYTICS', true#g" $SCRIPT_TOMCAT_HOME/webapps/SemossWeb/packages/legacy/app.constants.js
 fi

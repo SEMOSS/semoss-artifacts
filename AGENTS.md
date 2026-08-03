@@ -92,7 +92,7 @@ The default CMD for Ubuntu/UBI images starts Tomcat directly. For deployments th
 
 ### `runCS.sh` — primary production entrypoint
 
-1. Resolves `$TOMCAT_HOME` (falls back to `/opt/apache-tomcat-8.0.41` or `9.0.26` if env var not set).
+1. Resolves `$TOMCAT_HOME` (if the env var is not set, discovers the highest-versioned `/opt/apache-tomcat-*` directory).
 2. Stops Tomcat (`stop.sh`).
 3. Reads env vars and conditionally calls `set*.sh` / `custom*.sh` scripts to mutate config files in place.
 4. Calls a fixed set of "always run" scripts unconditionally at the end (e.g., `setModelInferenceLogsEnabled.sh`, `setScheduler.sh`, `setSecrets.sh`, `setR.sh`, `setPy.sh`, etc.).
