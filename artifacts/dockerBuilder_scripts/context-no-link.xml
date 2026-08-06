@@ -28,4 +28,24 @@
     <!--
     <Manager pathname="SESSIONS.ser" />
     -->
+    <!-- Session ID entropy. Tomcat's own default is secureRandomAlgorithm       -->
+    <!-- "SHA1PRNG" with no provider, and the defaults below reproduce that      -->
+    <!-- exactly, so leaving these unset changes nothing.                        -->
+    <!--                                                                         -->
+    <!-- Override per deployment with container environment variables:           -->
+    <!--   SESSION_SECURE_RANDOM_PROVIDER=BCFIPS                                 -->
+    <!--   SESSION_SECURE_RANDOM_ALGORITHM=DEFAULT                               -->
+    <!-- FIPS 140-3 deployments MUST set both. BCFIPS does not implement         -->
+    <!-- SHA1PRNG, so Tomcat's default silently resolves to SUN and JSESSIONID   -->
+    <!-- entropy comes from outside the validated module with nothing logged.    -->
+    <!--                                                                         -->
+    <!-- Env var substitution needs EnvironmentPropertySource, which setenv.sh   -->
+    <!-- enables via org.apache.tomcat.util.digester.PROPERTY_SOURCE. Without it -->
+    <!-- the ":-" defaults still apply, so this stays safe either way.           -->
+    <!--                                                                         -->
+    <!-- An empty provider is treated by Tomcat as "no provider specified".      -->
+    <!-- StandardManager.pathname defaults to null, so this does not switch on   -->
+    <!-- session persistence to disk.                                            -->
+    <Manager secureRandomProvider="${SESSION_SECURE_RANDOM_PROVIDER:-}"
+             secureRandomAlgorithm="${SESSION_SECURE_RANDOM_ALGORITHM:-SHA1PRNG}" />
 </Context>
