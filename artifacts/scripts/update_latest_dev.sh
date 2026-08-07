@@ -17,6 +17,33 @@ else
 fi
 
 
+# FIPS 140-3 variant selection.
+#
+# Off by default, so existing builds are unchanged. Enable with the environment
+# variable SEMOSS_FIPS=true or by passing --fips.
+#
+# The FIPS build of Monolith publishes the WEB-INF/lib payload under the
+# "libraries-fips" classifier, with BouncyCastle omitted because the container
+# supplies the validated bc-fips on the system classloader instead. The war is
+# byte-identical between variants (it carries only semoss-<ver>*), so it is not
+# republished and needs no classifier.
+#
+# Selecting the tomcat -fips base WITHOUT this would pull the standard tarball,
+# putting an unvalidated BouncyCastle in WEB-INF/lib beside the validated
+# bc-fips. That boots cleanly and is quietly non-compliant.
+for arg in "$@"; do
+	if [ "$arg" = "--fips" ]; then
+		SEMOSS_FIPS=true
+	fi
+done
+
+if [ "${SEMOSS_FIPS}" = "true" ]; then
+	echo "FIPS mode: resolving the libraries-fips classifier"
+	MONOLITH_CLASSIFIER_ARGS="-Dmonolith.lib.classifier=libraries-fips"
+else
+	MONOLITH_CLASSIFIER_ARGS=""
+fi
+
 latest_version=`curl -L -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<latest>.*</latest>" | sed -e "s#\(.*\)\(<latest>\)\(.*\)\(</latest>\)\(.*\)#\3#g"`
 last_updated=`curl -L -s "https://oss.sonatype.org/content/repositories/public/org/semoss/monolith/maven-metadata.xml" | grep "<lastUpdated>.*</lastUpdated>" | sed -e "s#\(.*\)\(<lastUpdated>\)\(.*\)\(</lastUpdated>\)\(.*\)#\3#g"`
 
@@ -64,11 +91,11 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semoss-artifacts/artifacts/web/semoss*/* $SCRIPT_TOMCAT_HOME/webapps/SemossWeb
 	rm -r /opt/semoss-artifacts/artifacts/web/semoss*
 	rm -r /opt/semoss-artifacts/artifacts/web/target
-        cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version
+        cd /opt/semoss-artifacts/artifacts/war && mvn clean install -Dci.version=$version $MONOLITH_CLASSIFIER_ARGS
         cp -r /opt/semoss-artifacts/artifacts/war/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
 	rm -r /opt/semoss-artifacts/artifacts/war/monolith*
 	rm -r /opt/semoss-artifacts/artifacts/war/target
-        cd /opt/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version
+        cd /opt/semoss-artifacts/artifacts/lib && mvn clean install -Dci.version=$version $MONOLITH_CLASSIFIER_ARGS
         cp -r /opt/semoss-artifacts/artifacts/lib/monolith*/* $SCRIPT_TOMCAT_HOME/webapps/Monolith
 	rm -r /opt/semoss-artifacts/artifacts/lib/monolith*
 	rm -r /opt/semoss-artifacts/artifacts/lib/target
@@ -76,9 +103,6 @@ if ! [[ -z "${SEMOSS_VERSION}" ]] || [[ (( $last_updated > $updated )) ]]; then
         cp -r /opt/semoss-artifacts/x/social.properties /opt/semosshome
         cp -r /opt/semoss-artifacts/x/log4j2.xml /opt/semosshome 
         cp -r /opt/semoss-artifacts/x/web.xml $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF 
-
-        # RDF bugfix
-        #mv $SCRIPT_TOMCAT_HOME/webapps/Monolith/WEB-INF/lib/dsiutils-2.4.2.jar $SCRIPT_TOMCAT_HOME/lib
 
         echo "version=$latest_version" > /opt/semoss-artifacts/ver.txt
         echo "updated=$last_updated" >> /opt/semoss-artifacts/ver.txt

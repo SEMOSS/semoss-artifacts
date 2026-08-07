@@ -5,6 +5,10 @@
   <version>${ci.version}</version>
   <properties>
     <ci.version>0.0.1-SNAPSHOT</ci.version>
+    <!-- The WEB-INF/lib payload ships as a classified tar.gz. The FIPS build
+         publishes the libraries-fips classifier (same contents minus
+         BouncyCastle, which the container supplies). -->
+    <monolith.lib.classifier>libraries</monolith.lib.classifier>
   </properties>
   <build>
     <plugins>
@@ -24,7 +28,7 @@
                 <artifactItem>
                   <groupId>org.semoss</groupId>
                   <artifactId>monolith</artifactId>
-                  <classifier>libraries</classifier>
+                  <classifier>${monolith.lib.classifier}</classifier>
                   <version>${ci.version}</version>
                   <type>tar.gz</type>
                   <outputDirectory>${project.basedir}</outputDirectory>
@@ -85,7 +89,7 @@
       <artifactId>monolith</artifactId>
       <version>${ci.version}</version>
       <type>tar.gz</type>
-      <classifier>libraries</classifier>
+      <classifier>${monolith.lib.classifier}</classifier>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
