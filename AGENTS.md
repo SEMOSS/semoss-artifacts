@@ -108,10 +108,7 @@ The default CMD for Ubuntu/UBI images starts Tomcat directly. For deployments th
 
 Every `set*.sh` script mutates a live config file using `sed -i`. Two patterns are used:
 
-**Placeholder replacement** — `RDF_Map.prop` and `quartz.properties` still use `<PLACEHOLDER>` sentinels (e.g. `setAzureProps.sh`, `setQuartzProps.sh`):
-```bash
-sed -i "s@<AZUREKEY>@$AZURE_ACCT_KEY@g" /opt/semosshome/RDF_Map.prop
-```
+**Placeholder replacement** — `RDF_Map.prop` and `quartz.properties` still use `<PLACEHOLDER>` sentinels (e.g. `setQuartzProps.sh`):
 
 **Line replacement** — `web.xml` and all of `social.properties` use key-pattern replacement. `social.properties` no longer contains any `<PLACEHOLDER>` sentinels: every value ships blank or with a real default (login toggles default to `false`) and is set by matching on the key, so an unset env var leaves a clean blank/default rather than a stray `<TOKEN>`:
 ```bash
@@ -171,7 +168,6 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `SEMOSS_MAX_POST_SIZE=<bytes>` | `setMaxPostSize.sh` | `server.xml` |
 | `FE_ROUTE=<path>` | `updateFEIndexHtml.sh` | SemossWeb `index.html` |
 | `SEMOSS_VERSION=<ver>` | (read by `update_latest_dev.sh`) | pins artifact version at build |
-| `AZCONN=true` or `SEMOSS_STORAGE_PROVIDER=AZURE` | `setAzureProps.sh` | `RDF_Map.prop` |
 
 ---
 

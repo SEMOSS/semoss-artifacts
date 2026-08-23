@@ -1,9 +1,4 @@
-#This section is for properties
-
-AZ_KEY  <AZUREKEY>
-AZ_NAME <AZURENAME>
-STORAGE LOCAL
-AZ_CONN_STRING   DefaultEndpointsProtocol=https;AccountName=<AZURENAME>;AccountKey=<AZUREKEY>
+# Main properties 
 
 ENGINE_WATCHER	SMSSWatcher
 ENGINE_WEB_WATCHER	SMSSWebWatcher;SMSSStorageWatcher;SMSSModelWatcher;SMSSVectorWatcher;SMSSFunctionWatcher;SMSSGuardrailWatcher
