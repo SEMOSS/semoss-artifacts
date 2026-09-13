@@ -177,7 +177,7 @@ if [[ -z "${NETTY_PYTHON}" ]];
 then echo "No netty python defined" 
 else sh setNettyPython.sh
 fi
-if [[ -z "${ULIMIT_R_MEM_LIMIT}" ]];
+if [[ -z "${ULIMIT_PROCESS}" ]];
 then echo "No ulimit defined" 
 else sh setUlimit.sh
 fi
