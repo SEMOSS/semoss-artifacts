@@ -322,6 +322,8 @@ CHROOT_SYMLINK_PATHS /usr/lib/python
 # Python user-process sandbox mode. FAKECHROOT preserves the existing behavior;
 # set SANDBOX_MODE to NAMESPACE to use the Linux namespace jail.
 SANDBOX_MODE FAKECHROOT
+# Colon-separated executable directories exposed inside native Python and CmdExecUtil sandboxes.
+SANDBOX_PATH /usr/lib/python/semossvenv/bin:/usr/local/bin:/usr/bin:/bin
 SANDBOX_IO_DIR /tmp/semoss-sandbox
 
 #AGENT_SANDBOX#

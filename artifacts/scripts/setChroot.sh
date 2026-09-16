@@ -38,6 +38,12 @@ else
 sed -i "s@SANDBOX_MODE.*@SANDBOX_MODE\t$SANDBOX_MODE@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z "${SANDBOX_PATH}" ]];
+then echo "No defined sandbox path"
+else
+sed -i "s@SANDBOX_PATH.*@SANDBOX_PATH\t$SANDBOX_PATH@g" /opt/semosshome/RDF_Map.prop
+fi
+
 if [[ -z "${SANDBOX_IO_DIR}" ]];
 then echo "No defined sandbox io dir"
 else
