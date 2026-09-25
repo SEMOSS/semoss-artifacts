@@ -71,7 +71,8 @@
                port="8080"
                protocol="org.apache.coyote.http11.Http11NioProtocol"
                redirectPort="8443"
-               useSendfile="true"/>
+               useSendfile="true"
+               allowTrace="false"/>
 
     <!-- A "Connector" using the shared thread pool-->
     <!--
