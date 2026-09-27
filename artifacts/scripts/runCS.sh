@@ -266,6 +266,11 @@ then echo "No custom audit log connection url is defined"
 else bash customAuditLogsDatabase.sh
 fi
 
+if [[ -z "${CUSTOM_COLLABORATION_CONNECTION_URL}" ]];
+then echo "No custom collaboration connection url is defined" 
+else bash customCollaborationDatabase.sh
+fi
+
 if [[ -z "${OPTIONAL_COOKIES}" ]];
 then echo "No optional cookie changes defined" 
 else sh setOptionalCookies.sh
@@ -311,6 +316,7 @@ sh setModelInferenceLogsEnabled.sh
 sh setPromptDatabaseEnabled.sh
 bash setPlaywrightExport.sh
 bash setAuditLogsEnabled.sh
+bash setCollaborationProperties.sh
 bash setScheduler.sh
 bash setSecrets.sh
 bash setVirusScanning.sh

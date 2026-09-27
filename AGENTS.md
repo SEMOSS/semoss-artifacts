@@ -161,6 +161,8 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `CUSTOM_MODEL_INFERENCE_LOGS_CONNECTION_URL=<url>` | `customModelInferenceLogsEngine.sh` | Inference logs SMSS |
 | `CUSTOM_PROMPT_CONNECTION_URL=<url>` | `customPromptEngine.sh` | Prompt DB SMSS |
 | `CUSTOM_AUDITLOGS_CONNECTION_URL=<url>` | `customAuditLogsDatabase.sh` | Audit logs SMSS |
+| `CUSTOM_COLLABORATION_CONNECTION_URL=<url>` | `customCollaborationDatabase.sh` | Collaboration SMSS (written if missing) |
+| `COLLABORATION_DATABASE_ENABLED`, `COLLAB_CLASSIFIER_ENGINE_ID`, `COLLAB_CLASSIFIER_CUTOFFS` | `setCollaborationProperties.sh` | `RDF_Map.prop` |
 | `SESSION_TIMEOUT=<min>` | `setSessionTimeout.sh` | `web.xml` |
 | `SESSION_LIMIT=<n>` | `setSessionLimit.sh` | `web.xml` |
 | `MONOLITH_COOKIE=<name>` | `setMonolithCookie.sh` | `web.xml` |
