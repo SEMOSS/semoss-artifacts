@@ -150,16 +150,14 @@
                prefix="access_log" suffix=".txt"
                pattern="ip=%h timestamp=%{yyyy-MM-dd'T'HH:mm:ss.SSSZ}t session=%{monolith}c userid=%{log_semoss_user_id}s request=&quot;%r&quot; status=%s requestTime=%D bytesSent=%b" />
 
-        <!-- SEMOSS: enabled by setErrorReportValveEnabled.sh, which strips the
-             ERROR_REPORT_VALVE_START / ERROR_REPORT_VALVE_END markers -->
-        <!--ERROR_REPORT_VALVE_START
+          <!-- Last-resort host error handling must never expose stack traces or server details. -->
         <Valve className="org.apache.catalina.valves.ErrorReportValve"
                errorCode.404="webapps/Monolith/error/404error.html"
                errorCode.403="webapps/Monolith/error/403error.html"
+               errorCode.500="webapps/Monolith/error/error.html"
                errorCode.0="webapps/Monolith/error/error.html"
                showReport="false"
                showServerInfo="false" />
-        ERROR_REPORT_VALVE_END-->
 
         <!-- SEMOSS: serve SemossWeb at the root path.
              NOTE: setServerDefaultPage.sh rewrites the docBase attribute below to $CUSTOM_DEFAULT_PAGE - do not reword it. -->

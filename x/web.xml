@@ -743,6 +743,18 @@
    <listener>
       <listener-class>prerna.semoss.web.github.GitHubLifecycleListener</listener-class>
    </listener>
+   <error-page>
+      <error-code>404</error-code>
+      <location>/error/404error.html</location>
+   </error-page>
+   <error-page>
+      <error-code>500</error-code>
+      <location>/error/error.html</location>
+   </error-page>
+   <error-page>
+      <exception-type>java.lang.Throwable</exception-type>
+      <location>/error/error.html</location>
+   </error-page>
    <session-config>
       <session-timeout>120</session-timeout>
       <cookie-config>
