@@ -10,6 +10,12 @@ else
 sed -i "s@ROOM_MESSAGE_STORE_LOCK_WAIT_MS.*@ROOM_MESSAGE_STORE_LOCK_WAIT_MS\t$ROOM_MESSAGE_STORE_LOCK_WAIT_MS@g" /opt/semosshome/RDF_Map.prop
 fi
 
+if [[ -z "${ROOM_MESSAGE_REDIS_TTL_HOURS}" ]];
+then echo "No room message redis ttl defined"
+else
+sed -i "s@ROOM_MESSAGE_REDIS_TTL_HOURS.*@ROOM_MESSAGE_REDIS_TTL_HOURS\t$ROOM_MESSAGE_REDIS_TTL_HOURS@g" /opt/semosshome/RDF_Map.prop
+fi
+
 if [[ -z "${AGENT_RUN_QUEUE_ENABLED}" ]];
 then echo "No agent run queue enabled override defined"
 else
