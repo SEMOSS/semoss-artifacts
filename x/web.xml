@@ -252,16 +252,6 @@
       <url-pattern>/api/schedule/*</url-pattern>
    </filter-mapping>
 
-   <!--  allow anonymous users -->
-   <filter>
-      <filter-name>AnonymousUserFilter</filter-name>
-      <filter-class>prerna.web.conf.AnonymousUserFilter</filter-class>
-   </filter>
-   <filter-mapping>
-      <filter-name>AnonymousUserFilter</filter-name>
-      <url-pattern>/api/*</url-pattern>
-   </filter-mapping>
-
    <!-- SSO Filter for SAML -->
    <!--
    <filter>
@@ -482,26 +472,6 @@
    -->
    <!-- End Waffle -->
 
-   <!-- Allow Token Filter -->
-   <!--
-   <filter>
-      <filter-name>NoUserInSessionTrustedTokenFilter</filter-name>
-      <filter-class>prerna.web.conf.NoUserInSessionTrustedTokenFilter</filter-class>
-     <init-param>
-         <param-name>trustedTokenPrefix</param-name>
-         <param-value></param-value>
-     </init-param>
-     <init-param>
-         <param-name>trustedTokenDomain</param-name>
-         <param-value>*</param-value>
-     </init-param>
-   </filter>
-   <filter-mapping>
-      <filter-name>NoUserInSessionTrustedTokenFilter</filter-name>
-      <url-pattern>/api/*</url-pattern>
-   </filter-mapping>
-   -->
-
    <filter>
       <filter-name>NoUserInSessionFilter</filter-name>
       <filter-class>prerna.web.conf.NoUserInSessionFilter</filter-class>
@@ -700,14 +670,6 @@
    <context-param>
      <param-name>log4jConfiguration</param-name>
      <param-value>file:////opt/semosshome/log4j2.xml</param-value>
-   </context-param>
-   <context-param>
-      <param-name>anonymous-users-allowed</param-name>
-      <param-value>false</param-value>
-   </context-param>
-      <context-param>
-      <param-name>anonymous-users-upload-data</param-name>
-      <param-value>false</param-value>
    </context-param>
    <context-param>
       <param-name>use-logout-page</param-name>

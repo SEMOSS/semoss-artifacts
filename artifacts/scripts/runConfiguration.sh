@@ -29,12 +29,6 @@ sh setEncryptSmss.sh
 else 
 echo "No encoding for SMSS files"
 fi
-if [ "$ANONYMOUS_USERS" = "true" ]
-then sh enableAnonymousUsers.sh
-fi
-if [ "$ANONYMOUS_USER_UPLOAD" = "true" ]
-then sh enableAnonymousUserUpload.sh
-fi
 if [ "$REMOTE_SECURITY" = "true" ]
 then bash setRemoteSecurity.sh
 fi
