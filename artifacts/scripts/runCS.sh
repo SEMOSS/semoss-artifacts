@@ -328,6 +328,7 @@ bash setChroot.sh
 bash setSandbox.sh
 bash setHeaderSecurity.sh
 bash setNodeServerEndpoint.sh
+bash setSessionCookiePath.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 
