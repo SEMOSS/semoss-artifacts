@@ -4,20 +4,29 @@ RDF=/opt/semosshome/RDF_Map.prop
 # escape sed replacement specials so JSON values pass through
 esc() { printf '%s' "$1" | sed -e 's/[\\&@]/\\&/g'; }
 
-if [[ -n "${COLLABORATION_DATABASE_ENABLED}" ]];
-then
-  echo "Setting COLLABORATION_DATABASE_ENABLED"
-  sed -i "s@^COLLABORATION_DATABASE_ENABLED.*@COLLABORATION_DATABASE_ENABLED\t$(esc "$COLLABORATION_DATABASE_ENABLED")@" $RDF
-fi
+# every key needs a line in x/RDF_Map.prop for sed to replace
+KEYS=(
+  COLLABORATION_DATABASE_ENABLED
+  COLLAB_CLASSIFIER_ENGINE_ID
+  COLLAB_CLASSIFIER_CUTOFFS
+  COLLAB_CLASSIFIER_WINDOW
+  COLLAB_CLASSIFY_PARALLEL
+  COLLAB_LLM_ENGINE_ID
+  COLLAB_ROUTINE_TIMEOUT_MINUTES
+  COLLAB_MEMORY_PROMPT_CHARS
+  COLLAB_ATTACHMENT_MAX_MB
+  COLLAB_DELEGATION_MAX_FILES
+  COLLAB_DELEGATION_MAX_FILE_MB
+  COLLAB_DELEGATION_MAX_TOTAL_MB
+  COLLAB_WORK_ITEMS_PARALLEL
+  COLLAB_WORK_EXTRACT_PARALLEL
+)
 
-if [[ -n "${COLLAB_CLASSIFIER_ENGINE_ID}" ]];
-then
-  echo "Setting COLLAB_CLASSIFIER_ENGINE_ID"
-  sed -i "s@^COLLAB_CLASSIFIER_ENGINE_ID.*@COLLAB_CLASSIFIER_ENGINE_ID\t$(esc "$COLLAB_CLASSIFIER_ENGINE_ID")@" $RDF
-fi
-
-if [[ -n "${COLLAB_CLASSIFIER_CUTOFFS}" ]];
-then
-  echo "Setting COLLAB_CLASSIFIER_CUTOFFS"
-  sed -i "s@^COLLAB_CLASSIFIER_CUTOFFS.*@COLLAB_CLASSIFIER_CUTOFFS\t$(esc "$COLLAB_CLASSIFIER_CUTOFFS")@" $RDF
-fi
+for KEY in "${KEYS[@]}"; do
+  VALUE="${!KEY}"
+  if [[ -n "$VALUE" ]]; then
+    echo "Setting $KEY"
+    # whole key only, so a key never rewrites the line of a longer one
+    sed -i "s@^${KEY}[[:space:]=:].*@${KEY}\t$(esc "$VALUE")@" $RDF
+  fi
+done

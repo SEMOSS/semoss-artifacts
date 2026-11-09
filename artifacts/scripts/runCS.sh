@@ -328,6 +328,9 @@ bash setChroot.sh
 bash setSandbox.sh
 bash setHeaderSecurity.sh
 bash setNodeServerEndpoint.sh
+bash setLogProperties.sh
+bash setPublicOriginProperties.sh
+bash setWebSearchProperties.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 

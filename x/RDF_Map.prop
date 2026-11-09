@@ -142,6 +142,16 @@ DEFAULT_INSIGHT_CACHE_ENCRYPT	 false
 PLAYWRIGHT_EXPORT true
 NODE_SERVER_ENDPOINT
 
+#PUBLIC ORIGIN (scheme://host[:port]) Microsoft Graph and GitHub call back; the app url's path is kept. Blank uses the app url
+MS_PUBLIC_ORIGIN_OVERRIDE	
+GH_PUBLIC_ORIGIN_OVERRIDE	
+#Full url GitHub posts webhook events to. Blank uses the app url
+GH_WEBHOOK_URL_OVERRIDE	
+
+#LOGGING: secret salt (hex) for values hashed in logs, blank logs unsalted SHA-256; true sends Python output to the SEMOSS log
+LOG_HASH_SALT	
+PY_LOG_CAPTURE_ENABLED	false
+
 #SCHEDULER ENDPOINT - ONLY THE ROOT OF THE URL - example: http://localhost:8080/Monolith
 SCHEDULER_ENDPOINT	http://localhost:8080/Monolith
 SCHEDULER_KEYSTORE  
@@ -259,6 +269,11 @@ ADMIN_ONLY_GUARDRAIL_DELETE	false
 ADMIN_ONLY_GUARDRAIL_ADD_ACCESS	false
 ADMIN_ONLY_GUARDRAIL_SET_PUBLIC	false
 ADMIN_ONLY_GUARDRAIL_SET_DISCOVERABLE	false
+ADMIN_ONLY_VENV_ADD	false
+ADMIN_ONLY_VENV_DELETE	false
+ADMIN_ONLY_VENV_ADD_ACCESS	false
+ADMIN_ONLY_VENV_SET_PUBLIC	false
+ADMIN_ONLY_VENV_SET_DISCOVERABLE	false
 
 ADMIN_ONLY_VIEW_MENU_BAR false
 ADMIN_ONLY_NON_APPROVED_PROD_ITEM  false
@@ -282,6 +297,25 @@ COLLABORATION_DATABASE_ENABLED false
 #COLLABORATION (Brain/Work) classifier engine id and optional per-engine cutoffs JSON
 COLLAB_CLASSIFIER_ENGINE_ID	
 COLLAB_CLASSIFIER_CUTOFFS	
+#COLLABORATION (Brain/Work) text model: an engine id users can view; blank turns Brain's text features off
+COLLAB_LLM_ENGINE_ID	
+#COLLABORATION tuning; blank uses the default in brackets
+#minutes a routine's agent step may run [10]
+COLLAB_ROUTINE_TIMEOUT_MINUTES	
+#characters of recalled memory added to a prompt [4000]
+COLLAB_MEMORY_PROMPT_CHARS	
+#size limit for one email attachment Brain handles, in MB [10]
+COLLAB_ATTACHMENT_MAX_MB	
+#files sent with a delegation to a person: how many [10], MB each [25], MB in total [100]
+COLLAB_DELEGATION_MAX_FILES	
+COLLAB_DELEGATION_MAX_FILE_MB	
+COLLAB_DELEGATION_MAX_TOTAL_MB	
+#classifier context window per engine as JSON, {"<engine id>": <tokens>} [built-in]
+COLLAB_CLASSIFIER_WINDOW	
+#how many run at once: thread classifier [8, max 32], work items [3, max 16], work extraction [5, max 16]
+COLLAB_CLASSIFY_PARALLEL	
+COLLAB_WORK_ITEMS_PARALLEL	
+COLLAB_WORK_EXTRACT_PARALLEL	
 
 #REDIS
 REDIS_ENABLED false
@@ -317,6 +351,8 @@ A2A_DEFAULT_MODEL_ID
 #AGENT DEFAULT TOOLS#
 AGENT_DEFAULT_TOOLS_MCP_PROJECT_ID
 AGENT_DEFAULT_TOOLS_ENABLE_BASH true
+#web search tool: needs a SearXNG service (SEARXNG_URL)
+WEB_SEARCH_ENABLED	false
 
 
 #CHROOT#

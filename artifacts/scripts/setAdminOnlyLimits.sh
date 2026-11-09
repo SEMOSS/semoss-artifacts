@@ -48,6 +48,16 @@ VARS=(
     ADMIN_ONLY_FUNCTION_ADD_ACCESS
     ADMIN_ONLY_FUNCTION_SET_PUBLIC
     ADMIN_ONLY_FUNCTION_SET_DISCOVERABLE
+    ADMIN_ONLY_GUARDRAIL_ADD
+    ADMIN_ONLY_GUARDRAIL_DELETE
+    ADMIN_ONLY_GUARDRAIL_ADD_ACCESS
+    ADMIN_ONLY_GUARDRAIL_SET_PUBLIC
+    ADMIN_ONLY_GUARDRAIL_SET_DISCOVERABLE
+    ADMIN_ONLY_VENV_ADD
+    ADMIN_ONLY_VENV_DELETE
+    ADMIN_ONLY_VENV_ADD_ACCESS
+    ADMIN_ONLY_VENV_SET_PUBLIC
+    ADMIN_ONLY_VENV_SET_DISCOVERABLE
     ADMIN_ONLY_VIEW_MENU_BAR
     ADMIN_ONLY_NON_APPROVED_PROD_ITEM
 )
@@ -62,6 +72,7 @@ for VAR in "${VARS[@]}"; do
   if [[ -z $VALUE ]]; then
     echo "No ${VAR,,//_/ } flag"   # Lowercase varname, replace _ with space for readable messages
   else
-    sed -i "s@^${VAR}.*@${VAR}\t${VALUE}@g" "$PROP_FILE"
+    # whole key only: ^${VAR}.* would also rewrite the line of a longer key (*_ADD matching *_ADD_ACCESS)
+    sed -i "s@^${VAR}[[:space:]=:].*@${VAR}\t${VALUE}@g" "$PROP_FILE"
   fi
 done
