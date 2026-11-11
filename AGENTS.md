@@ -127,9 +127,9 @@ Scripts that target `web.xml` mutate `$TOMCAT_HOME/webapps/Monolith/WEB-INF/web.
 ### `x/web.xml` → `$TOMCAT_HOME/webapps/Monolith/WEB-INF/web.xml`
 
 The canonical Servlet deployment descriptor for Monolith. Contains:
-- Filter chain: `SetCharacterEncoding` → `HeaderSecurityFilter` → `StartUpSuccessFilter` → `NoUserExistsFilter` → `SessionCounterExceededFilter` → `MemoryCheckFilter` → `ShareSessionFilter` → `TrustedTokenFilter` → `UserAccessKeyFilter` → `CodeAssistantFilter` → `OpenAIFilter` → `SchedulerFilter` → `NoUserInSessionFilter` → `AccountLockedFilter` → `AdminStartupFilter` → `PublicHomeCheckFilter`
+- Filter chain: `SetCharacterEncoding` → `HeaderSecurityFilter` → `StartUpSuccessFilter` → `NoUserExistsFilter` → `SessionCounterExceededFilter` → `MemoryCheckFilter` → `ShareSessionFilter` → `ApiUserLoginFilter` → `UserAccessKeyFilter` → `CodeAssistantFilter` → `OpenAIFilter` → `SchedulerFilter` → `NoUserInSessionFilter` → `AccountLockedFilter` → `AdminStartupFilter` → `PublicHomeCheckFilter`
 - **Commented-out** optional filters (toggled by `set*.sh` at runtime): CSRF (`<!--CSRF_FILTER_FLAG_START...END-->`), CORS (`<!--CORS_FILTER_FLAG...END-->`), SAML/SSO/CAC/PIV/Waffle — the comment delimiters are the sed targets
-- Servlet mappings: `MainApplication` (`/api/*`), `TrustedTokenApplication` (`/token/*`), `AdminApplication` (`/adminconfig/*`), `SamlVerifierServlet`
+- Servlet mappings: `MainApplication` (`/api/*`), `AdminApplication` (`/adminconfig/*`), `SamlVerifierServlet`
 - Context params: RDF-MAP path (`/opt/semosshome/RDF_Map.prop`), log4j config, file upload paths
 
 ### `x/RDF_Map.prop` → `/opt/semosshome/RDF_Map.prop`

@@ -34,10 +34,6 @@ if [ "$ENABLE_API_USER" = "true" ]
 then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
 fi
 
-if [ -n "$API_USER_DYNAMIC" ]
-then sed -i "s@api_user_require_dynamic_token.*@api_user_require_dynamic_token\t$API_USER_DYNAMIC@g" /opt/semosshome/social.properties
-fi
-
 if [ -n "$API_USER_DISPLAY_NAME" ]
 then sed -i "s@api_user_display_name.*@api_user_display_name\t$API_USER_DISPLAY_NAME@g" /opt/semosshome/social.properties
 fi
