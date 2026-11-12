@@ -23,12 +23,6 @@ cd /opt/semoss-artifacts/artifacts/scripts
 # if [ "$SECURITY_ON" = "true" ]
 # then sh setSecurityOn.sh
 # fi
-if [ "$ENCRYPT_SMSS" = "true" ]; then
-echo "Encoding SMSS files"
-sh setEncryptSmss.sh
-else 
-echo "No encoding for SMSS files"
-fi
 if [ "$REMOTE_SECURITY" = "true" ]
 then bash setRemoteSecurity.sh
 fi
@@ -162,10 +156,6 @@ fi
 if [[ -z "${NETTY_R}" ]];
 then echo "No netty r defined" 
 else sh setNettyR.sh
-fi
-if [[ -z "${NETTY_PYTHON}" ]];
-then echo "No netty python defined" 
-else sh setNettyPython.sh
 fi
 if [[ -z "${ULIMIT_PROCESS}" ]];
 then echo "No ulimit defined" 

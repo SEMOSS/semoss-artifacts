@@ -137,7 +137,7 @@ The canonical Servlet deployment descriptor for Monolith. Contains:
 Core SEMOSS backend config. Key sections:
 - **Engine watchers**: `SMSSWebWatcher` (databases), `SMSSStorageWatcher`, `SMSSModelWatcher`, `SMSSVectorWatcher`, `SMSSFunctionWatcher`, `SMSSGuardrailWatcher`, `ProjectWatcher` — each defines a directory under `/opt/semosshome/` to scan for `.smss` files
 - **Paths**: `BaseFolder`, `SOCIAL`, `ADDITIONAL_REACTORS`, `EMAIL_TEMPLATES`, `INSIGHT_CACHE_DIR`
-- **Python/R runtime**: `NETTY_PYTHON`, `USE_PYTHON`, `PYTHONHOME`, `NATIVE_PY_SERVER`, `PY_SERVER_USER`; `USE_R`, `R_MEM_LIMIT`, `IS_USER_RSERVE`, `RSERVE_CONNECTION_POOL_SIZE`
+- **Python/R runtime**: `USE_PYTHON`, `PYTHONHOME`, `PY_SERVER_USER`; `USE_R`, `R_MEM_LIMIT`, `IS_USER_RSERVE`, `RSERVE_CONNECTION_POOL_SIZE`
 - **Feature flags**: `MODEL_INFERENCE_LOGS_ENABLED`, `CHROOT_ENABLE`, `USER_TRACKING_ENABLED`, `PLAYWRIGHT_EXPORT`, `SECRET_STORE_ENABLED`, `VIRUS_SCANNING_ENABLED`
 - **Defaults**: `DEFAULT_FRAME_TYPE`, `DEFAULT_GRID_TYPE`, `DEFAULT_INSIGHTS_RDBMS`, `SAMESITE_COOKIE`, `SCHEDULER_ENDPOINT`
 

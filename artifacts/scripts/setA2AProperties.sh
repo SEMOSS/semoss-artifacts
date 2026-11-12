@@ -10,12 +10,6 @@ else
 sed -i "s@A2A_AGENT_CARD_BASE_URL.*@A2A_AGENT_CARD_BASE_URL\t$A2A_AGENT_CARD_BASE_URL@g" /opt/semosshome/RDF_Map.prop
 fi
 
-if [[ -z "${A2A_STREAM_REPLAY_LIMIT}" ]];
-then echo "No A2A stream replay limit defined"
-else
-sed -i "s@A2A_STREAM_REPLAY_LIMIT.*@A2A_STREAM_REPLAY_LIMIT\t$A2A_STREAM_REPLAY_LIMIT@g" /opt/semosshome/RDF_Map.prop
-fi
-
 if [[ -z "${A2A_DEFAULT_MODEL_ID}" ]];
 then echo "No A2A default model id defined"
 else
