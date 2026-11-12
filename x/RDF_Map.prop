@@ -73,12 +73,6 @@ WHITE_LIST_DOMAINS
 X_CACHE false
 SHOW_WELCOME_BANNER true
 
-#PUBLIC ORIGIN (scheme://host[:port]) Microsoft Graph and GitHub call back; the app url's path is kept. Blank uses the app url
-MS_PUBLIC_ORIGIN_OVERRIDE	
-GH_PUBLIC_ORIGIN_OVERRIDE	
-#Full url GitHub posts webhook events to. Blank uses the app url
-GH_WEBHOOK_URL_OVERRIDE	
-
 # ------------------------------------------------------------
 # Python
 # ------------------------------------------------------------
