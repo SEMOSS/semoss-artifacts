@@ -14,28 +14,28 @@ fi
 
 ##### NATIVE Properties
 if [ -n "$ENABLE_NATIVE" ]
-then sed -i "s@native_login.*@native_login\t$ENABLE_NATIVE@g" /opt/semosshome/social.properties
+then set_prop native_login "$ENABLE_NATIVE"
 fi
 
 if [ -n "$ENABLE_NATIVE_REGISTRATION" ]
-then sed -i "s@native_registration.*@native_registration\t$ENABLE_NATIVE_REGISTRATION@g" /opt/semosshome/social.properties
+then set_prop native_registration "$ENABLE_NATIVE_REGISTRATION"
 fi
 
 if [ -n "$ENABLE_NATIVE_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@native_access_keys_allowed.*@native_access_keys_allowed\t$ENABLE_NATIVE_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+then set_prop native_access_keys_allowed "$ENABLE_NATIVE_ACCESS_KEY_ALLOWED"
 fi
 
 if [ -n "$NATIVE_DISPLAY_NAME" ]
-then sed -i "s@native_display_name.*@native_display_name\t$NATIVE_DISPLAY_NAME@g" /opt/semosshome/social.properties
+then set_prop native_display_name "$NATIVE_DISPLAY_NAME"
 fi
 
 ##### API USER Properties
 if [ "$ENABLE_API_USER" = "true" ]
-then sed -i "s@api_user_login.*@api_user_login\t$ENABLE_API_USER@g" /opt/semosshome/social.properties
+then set_prop api_user_login "$ENABLE_API_USER"
 fi
 
 if [ -n "$API_USER_DISPLAY_NAME" ]
-then sed -i "s@api_user_display_name.*@api_user_display_name\t$API_USER_DISPLAY_NAME@g" /opt/semosshome/social.properties
+then set_prop api_user_display_name "$API_USER_DISPLAY_NAME"
 fi
 
 ##### =====================================================================
@@ -49,13 +49,14 @@ fi
 #   * To add a shared key: add one "ENV_SUFFIX:propKey" pair to OAUTH_KEYS.
 #
 # Env vars are read as ${PROVIDER}_${ENV_SUFFIX} (e.g. GOOGLE_CLIENT_ID,
-# OKTA_JSON, MS_GROUP_URL). Provider-specific keys (ms_authority/tenant,
-# ms_graphapi_*, siteminder_tenant) are handled in the custom blocks below;
-# non-OAuth logins (native, api_user, linotp, ldap, smtp) are handled
+# OKTA_JSON, MS_GROUP_URL). Provider-specific keys (dropbox_role,
+# ms_authority/tenant, ms_graphapi_*, servicenow_instance_url,
+# siteminder_tenant) are handled in the custom blocks below; non-OAuth logins
+# (native, api_user, cac, saml, windows_user, linotp, ldap, smtp) are handled
 # separately above/below and are intentionally left out of the loop.
 ##### =====================================================================
 
-OAUTH_PROVIDERS="adfs dropbox generic github google ms okta siteminder"
+OAUTH_PROVIDERS="adfs dropbox forgerock generic github gitlab google jira keycloak linkedin ms okta salesforce servicenow siteminder surveymonkey twitter"
 
 # <ENV_VAR_SUFFIX>:<social.properties key suffix>
 OAUTH_KEYS="CLIENT_ID:client_id \
@@ -100,6 +101,11 @@ do
 	done
 done
 
+##### Dropbox-specific Properties (outside the OAuth loop)
+if [ -n "$DROPBOX_ROLE" ]
+then set_prop dropbox_role "$DROPBOX_ROLE"
+fi
+
 ##### MS-specific Properties (outside the OAuth loop)
 if [ -n "$MS_AUTHORITY" ]
 then set_prop ms_authority "$MS_AUTHORITY"
@@ -129,6 +135,10 @@ if [ -n "$MS_GRAPHAPI_SECRET_KEY" ]
 then set_prop ms_graphapi_secret_key "$MS_GRAPHAPI_SECRET_KEY"
 fi
 
+if [ -n "$MS_GRAPHAPI_SCOPE" ]
+then set_prop ms_graphapi_scope "$MS_GRAPHAPI_SCOPE"
+fi
+
 if [ -n "$MS_GRAPHAPI_GROUP_ID" ]
 then set_prop ms_graphapi_groupId "$MS_GRAPHAPI_GROUP_ID"
 fi
@@ -137,177 +147,203 @@ if [ -n "$MS_GRAPHAPI_JSON_PATTERN" ]
 then set_prop ms_graphapi_jsonPattern "$MS_GRAPHAPI_JSON_PATTERN"
 fi
 
+##### ServiceNow-specific Properties (outside the OAuth loop)
+if [ -n "$SERVICENOW_INSTANCE_URL" ]
+then set_prop servicenow_instance_url "$SERVICENOW_INSTANCE_URL"
+fi
+
 ##### Siteminder-specific Properties (outside the OAuth loop)
 if [ -n "$SITEMINDER_TENANT" ]
 then set_prop siteminder_tenant "$SITEMINDER_TENANT"
 fi
 
+##### CAC, SAML and Windows user Properties
+# login toggle via ENABLE_{CAC|SAML|WINDOWS_USER}=true, button name via {..}_DISPLAY_NAME
+for provider in cac saml windows_user
+do
+	PU=$(echo "$provider" | tr '[:lower:]' '[:upper:]')
+	eval "enable_val=\${ENABLE_${PU}}"
+	if [ "$enable_val" = "true" ]
+	then set_prop "${provider}_login" true
+	fi
+	eval "val=\${${PU}_DISPLAY_NAME}"
+	if [ -n "$val" ]
+	then set_prop "${provider}_display_name" "$val"
+	fi
+done
+
+# SAML_{FIELD} lists the assertion attribute names that build the field, joined with +
+for field in id name email username groups provider
+do
+	FU=$(echo "$field" | tr '[:lower:]' '[:upper:]')
+	eval "val=\${SAML_${FU}}"
+	if [ -n "$val" ]
+	then set_prop "saml_${field}" "$val"
+	fi
+done
+
 ##### LinOTP Properties
 if [ "$ENABLE_LINOTP" = "true" ]
-then sed -i "s@linotp_login.*@linotp_login\t$ENABLE_LINOTP@g" /opt/semosshome/social.properties
+then set_prop linotp_login "$ENABLE_LINOTP"
 fi
 
 if [ -n "$LINOTP_HOSTNAME" ]
-then sed -i "s@linotp_hostname.*@linotp_hostname\t$LINOTP_HOSTNAME@g" /opt/semosshome/social.properties
+then set_prop linotp_hostname "$LINOTP_HOSTNAME"
 fi
 
 if [ -n "$LINOTP_REALM" ]
-then sed -i "s@linotp_realm.*@linotp_realm\t$LINOTP_REALM@g" /opt/semosshome/social.properties
+then set_prop linotp_realm "$LINOTP_REALM"
 fi
 
 if [ -n "$LINOTP_AUTO_ADD" ]
-then sed -i "s@linotp_auto_add.*@linotp_auto_add\t$LINOTP_AUTO_ADD@g" /opt/semosshome/social.properties
+then set_prop linotp_auto_add "$LINOTP_AUTO_ADD"
 fi
 
 if [ -n "$LINOTP_CHECK_AD" ]
-then sed -i "s@linotp_check_ad.*@linotp_check_ad\t$LINOTP_CHECK_AD@g" /opt/semosshome/social.properties
+then set_prop linotp_check_ad "$LINOTP_CHECK_AD"
 fi
 
 if [ -n "$LINOTP_ADMIN_USER" ]
-then sed -i "s@linotp_adminuser.*@linotp_adminuser\t$LINOTP_ADMIN_USER@g" /opt/semosshome/social.properties
+then set_prop linotp_adminuser "$LINOTP_ADMIN_USER"
 fi
 
 if [ -n "$LINOTP_ADMIN_PASSWORD" ]
-then sed -i "s@linotp_adminpassword.*@linotp_adminpassword\t$LINOTP_ADMIN_PASSWORD@g" /opt/semosshome/social.properties
+then set_prop linotp_adminpassword "$LINOTP_ADMIN_PASSWORD"
 fi
 
 if [ -n "$LINOTP_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@linotp_access_keys_allowed@linotp_access_keys_allowed\t$LINOTP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+then set_prop linotp_access_keys_allowed "$LINOTP_ACCESS_KEY_ALLOWED"
 fi
 
 if [ -n "$LINOTP_DISPLAY_NAME" ]
-then sed -i "s@linotp_display_name.*@linotp_display_name\t$LINOTP_DISPLAY_NAME@g" /opt/semosshome/social.properties
+then set_prop linotp_display_name "$LINOTP_DISPLAY_NAME"
 fi
 
 ##### LDAP Properties
 if [ "$ENABLE_LDAP" = "true" ]
-then sed -i "s@ldap_login.*@ldap_login\t$ENABLE_LDAP@g" /opt/semosshome/social.properties
+then set_prop ldap_login "$ENABLE_LDAP"
 fi
 
 if [ -n "$LDAP_TYPE" ]
-then sed -i "s@ldap_type.*@ldap_type\t$LDAP_TYPE@g" /opt/semosshome/social.properties
+then set_prop ldap_type "$LDAP_TYPE"
 fi
 
 
 if [ -n "$LDAP_MASTER_PRINCIPAL" ]
-then sed -i "s@ldap_master_principal.*@ldap_master_principal\t$LDAP_MASTER_PRINCIPAL@g" /opt/semosshome/social.properties
+then set_prop ldap_master_principal "$LDAP_MASTER_PRINCIPAL"
 fi
 
 if [ -n "$LDAP_MASTER_CREDENTIALS" ]
-then sed -i "s@ldap_master_credentials.*@ldap_master_credentials\t$LDAP_MASTER_CREDENTIALS@g" /opt/semosshome/social.properties
+then set_prop ldap_master_credentials "$LDAP_MASTER_CREDENTIALS"
 fi
 
 
 if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
-then sed -i "s@ldap_principal_template.*@ldap_principal_template\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+then set_prop ldap_principal_template "$LDAP_PRINCIPAL_TEMPLATE"
 fi
 
 
 if [ -n "$LDAP_PROVIDER_URL" ]
-then sed -i "s@ldap_provider_url.*@ldap_provider_url\t$LDAP_PROVIDER_URL@g" /opt/semosshome/social.properties
-fi
-
-if [ -n "$LDAP_PRINCIPAL_TEMPLATE" ]
-then sed -i "s@ldap_principal_template.*@ldap_principal_template\t$LDAP_PRINCIPAL_TEMPLATE@g" /opt/semosshome/social.properties
+then set_prop ldap_provider_url "$LDAP_PROVIDER_URL"
 fi
 
 if [ -n "$LDAP_KEY_ID" ]
-then sed -i "s@ldap_key_id.*@ldap_key_id\t$LDAP_KEY_ID@g" /opt/semosshome/social.properties
+then set_prop ldap_key_id "$LDAP_KEY_ID"
 fi
 
 if [ -n "$LDAP_KEY_NAME" ]
-then sed -i "s@ldap_key_name.*@ldap_key_name\t$LDAP_KEY_NAME@g" /opt/semosshome/social.properties
+then set_prop ldap_key_name "$LDAP_KEY_NAME"
 fi
 
 if [ -n "$LDAP_KEY_EMAIL" ]
-then sed -i "s@ldap_key_email.*@ldap_key_email\t$LDAP_KEY_EMAIL@g" /opt/semosshome/social.properties
+then set_prop ldap_key_email "$LDAP_KEY_EMAIL"
 fi
 
 if [ -n "$LDAP_KEY_USERNAME" ]
-then sed -i "s@ldap_key_username.*@ldap_key_username\t$LDAP_KEY_USERNAME@g" /opt/semosshome/social.properties
+then set_prop ldap_key_username "$LDAP_KEY_USERNAME"
 fi
 
 if [ -n "$LDAP_KEY_LAST_PWD_CHANGE" ]
-then sed -i "s@ldap_key_last_pwd_change.*@ldap_key_last_pwd_change\t$LDAP_KEY_LAST_PWD_CHANGE@g" /opt/semosshome/social.properties
+then set_prop ldap_key_last_pwd_change "$LDAP_KEY_LAST_PWD_CHANGE"
 fi
 
 if [ -n "$LDAP_REQUIRE_PWD_CHANGE_DAYS" ]
-then sed -i "s@ldap_require_pwd_change_days.*@ldap_require_pwd_change_days\t$LDAP_REQUIRE_PWD_CHANGE_DAYS@g" /opt/semosshome/social.properties
+then set_prop ldap_require_pwd_change_days "$LDAP_REQUIRE_PWD_CHANGE_DAYS"
 fi
 
 if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_CHANGE" ]
-then sed -i "s@ldap_use_custom_context_for_pwd_change.*@ldap_use_custom_context_for_pwd_change\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_CHANGE@g" /opt/semosshome/social.properties
+then set_prop ldap_use_custom_context_for_pwd_change "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_CHANGE"
 fi
 
 if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_USERNAME" ]
-then sed -i "s@ldap_use_custom_context_for_pwd_username.*@ldap_use_custom_context_for_pwd_username\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_USERNAME@g" /opt/semosshome/social.properties
+then set_prop ldap_use_custom_context_for_pwd_username "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_USERNAME"
 fi
 
 if [ -n "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_PASSWORD" ]
-then sed -i "s@ldap_use_custom_context_for_pwd_password.*@ldap_use_custom_context_for_pwd_password\t$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_PASSWORD@g" /opt/semosshome/social.properties
+then set_prop ldap_use_custom_context_for_pwd_password "$LDAP_USE_CUSTOM_CONTEXT_FOR_PWD_PASSWORD"
 fi
 
 if [ -n "$LDAP_SEARCH_CONTEXT_NAME" ]
-then sed -i "s@ldap_search_context_name.*@ldap_search_context_name\t$LDAP_SEARCH_CONTEXT_NAME@g" /opt/semosshome/social.properties
+then set_prop ldap_search_context_name "$LDAP_SEARCH_CONTEXT_NAME"
 fi
 
 if [ -n "$LDAP_SEARCH_CONTEXT_SCOPE" ]
-then sed -i "s@ldap_search_context_scope.*@ldap_search_context_scope\t$LDAP_SEARCH_CONTEXT_SCOPE@g" /opt/semosshome/social.properties
+then set_prop ldap_search_context_scope "$LDAP_SEARCH_CONTEXT_SCOPE"
 fi
 
 if [ -n "$LDAP_SEARCH_MATCHING_ATTRIBUTES" ]
-then sed -i "s@ldap_search_matching_attributes.*@ldap_search_matching_attributes\t$LDAP_SEARCH_MATCHING_ATTRIBUTES@g" /opt/semosshome/social.properties
+then set_prop ldap_search_matching_attributes "$LDAP_SEARCH_MATCHING_ATTRIBUTES"
 fi
 
 if [ -n "$LDAP_AUTO_ADD" ]
-then sed -i "s@ldap_auto_add.*@ldap_auto_add\t$LDAP_AUTO_ADD@g" /opt/semosshome/social.properties
+then set_prop ldap_auto_add "$LDAP_AUTO_ADD"
 fi
 
 if [ -n "$LDAP_ACCESS_KEY_ALLOWED" ]
-then sed -i "s@ldap_access_keys_allowed@ldap_access_keys_allowed\t$LDAP_ACCESS_KEY_ALLOWED@g" /opt/semosshome/social.properties
+then set_prop ldap_access_keys_allowed "$LDAP_ACCESS_KEY_ALLOWED"
 fi
 
 if [ -n "$LDAP_DISPLAY_NAME" ]
-then sed -i "s@ldap_display_name.*@ldap_display_name\t$LDAP_DISPLAY_NAME@g" /opt/semosshome/social.properties
+then set_prop ldap_display_name "$LDAP_DISPLAY_NAME"
 fi
 
 ##### SMTP
 if [ -n "$SMTP_ENABLED" ]
-then sed -i "s@smtp_enabled.*@smtp_enabled\t$SMTP_ENABLED@g" /opt/semosshome/social.properties
+then set_prop smtp_enabled "$SMTP_ENABLED"
 fi
 
 if [ -n "$SMTP_MAIL_HOST" ]
-then sed -i "s@smtp_mail.smtp.host.*@smtp_mail.smtp.host\t$SMTP_MAIL_HOST@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.host "$SMTP_MAIL_HOST"
 fi
 
 if [ -n "$SMTP_MAIL_PORT" ]
-then sed -i "s@smtp_mail.smtp.port.*@smtp_mail.smtp.port\t$SMTP_MAIL_PORT@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.port "$SMTP_MAIL_PORT"
 fi
 
 if [ -n "$SMTP_MAIL_SOCKETFACTORY_PORT" ]
-then sed -i "s@smtp_mail.smtp.socketFactory.port.*@smtp_mail.smtp.socketFactory.port\t$SMTP_MAIL_SOCKETFACTORY_PORT@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.socketFactory.port "$SMTP_MAIL_SOCKETFACTORY_PORT"
 fi
 
 if [ -n "$SMTP_MAIL_SOCKETFACTORY_CLASS" ]
-then sed -i "s@smtp_mail.smtp.socketFactory.class.*@smtp_mail.smtp.socketFactory.class\t$SMTP_MAIL_SOCKETFACTORY_CLASS@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.socketFactory.class "$SMTP_MAIL_SOCKETFACTORY_CLASS"
 fi
 
 if [ -n "$SMTP_MAIL_AUTH" ]
-then sed -i "s@smtp_mail.smtp.auth.*@smtp_mail.smtp.auth\t$SMTP_MAIL_AUTH@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.auth "$SMTP_MAIL_AUTH"
 fi
 
 if [ -n "$SMTP_MAIL_STARTTLS_ENABLE" ]
-then sed -i "s@smtp_mail.smtp.starttls.enable.*@smtp_mail.smtp.starttls.enable\t$SMTP_MAIL_STARTTLS_ENABLE@g" /opt/semosshome/social.properties
+then set_prop smtp_mail.smtp.starttls.enable "$SMTP_MAIL_STARTTLS_ENABLE"
 fi
 
 if [ -n "$SMTP_USERNAME" ]
-then sed -i "s@smtp_username.*@smtp_username\t$SMTP_USERNAME@g" /opt/semosshome/social.properties
+then set_prop smtp_username "$SMTP_USERNAME"
 fi
 
 if [ -n "$SMTP_PASSWORD" ]
-then sed -i "s@smtp_password.*@smtp_password\t$SMTP_PASSWORD@g" /opt/semosshome/social.properties
+then set_prop smtp_password "$SMTP_PASSWORD"
 fi
 
 if [ -n "$SMTP_SENDER" ]
-then sed -i "s|smtp_sender.*|smtp_sender\t$SMTP_SENDER|g" /opt/semosshome/social.properties
+then set_prop smtp_sender "$SMTP_SENDER"
 fi
