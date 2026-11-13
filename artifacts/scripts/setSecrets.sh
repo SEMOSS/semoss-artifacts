@@ -95,3 +95,40 @@ then echo "No defined azure tenant id"
 else
 sed -i "s@AZURE_TENANT_ID.*@AZURE_TENANT_ID\t$AZURE_TENANT_ID@g" /opt/semosshome/RDF_Map.prop
 fi
+
+
+if [[ -z "${AWS_SECRETS_MANAGER_REGION}" ]];
+then echo "No defined aws secrets manager region"
+else
+sed -i "s@AWS_SECRETS_MANAGER_REGION.*@AWS_SECRETS_MANAGER_REGION\t$AWS_SECRETS_MANAGER_REGION@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${AWS_SECRETS_MANAGER_ENDPOINT}" ]];
+then echo "No defined aws secrets manager endpoint"
+else
+sed -i "s@AWS_SECRETS_MANAGER_ENDPOINT.*@AWS_SECRETS_MANAGER_ENDPOINT\t$AWS_SECRETS_MANAGER_ENDPOINT@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${AWS_SECRETS_MANAGER_ACCESS_KEY}" ]];
+then echo "No defined aws secrets manager access key"
+else
+sed -i "s@AWS_SECRETS_MANAGER_ACCESS_KEY.*@AWS_SECRETS_MANAGER_ACCESS_KEY\t$AWS_SECRETS_MANAGER_ACCESS_KEY@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${AWS_SECRETS_MANAGER_SECRET_KEY}" ]];
+then echo "No defined aws secrets manager secret key"
+else
+sed -i "s@AWS_SECRETS_MANAGER_SECRET_KEY.*@AWS_SECRETS_MANAGER_SECRET_KEY\t$AWS_SECRETS_MANAGER_SECRET_KEY@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${AWS_SECRETS_MANAGER_SESSION_TOKEN}" ]];
+then echo "No defined aws secrets manager session token"
+else
+sed -i "s@AWS_SECRETS_MANAGER_SESSION_TOKEN.*@AWS_SECRETS_MANAGER_SESSION_TOKEN\t$AWS_SECRETS_MANAGER_SESSION_TOKEN@g" /opt/semosshome/RDF_Map.prop
+fi
+
+if [[ -z "${AWS_SECRETS_MANAGER_KMS_KEY_ID}" ]];
+then echo "No defined aws secrets manager kms key id"
+else
+sed -i "s@AWS_SECRETS_MANAGER_KMS_KEY_ID.*@AWS_SECRETS_MANAGER_KMS_KEY_ID\t$AWS_SECRETS_MANAGER_KMS_KEY_ID@g" /opt/semosshome/RDF_Map.prop
+fi
