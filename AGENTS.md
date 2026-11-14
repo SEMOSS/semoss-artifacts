@@ -163,6 +163,10 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `CUSTOM_AUDITLOGS_CONNECTION_URL=<url>` | `customAuditLogsDatabase.sh` | Audit logs SMSS |
 | `CUSTOM_COLLABORATION_CONNECTION_URL=<url>` | `customCollaborationDatabase.sh` | Collaboration SMSS (written if missing) |
 | `COLLABORATION_DATABASE_ENABLED`, `COLLAB_CLASSIFIER_ENGINE_ID`, `COLLAB_CLASSIFIER_CUTOFFS` | `setCollaborationProperties.sh` | `RDF_Map.prop` |
+| `WHITE_LIST_DOMAINS=<list>` | `setWhiteListDomains.sh` | `RDF_Map.prop` |
+| `BLACK_LIST_DOMAINS=<list>` | `setBlackListDomains.sh` | `RDF_Map.prop` |
+| `SENSITIVE_KEYS=<names>` | `setSecrets.sh` | `RDF_Map.prop` |
+| `PROJECT_REACTOR_SHARED_PACKAGES=<packages>` | `setChroot.sh` | `RDF_Map.prop` |
 | `SESSION_TIMEOUT=<min>` | `setSessionTimeout.sh` | `web.xml` |
 | `SESSION_LIMIT=<n>` | `setSessionLimit.sh` | `web.xml` |
 | `MONOLITH_COOKIE=<name>` | `setMonolithCookie.sh` | `web.xml` |

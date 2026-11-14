@@ -37,3 +37,9 @@ then echo "No defined sandbox io dir"
 else
 sed -i "s@SANDBOX_IO_DIR.*@SANDBOX_IO_DIR\t$SANDBOX_IO_DIR@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z "${PROJECT_REACTOR_SHARED_PACKAGES}" ]];
+then echo "No defined project reactor shared packages"
+else
+sed -i "s@^PROJECT_REACTOR_SHARED_PACKAGES.*@PROJECT_REACTOR_SHARED_PACKAGES\t$PROJECT_REACTOR_SHARED_PACKAGES@g" /opt/semosshome/RDF_Map.prop
+fi

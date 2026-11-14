@@ -132,3 +132,9 @@ then echo "No defined aws secrets manager kms key id"
 else
 sed -i "s@AWS_SECRETS_MANAGER_KMS_KEY_ID.*@AWS_SECRETS_MANAGER_KMS_KEY_ID\t$AWS_SECRETS_MANAGER_KMS_KEY_ID@g" /opt/semosshome/RDF_Map.prop
 fi
+
+if [[ -z "${SENSITIVE_KEYS}" ]];
+then echo "No defined sensitive keys"
+else
+sed -i "s@^SENSITIVE_KEYS.*@SENSITIVE_KEYS\t$SENSITIVE_KEYS@g" /opt/semosshome/RDF_Map.prop
+fi

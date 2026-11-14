@@ -79,8 +79,11 @@ if [[ -z "${DEFAULT_INSIGHT_CACHEABLE}" ]];
 then echo "No updated default insight cacheable" 
 else sh setDefaultInsightCacheable.sh
 fi
-if [[ -z "$WHITE_LIST_DOMAINS" ]]; 
+if [[ -n "$WHITE_LIST_DOMAINS" ]];
 then sh setWhiteListDomains.sh
+fi
+if [[ -n "$BLACK_LIST_DOMAINS" ]];
+then bash setBlackListDomains.sh
 fi
 if [[ -z "${SHARED_FILE_PATH}" ]];
 then echo "No updated shared file path" 

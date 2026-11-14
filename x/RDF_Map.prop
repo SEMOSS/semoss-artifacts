@@ -70,6 +70,9 @@ LOAD_BALANCER_COOKIE_NAME
 SAMESITE_COOKIE none
 #SET WHITE LIST DOMAINS
 WHITE_LIST_DOMAINS  
+#SET BLACK LIST DOMAINS
+#Both lists are comma separated domains, host names, IP addresses and CIDR ranges
+BLACK_LIST_DOMAINS
 X_CACHE false
 SHOW_WELCOME_BANNER true
 
@@ -116,6 +119,9 @@ SANDBOX_MODE FAKECHROOT
 # Colon-separated executable directories exposed inside native Python and CmdExecUtil sandboxes.
 SANDBOX_PATH /usr/lib/python/semossvenv/bin:/usr/local/bin:/usr/bin:/bin
 SANDBOX_IO_DIR /tmp/semoss-sandbox
+# Library packages a project's custom reactors share with the platform, comma separated,
+# on top of the built-in list. The sandbox block list still applies to them.
+PROJECT_REACTOR_SHARED_PACKAGES
 
 # ------------------------------------------------------------
 # Terminals
@@ -290,6 +296,8 @@ REDIS_CLUSTER_MAX_ATTEMPTS 5
 # ------------------------------------------------------------
 # Secrets
 # ------------------------------------------------------------
+#Setting names whose values are secret, comma separated, on top of the built-in rule
+SENSITIVE_KEYS
 SECRET_STORE_ENABLED	false
 #HASHICORP_VAULT, AZURE_KEYVAULT or AWS_SECRETS_MANAGER
 SECRET_STORE_TYPE		
