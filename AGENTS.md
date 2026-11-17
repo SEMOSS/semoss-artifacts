@@ -138,6 +138,7 @@ Core SEMOSS backend config. Key sections:
 - **Engine watchers**: `SMSSWebWatcher` (databases), `SMSSStorageWatcher`, `SMSSModelWatcher`, `SMSSVectorWatcher`, `SMSSFunctionWatcher`, `SMSSGuardrailWatcher`, `ProjectWatcher` — each defines a directory under `/opt/semosshome/` to scan for `.smss` files
 - **Paths**: `BaseFolder`, `SOCIAL`, `ADDITIONAL_REACTORS`, `EMAIL_TEMPLATES`, `INSIGHT_CACHE_DIR`
 - **Python/R runtime**: `USE_PYTHON`, `PYTHONHOME`, `PY_SERVER_USER`; `USE_R`, `R_MEM_LIMIT`, `IS_USER_RSERVE`, `RSERVE_CONNECTION_POOL_SIZE`
+- **Sandbox**: `CHROOT_ENABLE` (jail on/off), `SANDBOX_MODE` (`FAKECHROOT`, `NAMESPACE` or `OPENSHELL`), `SANDBOX_*`, `NAMESPACE_*` and the `OPENSHELL_*` block. The full list with defaults is in the Semoss repo at `docs/deployment/sandbox_configuration.md`
 - **Feature flags**: `MODEL_INFERENCE_LOGS_ENABLED`, `CHROOT_ENABLE`, `USER_TRACKING_ENABLED`, `PLAYWRIGHT_EXPORT`, `SECRET_STORE_ENABLED`, `VIRUS_SCANNING_ENABLED`
 - **Defaults**: `DEFAULT_FRAME_TYPE`, `DEFAULT_GRID_TYPE`, `DEFAULT_INSIGHTS_RDBMS`, `SAMESITE_COOKIE`, `SCHEDULER_ENDPOINT`
 
@@ -167,6 +168,8 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `BLACK_LIST_DOMAINS=<list>` | `setBlackListDomains.sh` | `RDF_Map.prop` |
 | `SENSITIVE_KEYS=<names>` | `setSecrets.sh` | `RDF_Map.prop` |
 | `PROJECT_REACTOR_SHARED_PACKAGES=<packages>` | `setChroot.sh` | `RDF_Map.prop` |
+| `CHROOT_ENABLE`, `CHROOT_DIR`, `CHROOT_SYMLINK_PATHS`, `SANDBOX_MODE` (also `CHROOT_SANDBOX_MODE`), `SANDBOX_PATH`, `SANDBOX_IO_DIR`, `SANDBOX_ENV_ALLOWLIST`, `NAMESPACE_SCRUB_ENV`, `NAMESPACE_EXEC_FALLBACK` | `setChroot.sh` | `RDF_Map.prop` |
+| `OPENSHELL_CLI`, `OPENSHELL_CLI_HOME`, `OPENSHELL_TEMPLATE`, `OPENSHELL_IMAGE`, `OPENSHELL_POLICY`, `OPENSHELL_PYTHON_BINARY`, `OPENSHELL_EGRESS`, `OPENSHELL_CPU`, `OPENSHELL_MEMORY`, `OPENSHELL_WORKER_PORT`, `OPENSHELL_LABEL`, `OPENSHELL_READY_TIMEOUT_SECONDS`, `OPENSHELL_KEEP_SANDBOX`, `OPENSHELL_IDLE_EXIT_MINUTES`, `OPENSHELL_WORKER_MAX_CLIENTS` | `setOpenShell.sh` | `RDF_Map.prop` (appended if missing) |
 | `SESSION_TIMEOUT=<min>` | `setSessionTimeout.sh` | `web.xml` |
 | `SESSION_LIMIT=<n>` | `setSessionLimit.sh` | `web.xml` |
 | `MONOLITH_COOKIE=<name>` | `setMonolithCookie.sh` | `web.xml` |

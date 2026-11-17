@@ -113,12 +113,53 @@ ULIMIT_PROCESS
 CHROOT_DIR /opt/chroot
 CHROOT_ENABLE true
 CHROOT_SYMLINK_PATHS /usr/lib/python
-# Python user-process sandbox mode. FAKECHROOT preserves the existing behavior;
-# set SANDBOX_MODE to NAMESPACE to use the Linux namespace jail.
+# Python user-process sandbox mode: FAKECHROOT (the default, and what any other value means),
+# NAMESPACE (the Linux namespace jail) or OPENSHELL (one OpenShell sandbox per user; needs the
+# openshell CLI, a gateway and the OPENSHELL_ settings below). CHROOT_ENABLE=false turns jailing
+# off whatever the mode is.
 SANDBOX_MODE FAKECHROOT
 # Colon-separated executable directories exposed inside native Python and CmdExecUtil sandboxes.
 SANDBOX_PATH /usr/lib/python/semossvenv/bin:/usr/local/bin:/usr/bin:/bin
 SANDBOX_IO_DIR /tmp/semoss-sandbox
+# Names of server environment variables, comma-separated, passed on to jailed python and node workers.
+# PATH, LANG, LANGUAGE, LC_ALL and TZ are always passed; the rest of the server's environment is not.
+SANDBOX_ENV_ALLOWLIST
+# NAMESPACE mode only. true starts the python and node jails with only the variables above;
+# false passes the server's whole environment, secrets included.
+NAMESPACE_SCRUB_ENV true
+# NAMESPACE mode only. One-shot commands have no namespace jail: fakechroot runs them in the user's chroot, refuse fails them.
+NAMESPACE_EXEC_FALLBACK fakechroot
+# OpenShell sandbox settings (SANDBOX_MODE OPENSHELL). Blank uses the default shown.
+# Path to the openshell CLI (default openshell)
+OPENSHELL_CLI
+# HOME for CLI children, where the gateway registration and mTLS bundle live (default: the server's HOME)
+OPENSHELL_CLI_HOME
+# Workload template to create sandboxes from, instead of an image
+OPENSHELL_TEMPLATE
+# Image a new sandbox starts from, ignored when a template is set (default quay.io/semoss/semoss-sandbox:dev-3.14-cpu)
+OPENSHELL_IMAGE
+# Policy template to render instead of the bundled one
+OPENSHELL_POLICY
+# Interpreter path the policy's egress rules name (default /usr/lib/python/cpython/bin/python3.14)
+OPENSHELL_PYTHON_BINARY
+# Hosts sandboxed code may reach, host[:port] list; none for no egress (default pypi.org:443, files.pythonhosted.org:443)
+OPENSHELL_EGRESS
+# CPU cap per sandbox (default 2; none for no cap)
+OPENSHELL_CPU
+# Memory cap per sandbox (default 4Gi; none for no cap)
+OPENSHELL_MEMORY
+# Port the worker listens on inside the sandbox (default 7100)
+OPENSHELL_WORKER_PORT
+# Label applied to every executor sandbox (default app=semoss-executor)
+OPENSHELL_LABEL
+# Cold-start budget in seconds (default 180)
+OPENSHELL_READY_TIMEOUT_SECONDS
+# true leaves sandboxes in place on teardown, for debugging (default false)
+OPENSHELL_KEEP_SANDBOX
+# Minutes a user's worker runs with no client before it exits; keep above the session timeout (default 180)
+OPENSHELL_IDLE_EXIT_MINUTES
+# Connections one user's worker serves at once (default 16)
+OPENSHELL_WORKER_MAX_CLIENTS
 # Library packages a project's custom reactors share with the platform, comma separated,
 # on top of the built-in list. The sandbox block list still applies to them.
 PROJECT_REACTOR_SHARED_PACKAGES

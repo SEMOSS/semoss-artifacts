@@ -315,6 +315,7 @@ bash setWidgetRestrictions.sh
 bash setExternalPermissionManagement.sh
 bash setChroot.sh
 bash setSandbox.sh
+bash setOpenShell.sh
 bash setHeaderSecurity.sh
 bash setNodeServerEndpoint.sh
 
