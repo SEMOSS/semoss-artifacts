@@ -170,6 +170,7 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `PROJECT_REACTOR_SHARED_PACKAGES=<packages>` | `setChroot.sh` | `RDF_Map.prop` |
 | `CHROOT_ENABLE`, `CHROOT_DIR`, `CHROOT_SYMLINK_PATHS`, `SANDBOX_MODE` (also `CHROOT_SANDBOX_MODE`), `SANDBOX_PATH`, `SANDBOX_IO_DIR`, `SANDBOX_ENV_ALLOWLIST`, `NAMESPACE_SCRUB_ENV`, `NAMESPACE_EXEC_FALLBACK` | `setChroot.sh` | `RDF_Map.prop` |
 | `OPENSHELL_CLI`, `OPENSHELL_CLI_HOME`, `OPENSHELL_TEMPLATE`, `OPENSHELL_IMAGE`, `OPENSHELL_POLICY`, `OPENSHELL_PYTHON_BINARY`, `OPENSHELL_EGRESS`, `OPENSHELL_CPU`, `OPENSHELL_MEMORY`, `OPENSHELL_WORKER_PORT`, `OPENSHELL_LABEL`, `OPENSHELL_READY_TIMEOUT_SECONDS`, `OPENSHELL_KEEP_SANDBOX`, `OPENSHELL_IDLE_EXIT_MINUTES`, `OPENSHELL_WORKER_MAX_CLIENTS` | `setOpenShell.sh` | `RDF_Map.prop` (appended if missing) |
+| `OPENSHELL_CLIENT_URL`, `OPENSHELL_CLIENT_NAME` (default `sandbox`), `OPENSHELL_CLIENT_CERT_DIR` (default `/mnt/openshell-mtls`, holds `ca.crt`, `tls.crt`, `tls.key`) | `setOpenShell.sh` | registers a remote gateway for the `openshell` CLI under `OPENSHELL_CLI_HOME` (default `/opt/openshell-home` when a URL is set); not `RDF_Map.prop` keys |
 | `SESSION_TIMEOUT=<min>` | `setSessionTimeout.sh` | `web.xml` |
 | `SESSION_LIMIT=<n>` | `setSessionLimit.sh` | `web.xml` |
 | `MONOLITH_COOKIE=<name>` | `setMonolithCookie.sh` | `web.xml` |
