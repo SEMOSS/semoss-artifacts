@@ -63,7 +63,7 @@ echo "No Custom Monolith Secure Cookie"
 else sh setMonolithSecureCookie.sh
 fi
 
-if [[ -z "${MONOLITH_COOKIE_PATH}" ]]; then
+if [[ -z "${MONOLITH_COOKIE_PATH}" && -z "${FE_ROUTE}" ]]; then
 echo "No Custom Monolith Cookie Path"
 else sh setMonolithCookiePath.sh
 fi

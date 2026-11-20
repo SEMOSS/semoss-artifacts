@@ -692,6 +692,7 @@
       <session-timeout>120</session-timeout>
       <cookie-config>
          <name>monolith</name>
+         <path>/</path>
          <http-only>false</http-only>
          <secure>true</secure>
      </cookie-config>

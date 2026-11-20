@@ -1,6 +1,7 @@
 # Sets the Monolith session cookie path in web.xml.
-# Use "/" when Monolith is served under a rewritten prefix (e.g. /<app>/Monolith -> /Monolith), so the browser
-# sends the session cookie back without a proxy cookie-path rewrite.
+# Behind a rewritten prefix (/<app>/Monolith -> /Monolith) the cookie must be "/" or the browser never sends it back.
+# MONOLITH_COOKIE_PATH set: write that path (replaces an existing one).
+# Only FE_ROUTE set (prefixed deployment): add "/" when web.xml has no path yet; keep an existing path.
 if [ -z "${TOMCAT_HOME}" ]; then
 	SCRIPT_TOMCAT_HOME="/opt/$(ls /opt/ | grep -m1 "apache-tomcat")"
 else
@@ -12,10 +13,15 @@ if [ ! -f "$WEB_XML" ]; then
 	exit 1
 fi
 
-# replace an existing path, else add one after the cookie name
 if sed -n '/<cookie-config>/,/<\/cookie-config>/p' "$WEB_XML" | grep -q "<path>"; then
-	sed -i "/<cookie-config>/,/<\/cookie-config>/ s#<path>.*</path>#<path>$MONOLITH_COOKIE_PATH</path>#" "$WEB_XML"
+	if [ -n "$MONOLITH_COOKIE_PATH" ]; then
+		sed -i "/<cookie-config>/,/<\/cookie-config>/ s#<path>.*</path>#<path>$MONOLITH_COOKIE_PATH</path>#" "$WEB_XML"
+		echo "Monolith cookie path set to $MONOLITH_COOKIE_PATH"
+	else
+		echo "Monolith cookie path already set in web.xml"
+	fi
 else
-	sed -i "/<cookie-config>/,/<\/cookie-config>/ s#^\(\s*\)<name>.*</name>#&\n\1<path>$MONOLITH_COOKIE_PATH</path>#" "$WEB_XML"
+	COOKIE_PATH="${MONOLITH_COOKIE_PATH:-/}"
+	sed -i "/<cookie-config>/,/<\/cookie-config>/ s#^\(\s*\)<name>.*</name>#&\n\1<path>$COOKIE_PATH</path>#" "$WEB_XML"
+	echo "Monolith cookie path set to $COOKIE_PATH"
 fi
-echo "Monolith cookie path set to $MONOLITH_COOKIE_PATH"
