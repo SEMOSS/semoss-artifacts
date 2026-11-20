@@ -174,7 +174,7 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `SESSION_TIMEOUT=<min>` | `setSessionTimeout.sh` | `web.xml` |
 | `SESSION_LIMIT=<n>` | `setSessionLimit.sh` | `web.xml` |
 | `MONOLITH_COOKIE=<name>` | `setMonolithCookie.sh` | `web.xml` |
-| `MONOLITH_COOKIE_PATH=<path>` (default `/` in `x/web.xml`; `FE_ROUTE` alone adds `/` when `web.xml` has no path) | `setMonolithCookiePath.sh` | `web.xml` session `cookie-config` |
+| `MONOLITH_COOKIE_PATH=<path>` (optional override; when only `FE_ROUTE` is set, `/` is added if `web.xml` has no path) | `setMonolithCookiePath.sh` | `web.xml` session `cookie-config` |
 | `SEMOSS_MAX_POST_SIZE=<bytes>` | `setMaxPostSize.sh` | `server.xml` |
 | `FE_ROUTE=<path>` | `updateFEIndexHtml.sh` | SemossWeb `index.html` |
 | `SEMOSS_VERSION=<ver>` | (read by `update_latest_dev.sh`) | pins artifact version at build |
