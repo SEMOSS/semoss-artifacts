@@ -164,6 +164,7 @@ OAuth/SSO configuration template. Contains no `<PLACEHOLDER>` sentinels — ever
 | `CUSTOM_AUDITLOGS_CONNECTION_URL=<url>` | `customAuditLogsDatabase.sh` | Audit logs SMSS |
 | `CUSTOM_COLLABORATION_CONNECTION_URL=<url>` | `customCollaborationDatabase.sh` | Collaboration SMSS (written if missing) |
 | `COLLABORATION_DATABASE_ENABLED`, `COLLAB_CLASSIFIER_ENGINE_ID`, `COLLAB_CLASSIFIER_CUTOFFS` | `setCollaborationProperties.sh` | `RDF_Map.prop` |
+| `POI_MAX_FILE_COUNT` (entries one Office file can hold, default 5000), `POI_BYTE_ARRAY_MAX_MB` (MB POI reads into memory at once for one part, default 1024, max 2047) | `setPoiLimits.sh` | `RDF_Map.prop` (appended if missing) |
 | `WHITE_LIST_DOMAINS=<list>` | `setWhiteListDomains.sh` | `RDF_Map.prop` |
 | `BLACK_LIST_DOMAINS=<list>` | `setBlackListDomains.sh` | `RDF_Map.prop` |
 | `SENSITIVE_KEYS=<names>` | `setSecrets.sh` | `RDF_Map.prop` |

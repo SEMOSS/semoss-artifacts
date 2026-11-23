@@ -323,6 +323,7 @@ bash setSandbox.sh
 bash setOpenShell.sh
 bash setHeaderSecurity.sh
 bash setNodeServerEndpoint.sh
+bash setPoiLimits.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 

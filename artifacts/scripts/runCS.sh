@@ -325,6 +325,7 @@ bash setHeaderSecurity.sh
 bash setNodeServerEndpoint.sh
 bash setLogProperties.sh
 bash setWebSearchProperties.sh
+bash setPoiLimits.sh
 
 if [[ -z "${FE_ROUTE}" ]];
 then echo "FE_ROUTE is not enabled" 

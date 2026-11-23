@@ -215,6 +215,9 @@ MEM_PROFILE_SETTINGS	CONSTANT
 USER_MEM_LIMIT	2
 RESERVED_JAVA_MEM	12
 FILE_TRANSFER_LIMIT 50
+#Office files (xlsx, docx, pptx): most entries one file can hold, and most MB read into memory at once for one part [max 2047]
+POI_MAX_FILE_COUNT	5000
+POI_BYTE_ARRAY_MAX_MB	1024
 
 # ------------------------------------------------------------
 # Export
