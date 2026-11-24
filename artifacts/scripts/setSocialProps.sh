@@ -219,6 +219,10 @@ if [ -n "$LINOTP_DISPLAY_NAME" ]
 then set_prop linotp_display_name "$LINOTP_DISPLAY_NAME"
 fi
 
+if [ -n "$LINOTP_SKIP_HOSTNAME_VERIFY" ]
+then set_prop linotp_skip_hostname_verify "$LINOTP_SKIP_HOSTNAME_VERIFY"
+fi
+
 ##### LDAP Properties
 if [ "$ENABLE_LDAP" = "true" ]
 then set_prop ldap_login "$ENABLE_LDAP"
